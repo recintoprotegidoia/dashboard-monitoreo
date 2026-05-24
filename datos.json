@@ -1,11 +1,11 @@
 {
   "dispositivos": {
-    "online": 12,
-    "offline": 2
+    "online": 0,
+    "offline": 0
   },
   "camaras": {
-    "online": 310,
-    "offline": 5
+    "online": 0,
+    "offline": 0
   },
-  "ultima_actualizacion": "24/05/2026 11:50:00"
+  "ultima_actualizacion": "24-05-2026, 2:49:35 p. m."
 }
