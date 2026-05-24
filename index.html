@@ -3,166 +3,349 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monitoreo de Clientes - Recinto Protegido</title>
+    <title>Dashboard de Monitoreo - Recinto Protegido</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // Configuración de temas para Tailwind (Light y Dark idéntico a tu referencia)
+        // Configuración de Tailwind para transiciones fluidas de Modo Oscuro
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        brand: {
-                            light: '#ffffff',
-                            dark: '#1e293b', // Color oscuro corporativo
-                            accent: '#ef4444', // Rojo acento
-                            online: '#10b981', // Verde acento
-                        }
+                        slate: { 950: '#0f172a' }
                     }
                 }
             }
         }
     </script>
     <style>
-        /* Estilos base para transiciones y estados */
-        body { transition: background-color 0.3s, color 0.3s; }
-        .badge-offline { background-color: rgba(239, 68, 68, 0.2); color: #ef4444; }
-        .dark .badge-offline { background-color: rgba(248, 113, 113, 0.2); color: #f87171; }
-        .badge-online { background-color: rgba(16, 185, 129, 0.2); color: #10b981; }
-        th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; color: #94a3b8; }
+        body { background-color: #eeebe6; transition: background-color 0.3s, color 0.3s; }
+        .dark body { background-color: #0f172a; }
+        .premium-card { background: white; border-radius: 8px; border: 1px solid #dbdad5; box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: all 0.3s; }
+        .dark .premium-card { background: #1e293b; border-color: #334155; color: #f8fafc; }
+        .status-online { background-color: #e2f5ec; color: #10b981; }
+        .dark .status-online { background-color: rgba(16, 185, 129, 0.2); color: #4ade80; }
+        .status-offline { background-color: #fde8e8; color: #f05252; }
+        .dark .status-offline { background-color: rgba(239, 68, 68, 0.2); color: #f87171; }
     </style>
 </head>
-<body class="bg-gray-50 text-slate-900 font-sans p-4 md:p-8 dark:bg-gray-950 dark:text-slate-100">
+<body class="p-4 md:p-6 text-slate-800 dark:text-slate-100">
 
     <div class="max-w-7xl mx-auto space-y-6">
         
-        <header class="bg-white p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 dark:bg-slate-900 dark:border dark:border-slate-800">
-            <div class="flex items-center gap-4">
-                <img src="https://cristian-iarp.github.io/Dahboard-Camaras/logo.png" alt="Logo Recinto Protegido" class="h-16 w-auto object-contain" onerror="this.style.display='none'">
-                <div>
-                    <h1 class="text-2xl font-extrabold tracking-tighter text-slate-950 dark:text-white">Panel de Monitoreo de Clientes</h1>
-                    <p class="text-sm text-slate-600 dark:text-slate-400">Estado de conexión en tiempo real sincronizado con n8n</p>
-                </div>
-            </div>
-            <div class="flex items-center gap-4 text-right">
-                <p class="text-xs text-slate-500 dark:text-slate-400">Última actualización:<br><span id="fecha-actualizacion" class="font-bold text-slate-700 dark:text-slate-200">Cargando...</span></p>
-                <button id="dark-mode-toggle" class="bg-gray-100 text-slate-600 p-3 rounded-full hover:bg-gray-200 transition dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700">
-                    <i class="fa-solid fa-moon"></i>
-                </button>
-            </div>
-        </header>
-
-        <div class="bg-white p-6 rounded-2xl shadow-sm dark:bg-slate-900 dark:border dark:border-slate-800">
-            <div class="flex items-center justify-between gap-4 mb-6">
-                <h2 class="text-lg font-bold flex items-center gap-2"><i class="fa-solid fa-signal text-online dark:text-teal-400"></i> ESTADO DE CLIENTES CMO - CRA</h2>
-                <input type="text" id="buscador" class="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 text-sm w-full max-w-sm focus:border-red-400 focus:ring-1 focus:ring-red-400 focus:outline-none dark:bg-slate-950 dark:border-slate-800 dark:focus:border-teal-500 dark:focus:ring-teal-500" placeholder="🔍 Buscar por nombre de cliente...">
+        <div class="premium-card p-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <img src="https://cristian-iarp.github.io/Dahboard-Camaras/RP%20LOGO%20BASIC.png" alt="Recinto Protegido" class="h-16 object-contain">
+            
+            <div class="text-center">
+                <p class="text-xs uppercase tracking-widest text-gray-400 font-bold dark:text-slate-400">Reporte de Disponibilidad - Servicio 24/7</p>
+                <h1 class="text-2xl font-black tracking-tight text-slate-900 dark:text-white">Monitoreo de Dispositivos</h1>
+                <p class="text-xs text-gray-500 mt-1 dark:text-slate-400">Cliente: <span class="font-bold text-slate-700 dark:text-slate-200">CMO - CRA</span> · Monitoreado por: <span class="font-bold text-red-500">Recinto Protegido</span></p>
             </div>
             
-            <div class="overflow-x-auto rounded-xl border border-gray-100 dark:border-slate-800">
-                <table class="w-full text-left text-sm">
-                    <thead class="bg-gray-50 dark:bg-slate-950 border-b border-gray-100 dark:border-slate-800">
-                        <tr>
+            <div class="flex items-center gap-4">
+                <div class="text-right text-xs text-slate-500 space-y-1 dark:text-slate-400">
+                    <div><i class="fa-solid fa-clock text-red-500"></i> Reloj Local: <span id="reloj-vivo" class="font-mono font-bold text-slate-800 dark:text-white">00:00:00</span></div>
+                    <div class="text-[10px] text-gray-400">Último reporte: <span id="update-time">--</span></div>
+                </div>
+                <button id="btn-tema" class="p-2.5 rounded-full border border-gray-300 hover:bg-gray-100 dark:border-slate-600 dark:hover:bg-slate-700 transition">
+                    <i id="icono-tema" class="fa-solid fa-moon text-slate-600 dark:text-slate-300"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="premium-card px-6 py-3 flex flex-wrap justify-between items-center text-xs font-bold text-slate-600 gap-2 dark:text-slate-300">
+            <div class="flex items-center gap-2">
+                <span class="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>Servicio Activo Continuo</span>
+            </div>
+            <div>GENERADO: <span id="cinta-fecha" class="text-slate-800 dark:text-white">--/--/--</span></div>
+            <div>OPERACIÓN: <span class="text-slate-800 dark:text-white">CMO - CRA "RECINTO PROTEGIDO"</span></div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="premium-card p-6 text-center space-y-2">
+                <p class="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">Equipos en Línea</p>
+                <div class="text-4xl font-black text-emerald-500" id="kpi-online">-</div>
+                <p class="text-[10px] text-gray-400 dark:text-slate-500">Reportados operativos</p>
+            </div>
+            <div class="premium-card p-6 text-center space-y-2 border-t-4 border-red-500">
+                <p class="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">Sin Conexión</p>
+                <div class="text-4xl font-black text-red-500" id="kpi-offline">-</div>
+                <p class="text-[10px] text-gray-400 dark:text-slate-500">Equipos requieren atención</p>
+            </div>
+            <div class="premium-card p-6 text-center space-y-2">
+                <p class="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">Disponibilidad Global</p>
+                <div class="text-4xl font-black text-slate-800 dark:text-white" id="kpi-porcentaje">- %</div>
+                <p class="text-[10px] text-gray-400 dark:text-slate-500">Online sobre el total</p>
+            </div>
+            <div class="premium-card p-6 text-center space-y-2">
+                <p class="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">Total Monitoreados</p>
+                <div class="text-4xl font-black text-sky-500" id="kpi-total">-</div>
+                <p class="text-[10px] text-gray-400 dark:text-slate-500">Dispositivos en plataforma</p>
+            </div>
+        </div>
+
+        <div class="premium-card p-6">
+            <h3 class="text-sm font-bold text-slate-700 dark:text-slate-300 mb-4 uppercase tracking-wider">
+                <i class="fa-solid fa-chart-pie text-slate-400 mr-1"></i> Balance Estadístico de Infraestructura (Online vs Offline)
+            </h3>
+            <div class="h-28 w-full">
+                <canvas id="graficoComparativo"></canvas>
+            </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-between items-center">
+            <div class="flex bg-white dark:bg-slate-800 p-1 rounded-lg border border-gray-300 dark:border-slate-700 gap-1 text-xs font-bold w-full sm:w-auto shadow-sm">
+                <button onclick="filtrarEstado('todos')" id="btn-todos" class="flex-1 px-5 py-2 rounded bg-slate-800 text-white transition dark:bg-slate-600">Todos</button>
+                <button onclick="filtrarEstado('online')" id="btn-online" class="flex-1 px-5 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition">Online</button>
+                <button onclick="filtrarEstado('offline')" id="btn-offline" class="flex-1 px-5 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition">Offline</button>
+            </div>
+            <input type="text" id="buscador" class="w-full sm:max-w-xs px-4 py-2 text-sm bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-700 rounded-lg focus:outline-none focus:border-red-400 dark:focus:border-red-500 shadow-sm text-slate-700 dark:text-white" placeholder="🔍 Buscar cliente por nombre...">
+        </div>
+
+        <div class="premium-card overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="border-b border-gray-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-xs font-bold uppercase">
                             <th class="p-4">Cliente (Name)</th>
                             <th class="p-4">Estado (Current Status)</th>
                             <th class="p-4">Última Desconexión (Latest Offline Time)</th>
                             <th class="p-4">Tiempo Total Fuera de Línea (Total Offline Duration)</th>
                         </tr>
                     </thead>
-                    <tbody id="tabla-registros" class="divide-y divide-gray-100 dark:divide-slate-800">
+                    <tbody id="tabla-datos" class="divide-y divide-gray-200 dark:divide-slate-700 font-medium">
                         <tr>
-                            <td colspan="4" class="p-12 text-center text-slate-500 dark:text-slate-400">Sincronizando con el repositorio de datos...</td>
+                            <td colspan="4" class="p-8 text-center text-gray-400 dark:text-slate-500">Sincronizando base de datos...</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
+
     </div>
 
     <script>
         let dispositivoMaster = [];
+        let filtroActual = 'todos';
+        let chartInstancia = null;
 
-        // Modo Oscuro: Lógica de guardado en el navegador
-        const toggle = document.getElementById('dark-mode-toggle');
-        const isDark = localStorage.getItem('theme') === 'dark';
-        if (isDark) document.documentElement.classList.add('dark');
+        // Reloj digital en vivo
+        function actualizarReloj() {
+            const ahora = new Date();
+            document.getElementById('reloj-vivo').innerText = ahora.toLocaleTimeString('es-CL');
+        }
+        setInterval(actualizarReloj, 1000);
 
-        toggle.addEventListener('click', () => {
-            const dark = document.documentElement.classList.toggle('dark');
-            localStorage.setItem('theme', dark ? 'dark' : 'light');
-            toggle.innerHTML = dark ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
-        });
-
-        // Lógica de carga y ordenación inteligente
-        async function cargarDashboard() {
-            try {
-                const respuesta = await fetch('datos.json?t=' + new Date().getTime());
-                const datos = await respuesta.json();
-                
-                document.getElementById('fecha-actualizacion').innerText = datos.ultima_actualizacion || 'No disponible';
-                dispositivoMaster = datos.registros || [];
-                
-                renderizarTabla();
-            } catch (error) {
-                console.error("Error al cargar JSON:", error);
-            }
+        // Lógica del botón de Modo Oscuro
+        const btnTema = document.getElementById('btn-tema');
+        const iconoTema = document.getElementById('icono-tema');
+        
+        // Cargar tema guardado
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').all)) {
+            document.documentElement.classList.add('dark');
+            iconoTema.className = "fa-solid fa-sun text-amber-400";
         }
 
-        // Convertir strings "HH:MM:SS" a segundos para poder ordenar matemáticamente
+        btnTema.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                iconoTema.className = "fa-solid fa-moon text-slate-600";
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                iconoTema.className = "fa-solid fa-sun text-amber-400";
+            }
+        });
+
+        // Convertir "HH:MM:SS" a segundos para ordenación matemática precisa
         function duracionASegundos(str) {
-            if (!str || str === "0" || str === "00:00:00") return 0;
+            if (!str || str === "0" || str === "00:00:00" || str.includes('--')) return 0;
             const partes = str.split(':');
             if (partes.length !== 3) return 0;
             return (parseInt(partes[0]) * 3600) + (parseInt(partes[1]) * 60) + parseInt(partes[2]);
         }
 
+        async function cargarDashboard() {
+            try {
+                const respuesta = await fetch('datos.json?v=' + Date.now());
+                const datos = await respuesta.json();
+                
+                dispositivoMaster = datos.dispositivos || [];
+                
+                document.getElementById('update-time').innerText = datos.ultima_actualizacion || '--';
+                if(datos.ultima_actualizacion) {
+                    document.getElementById('cinta-fecha').innerText = datos.ultima_actualizacion.split(',')[0];
+                }
+
+                // Cálculos de analítica en base a datos reales recibidos
+                const total = dispositivoMaster.length;
+                const online = dispositivoMaster.filter(d => {
+                    const st = d["Current Status"].toLowerCase();
+                    return st === 'online' || st.includes('línea') || st.includes('linea');
+                }).length;
+                const offline = total - online;
+                const porcentaje = total > 0 ? ((online / total) * 100).toFixed(1) : 0;
+
+                // Inyectar analítica en tarjetas superiores
+                document.getElementById('kpi-total').innerText = total;
+                document.getElementById('kpi-online').innerText = online;
+                document.getElementById('kpi-offline').innerText = offline;
+                document.getElementById('kpi-porcentaje').innerText = porcentaje + '%';
+
+                construirGraficoBarras(online, offline);
+                renderizarTabla();
+
+            } catch (error) {
+                console.error("Error leyendo datos.json:", error);
+            }
+        }
+
         function renderizarTabla() {
-            const tbody = document.getElementById('tabla-registros');
+            const tbody = document.getElementById('tabla-datos');
             const busqueda = document.getElementById('buscador').value.toLowerCase().trim();
             tbody.innerHTML = '';
 
-            // 1. Filtrar según la caja de búsqueda
-            let filtrados = dispositivoMaster.filter(d => d["Name"].toLowerCase().includes(busqueda));
+            // 1. Filtrar según selección de botones y buscador
+            let filtrados = dispositivoMaster.filter(d => {
+                const statusText = d["Current Status"].toLowerCase();
+                const isOnline = statusText === 'online' || statusText.includes('línea') || statusText.includes('linea');
+                
+                if (filtroActual === 'online' && !isOnline) return false;
+                if (filtroActual === 'offline' && isOnline) return false;
+                
+                if (busqueda !== '') {
+                    return d["Name"].toLowerCase().includes(busqueda);
+                }
+                return true;
+            });
 
-            // 2. ORDENACIÓN PRIORITARIA: Los que llevan más tiempo caídos siempre van primero
+            // 2. ORDENACIÓN PRIORITARIA EXIGIDA: Los que llevan más tiempo caídos (Offline) van primero
             filtrados.sort((a, b) => {
-                const segundosA = duracionASegundos(a["Total Offline Duration"]);
-                const segundosB = duracionASegundos(b["Total Offline Duration"]);
+                const statusA = a["Current Status"].toLowerCase();
+                const statusB = b["Current Status"].toLowerCase();
+                const isOnlineA = statusA === 'online' || statusA.includes('línea') || statusA.includes('linea');
+                const isOnlineB = statusB === 'online' || statusB.includes('línea') || statusB.includes('linea');
                 
-                // Si ambos tienen duración, ordenamos de mayor a menor (más tiempo caído arriba)
-                if (segundosA > 0 || segundosB > 0) return segundosB - segundosA;
-                
-                // Si no hay duración (son 00:00:00 o nulos), ordenamos alfabéticamente
-                return a["Name"].localeCompare(b["Name"]);
+                if (!isOnlineA && !isOnlineB) {
+                    // Si ambos están caídos, ordenar por segundos acumulados de mayor a menor
+                    return duracionASegundos(b["Total Offline Duration"]) - duracionASegundos(a["Total Offline Duration"]);
+                }
+                // Los offline flotan al inicio de la lista
+                return isOnlineA - isOnlineB;
             });
 
             if(filtrados.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="4" class="p-12 text-center text-slate-500">No se encontraron clientes que coincidan.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="4" class="p-6 text-center text-gray-400 dark:text-slate-500">No hay registros que coincidan.</td></tr>`;
                 return;
             }
 
+            // 3. Imprimir filas limpias
             filtrados.forEach(d => {
-                const estadoLower = d["Current Status"].toLowerCase();
-                const badgeClass = (estadoLower === 'online' || estadoLower === 'línea') ? 'badge-online' : 'badge-offline';
-                const estadoTraducido = (estadoLower === 'online' || estadoLower === 'línea') ? 'Online' : 'Offline';
+                const statusText = d["Current Status"].toLowerCase();
+                const isOnline = statusText === 'online' || statusText.includes('línea') || statusText.includes('linea');
+                
+                const badgeClass = isOnline ? 'status-online' : 'status-offline';
+                const statusHtml = isOnline ? 'ONLINE' : 'OFFLINE';
 
                 const tr = document.createElement('tr');
-                tr.className = "hover:bg-gray-50 dark:hover:bg-slate-800/50";
+                tr.className = "hover:bg-slate-50 dark:hover:bg-slate-800/30 transition text-slate-700 dark:text-slate-200";
                 tr.innerHTML = `
-                    <td class="p-4 font-semibold text-slate-800 dark:text-slate-200">${d["Name"]}</td>
-                    <td class="p-4"><span class="px-3 py-1 rounded-md text-xs font-bold tracking-tight ${badgeClass}">${estadoTraducido}</span></td>
-                    <td class="p-4 font-mono text-xs text-slate-600 dark:text-slate-400">${d["Latest Offline Time"] || '--'}</td>
-                    <td class="p-4 font-mono text-sm font-bold text-slate-800 dark:text-slate-100">${d["Total Offline Duration"] || '00:00:00'}</td>
+                    <td class="p-4 font-bold text-slate-900 dark:text-white">${d["Name"]}</td>
+                    <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${badgeClass}">${statusHtml}</span></td>
+                    <td class="p-4 font-mono text-xs">${d["Latest Offline Time"]}</td>
+                    <td class="p-4 font-mono text-xs font-bold text-slate-900 dark:text-white">${d["Total Offline Duration"]}</td>
                 `;
                 tbody.appendChild(tr);
             });
         }
 
-        // Ejecutar búsqueda en tiempo real
+        function filtrarEstado(estado) {
+            filtroActual = estado;
+            ['todos', 'online', 'offline'].forEach(id => {
+                const btn = document.getElementById('btn-' + id);
+                if(id === estado) {
+                    btn.className = "flex-1 px-5 py-2 rounded bg-slate-800 text-white transition dark:bg-slate-600";
+                } else {
+                    btn.className = "flex-1 px-5 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition";
+                }
+            });
+            renderizarTabla();
+        }
+
         document.getElementById('buscador').addEventListener('input', renderizarTabla);
 
-        // Arrancar
-        cargarDashboard();
+        // Barra estadística comparativa horizontal (Online vs Offline)
+        function construirGraficoBarras(online, offline) {
+            const ctx = document.getElementById('graficoComparativo').getContext('2d');
+            if (chartInstancia) chartInstancia.destroy();
+
+            const modoOscuroActivo = document.documentElement.classList.contains('dark');
+
+            chartInstancia = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Infraestructura'],
+                    datasets: [
+                        {
+                            label: 'Equipos Online',
+                            data: [online],
+                            backgroundColor: '#10b981', 
+                            barPercentage: 0.4
+                        },
+                        {
+                            label: 'Equipos Offline',
+                            data: [offline],
+                            backgroundColor: '#ef4444', 
+                            barPercentage: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    indexAxis: 'y', 
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { 
+                            position: 'bottom', 
+                            labels: { 
+                                boxWidth: 12, 
+                                color: modoOscuroActivo ? '#f8fafc' : '#1e293b',
+                                font: { size: 11, weight: 'bold' } 
+                            } 
+                        }
+                    },
+                    scales: {
+                        x: { 
+                            beginAtZero: true, 
+                            grid: { color: modoOscuroActivo ? '#334155' : '#e2e8f0' },
+                            ticks: { color: modoOscuroActivo ? '#94a3b8' : '#64748b' }
+                        },
+                        y: { display: false } 
+                    }
+                }
+            });
+        }
+
+        // Monitorear cambios de tema para redibujar las leyendas del gráfico si es necesario
+        document.getElementById('btn-tema').addEventListener('click', () => {
+            setTimeout(() => {
+                if(chartInstancia) {
+                    const total = dispositivoMaster.length;
+                    const online = dispositivoMaster.filter(d => d["Current Status"].toLowerCase() === 'online').length;
+                    const offline = total - online;
+                    construirGraficoBarras(online, offline);
+                }
+            }, 350);
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            actualizarReloj();
+            cargarDashboard();
+        });
     </script>
 </body>
 </html>
