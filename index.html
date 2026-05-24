@@ -3,185 +3,224 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard de Monitoreo CCTV</title>
+    <title>Monitoreo - Clientes CMO / CRA</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; color: #333; margin: 0; padding: 20px; }
-        .container { max-width: 1100px; margin: 0 auto; }
-        .header { text-align: center; margin-bottom: 40px; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .header h1 { margin: 0 0 10px 0; color: #1a1a1a; }
-        .timestamp { color: #666; font-size: 0.95rem; margin: 0; font-weight: bold; }
-        .section-title { border-bottom: 3px solid #e1e4e8; padding-bottom: 10px; margin: 40px 0 25px 0; color: #2c3e50; font-size: 1.5rem; }
-        .row { display: flex; gap: 25px; margin-bottom: 25px; flex-wrap: wrap; }
-        .card { flex: 1; min-width: 250px; background: white; border-radius: 12px; padding: 30px 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; transition: transform 0.2s; }
-        .card:hover { transform: translateY(-5px); }
-        .card h3 { margin-top: 0; color: #7f8c8d; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; }
-        .card .number { font-size: 3.5rem; font-weight: bold; margin: 15px 0 0 0; }
-        .online { color: #27ae60; } 
-        .offline { color: #e74c3c; } 
-        
-        /* Estilos para las tablas */
-        .table-container { background: white; border-radius: 12px; padding: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow-x: auto; margin-bottom: 30px; }
-        table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.95rem; }
-        th { background-color: #f8f9fa; color: #2c3e50; padding: 12px 15px; border-bottom: 2px solid #e1e4e8; font-weight: 600; }
-        td { padding: 12px 15px; border-bottom: 1px solid #f0f2f5; line-height: 1.4; }
-        tr:hover { background-color: #f8f9fa; }
-        
-        /* Badges de estado */
-        .badge { padding: 5px 10px; border-radius: 6px; font-weight: bold; font-size: 0.85rem; text-transform: uppercase; display: inline-block; }
-        .badge-online { background-color: #d4edda; color: #155724; }
-        .badge-offline { background-color: #f8d7da; color: #721c24; }
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-color: #38bdf8;
+            --border-color: #334155;
+            --danger: #ef4444;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        header h1 {
+            font-size: 24px;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .section-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #f1f5f9;
+        }
+
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #0f172a;
+            color: var(--accent-color);
+            padding: 12px 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.05em;
+        }
+
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-color);
+            color: #e2e8f0;
+        }
+
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background-color: #24334d; }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge-offline { background-color: rgba(239, 68, 68, 0.2); color: #f87171; }
+        .badge-online { background-color: rgba(34, 197, 94, 0.2); color: #4ade80; }
+
+        .search-box {
+            width: 100%;
+            max-width: 400px;
+            padding: 10px 16px;
+            background-color: #0f172a;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-color);
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .loading-text {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-muted);
+        }
     </style>
 </head>
 <body>
+
     <div class="container">
-        <div class="header">
-            <h1>📊 Centro de Monitoreo de Infraestructura</h1>
-            <p class="timestamp">Última actualización: <span id="update-time">Cargando...</span></p>
-        </div>
+        <header>
+            <h1>📡 PANEL DE MONITOREO EN TIEMPO REAL</h1>
+            <p>Última actualización: <span id="fecha-actualizacion">Cargando...</span></p>
+        </header>
 
-        <h2 class="section-title">🖥️ ESTADO CLIENTES - CMO - CRA</h2>
-        <div class="row">
-            <div class="card" style="border-bottom: 5px solid #27ae60;">
-                <h3>Equipos En Línea</h3>
-                <div class="number online" id="dev-online">-</div>
+        <div class="section-card">
+            <h2 class="section-title"><i class="fa-solid fa-video" style="color: #38bdf8;"></i> ESTADO CÁMARAS - CLIENTES CMO - CRA</h2>
+            <input type="text" id="buscar-camaras" class="search-box" placeholder="🔍 Buscar por nombre de cliente o cámara...">
+            
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Current Status</th>
+                            <th>Latest Offline Time</th>
+                            <th>Total Offline Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-camaras">
+                        <tr>
+                            <td colspan="4" class="loading-text">Cargando registros...</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="card" style="border-bottom: 5px solid #e74c3c;">
-                <h3>Equipos Sin Conexión</h3>
-                <div class="number offline" id="dev-offline">-</div>
-            </div>
-        </div>
-        
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nombre / Cliente</th>
-                        <th>Area</th>
-                        <th>Estado</th>
-                        <th>Último Corte</th>
-                        <th>Duración Fuera de Línea</th>
-                    </tr>
-                </thead>
-                <tbody id="tabla-dispositivos">
-                    <tr><td colspan="6" style="text-align:center; color:#888;">Cargando registros...</td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <h2 class="section-title">📹 ESTADO CÁMARAS - CLIENTES CMO - CRA</h2>
-        <div class="row">
-            <div class="card" style="border-bottom: 5px solid #27ae60;">
-                <h3>Cámaras En Línea</h3>
-                <div class="number online" id="cam-online">-</div>
-            </div>
-            <div class="card" style="border-bottom: 5px solid #e74c3c;">
-                <h3>Cámaras Sin Conexión</h3>
-                <div class="number offline" id="cam-offline">-</div>
-            </div>
-        </div>
-
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nombre / Cámara</th>
-                        <th>Estado</th>
-                        <th>Último Corte</th>
-                        <th>Duración Fuera de Línea</th>
-                    </tr>
-                </thead>
-                <tbody id="tabla-camaras">
-                    <tr><td colspan="6" style="text-align:center; color:#888;">Cargando registros...</td></tr>
-                </tbody>
-            </table>
         </div>
     </div>
 
     <script>
-        // Corregido: Agregada la palabra clave 'function' para evitar el quiebre del navegador
-        async function cargarDashboard() {
+        async function cargarDatos() {
             try {
-                // 1. Leer el JSON plano generado por tu n8n
-                const respuesta = await fetch('datos.json');
+                // Evitamos caché para tener datos inmediatos
+                const respuesta = await fetch('datos.json?t=' + new Date().getTime());
                 const datos = await respuesta.json();
-
-                // 2. Sincronizar la estampa de tiempo
-                if (datos.ultima_actualizacion) {
-                    document.getElementById('update-time').innerText = datos.ultima_actualizacion;
+                
+                document.getElementById('fecha-actualizacion').innerText = datos.ultima_actualizacion || 'No disponible';
+                
+                const tabla = document.getElementById('tabla-camaras');
+                tabla.innerHTML = '';
+                
+                const registros = datos.camaras || [];
+                
+                if (registros.length === 0) {
+                    tabla.innerHTML = '<tr><td colspan="4" class="loading-text">No hay cámaras fuera de línea registradas.</td></tr>';
+                    return;
                 }
-
-                let devOnlineCount = 0, devOfflineCount = 0;
-                let camOnlineCount = 0, camOfflineCount = 0;
-
-                // Helper blindado para construir filas sin romper el render por textos indefinidos
-                function crearFilaHtml(item) {
-                    const statusText = String(item["Current Status"] || 'Offline').trim();
-                    const isOnline = statusText.toLowerCase().includes('online') || statusText.toLowerCase().includes('línea') || statusText.toLowerCase().includes('linea');
+                
+                registros.forEach(item => {
+                    const fila = document.createElement('tr');
                     
-                    const badgeClass = isOnline ? 'badge-online' : 'badge-offline';
-                    const badgeText = isOnline ? 'Online' : 'Offline';
+                    const estadoLower = (item['Current Status'] || '').toLowerCase();
+                    const badgeClass = estadoLower.includes('online') ? 'badge-online' : 'badge-offline';
                     
-                    // Si el nombre viene vacío (como en tu JSON), usamos el campo Área para identificar al cliente
-                    const identificador = (item["Name"] && item["Name"].trim() !== "") ? item["Name"] : (item["Area"] || 'Dispositivo General');
+                    fila.innerHTML = `
+                        <strong style="display:block; padding-top:4px;">${item['Name'] || 'Sin Nombre'}</strong>
+                        <td><span class="badge ${badgeClass}">${item['Current Status'] || 'Offline'}</span></td>
+                        <td>${item['Latest Offline Time'] || '--:--'}</td>
+                        <td>${item['Total Offline Duration'] || '0 min'}</td>
+                    `;
+                    tabla.appendChild(fila);
+                });
 
-                    return `<tr>
-                        <td><strong>${identificador}</strong></td>
-                        <td>${item["Area"] || 'General'}</td>
-                        <td><span class="badge ${badgeClass}">${badgeText}</span></td>
-                        <td>${item["Latest Offline Time"] || 'Sin registro'}</td>
-                        <td>${item["Total Offline Times"] || '0'}</td>
-                        <td>${item["Total Offline Duration"] || '00:00:00'}</td>
-                    </tr>`;
-                }
-
-                // 3. Renderizar Tabla Dispositivos
-                const tablaDispositivos = document.getElementById('tabla-dispositivos');
-                if (tablaDispositivos && datos.dispositivos && datos.dispositivos.length > 0) {
-                    tablaDispositivos.innerHTML = ''; 
-                    datos.dispositivos.forEach(item => {
-                        const statusText = String(item["Current Status"] || '').toLowerCase();
-                        if (statusText.includes('online') || statusText.includes('línea') || statusText.includes('linea')) {
-                            devOnlineCount++;
-                        } else {
-                            devOfflineCount++;
-                        }
-                        tablaDispositivos.innerHTML += crearFilaHtml(item);
-                    });
-                } else if (tablaDispositivos) {
-                    tablaDispositivos.innerHTML = `<tr><td colspan="6" style="text-align:center; color:#888;">No hay registros de dispositivos cargados.</td></tr>`;
-                }
-
-                // 4. Renderizar Tabla Cámaras
-                const tablaCamaras = document.getElementById('tabla-camaras');
-                if (tablaCamaras && datos.camaras && datos.camaras.length > 0) {
-                    tablaCamaras.innerHTML = ''; 
-                    datos.camaras.forEach(item => {
-                        const statusText = String(item["Current Status"] || '').toLowerCase();
-                        if (statusText.includes('online') || statusText.includes('línea') || statusText.includes('linea')) {
-                            camOnlineCount++;
-                        } else {
-                            camOfflineCount++;
-                        }
-                        tablaCamaras.innerHTML += crearFilaHtml(item);
-                    });
-                } else if (tablaCamaras) {
-                    tablaCamaras.innerHTML = `<tr><td colspan="6" style="text-align:center; color:#888;">No hay registros de cámaras cargados.</td></tr>`;
-                }
-
-                // 5. Mostrar los totales en las tarjetas de arriba
-                document.getElementById('dev-online').innerText = devOnlineCount;
-                document.getElementById('dev-offline').innerText = devOfflineCount;
-                document.getElementById('cam-online').innerText = camOnlineCount;
-                document.getElementById('cam-offline').innerText = camOfflineCount;
+                // Lógica del buscador rápido en tiempo real
+                document.getElementById('buscar-camaras').addEventListener('input', function(e) {
+                    const termino = e.target.value.toLowerCase();
+                    const filas = tabla.getElementsByTagName('tr');
+                    
+                    for (let i = 0; i < filas.length; i++) {
+                        const textoFila = filas[i].innerText.toLowerCase();
+                        filas[i].style.display = textoFila.includes(termino) ? '' : 'none';
+                    }
+                });
 
             } catch (error) {
-                console.error("Error al cargar los datos del JSON:", error);
-                document.getElementById('update-time').innerText = "Error de sincronización.";
+                console.error("Error al cargar el JSON:", error);
+                document.getElementById('tabla-camaras').innerHTML = '<tr><td colspan="4" class="loading-text" style="color: #ef4444;">Error al cargar los datos actualizados.</td></tr>';
             }
         }
 
-        // Ejecutar al cargar la página
-        document.addEventListener('DOMContentLoaded', cargarDashboard);
+        // Ejecutar la carga inmediatamente al abrir la web
+        cargarDatos();
     </script>
 </body>
 </html>
