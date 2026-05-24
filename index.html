@@ -3,224 +3,291 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monitoreo - Clientes CMO / CRA</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Reporte de Disponibilidad - Servicio 24/7</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-color: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent-color: #38bdf8;
-            --border-color: #334155;
-            --danger: #ef4444;
-            --success: #22c55e;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            padding: 20px;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        header h1 {
-            font-size: 24px;
-            color: var(--accent-color);
-            margin-bottom: 5px;
-        }
-
-        header p {
-            color: var(--text-muted);
-            font-size: 14px;
-        }
-
-        .section-card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            border: 1px solid var(--border-color);
-            margin-bottom: 25px;
-        }
-
-        .section-title {
-            font-size: 18px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #f1f5f9;
-        }
-
-        .table-responsive {
-            width: 100%;
-            overflow-x: auto;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-            font-size: 14px;
-        }
-
-        th {
-            background-color: #0f172a;
-            color: var(--accent-color);
-            padding: 12px 16px;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 12px;
-            letter-spacing: 0.05em;
-        }
-
-        td {
-            padding: 12px 16px;
-            border-bottom: 1px solid var(--border-color);
-            color: #e2e8f0;
-        }
-
-        tr:last-child td { border-bottom: none; }
-        tr:hover td { background-color: #24334d; }
-
-        .badge {
-            display: inline-block;
-            padding: 4px 8px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        .badge-offline { background-color: rgba(239, 68, 68, 0.2); color: #f87171; }
-        .badge-online { background-color: rgba(34, 197, 94, 0.2); color: #4ade80; }
-
-        .search-box {
-            width: 100%;
-            max-width: 400px;
-            padding: 10px 16px;
-            background-color: #0f172a;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            color: var(--text-color);
-            margin-bottom: 15px;
-            font-size: 14px;
-        }
-
-        .search-box:focus {
-            outline: none;
-            border-color: var(--accent-color);
-        }
-
-        .loading-text {
-            text-align: center;
-            padding: 20px;
-            color: var(--text-muted);
-        }
+        body { background-color: #eeebe6; color: #1e293b; }
+        .premium-card { background: white; border-radius: 8px; border: 1px solid #dbdad5; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .status-online { background-color: #e2f5ec; color: #10b981; }
+        .status-offline { background-color: #fde8e8; color: #f05252; }
     </style>
 </head>
-<body>
+<body class="p-4 md:p-6">
 
-    <div class="container">
-        <header>
-            <h1>📡 PANEL DE MONITOREO EN TIEMPO REAL</h1>
-            <p>Última actualización: <span id="fecha-actualizacion">Cargando...</span></p>
-        </header>
-
-        <div class="section-card">
-            <h2 class="section-title"><i class="fa-solid fa-video" style="color: #38bdf8;"></i> ESTADO CÁMARAS - CLIENTES CMO - CRA</h2>
-            <input type="text" id="buscar-camaras" class="search-box" placeholder="🔍 Buscar por nombre de cliente o cámara...">
+    <div class="max-w-7xl mx-auto space-y-6">
+        
+        <div class="premium-card p-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <img src="https://cristian-iarp.github.io/Dahboard-Camaras/logo.png" alt="Logo Empresa" class="h-12 object-contain" onerror="this.src='https://placehold.co/150x50?text=LOGO+EMPRESA'">
             
-            <div class="table-responsive">
-                <table>
+            <div class="text-center">
+                <p class="text-xs uppercase tracking-widest text-gray-400 font-bold">Reporte de Disponibilidad - Servicio 24/7</p>
+                <h1 class="text-2xl font-black text-slate-800 tracking-tight">Monitoreo de Dispositivos</h1>
+                <p class="text-xs text-gray-500 mt-1">Cliente: <span class="font-bold text-slate-700">CONCRETA</span> · Monitoreado por: <span class="font-bold text-slate-700">Recinto Protegido</span></p>
+            </div>
+            
+            <div class="text-right text-xs text-slate-500 space-y-1">
+                <div><i class="fa-solid fa-clock text-sky-500"></i> Sincronizado: <span id="reloj-vivo" class="font-mono font-bold text-slate-800">00:00:00</span></div>
+                <div class="text-[10px] text-gray-400">Último reporte: <span id="update-time">Cargando...</span></div>
+            </div>
+        </div>
+
+        <div class="premium-card px-6 py-3 flex flex-wrap justify-between items-center text-xs font-bold text-slate-600 gap-2">
+            <div class="flex items-center gap-2">
+                <span class="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>Servicio activo</span>
+            </div>
+            <div>GENERADO: <span id="cinta-fecha" class="text-slate-800">--/--/--</span></div>
+            <div>CLIENTE: <span class="text-slate-800">CONCRETA</span></div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="premium-card p-6 text-center space-y-2">
+                <p class="text-xs font-bold uppercase tracking-wider text-gray-400">Equipos en Línea</p>
+                <div class="text-4xl font-black text-slate-800" id="kpi-online">-</div>
+                <p class="text-[10px] text-gray-400">Reportados operativos</p>
+            </div>
+            <div class="premium-card p-6 text-center space-y-2 border-t-4 border-red-500">
+                <p class="text-xs font-bold uppercase tracking-wider text-gray-400">Sin Conexión</p>
+                <div class="text-4xl font-black text-red-500" id="kpi-offline">-</div>
+                <p class="text-[10px] text-gray-400">Equipos requieren atención</p>
+            </div>
+            <div class="premium-card p-6 text-center space-y-2">
+                <p class="text-xs font-bold uppercase tracking-wider text-gray-400">Disponibilidad</p>
+                <div class="text-4xl font-black text-slate-800" id="kpi-porcentaje">- %</div>
+                <p class="text-[10px] text-gray-400">Online sobre el total</p>
+            </div>
+            <div class="premium-card p-6 text-center space-y-2">
+                <p class="text-xs font-bold uppercase tracking-wider text-gray-400">Total Monitoreados</p>
+                <div class="text-4xl font-black text-sky-500" id="kpi-total">-</div>
+                <p class="text-[10px] text-gray-400">Dispositivos en plataforma</p>
+            </div>
+        </div>
+
+        <div class="premium-card p-6">
+            <h3 class="text-sm font-bold text-slate-700 mb-4 flex justify-between">
+                <span><i class="fa-solid fa-chart-bar text-slate-500 mr-1"></i> Dispositivos con mayor criticidad</span>
+                <span class="text-xs font-normal text-gray-400 uppercase">Top 7 Fuera de Línea</span>
+            </h3>
+            <div class="h-64 w-100">
+                <canvas id="graficoCriticidad"></canvas>
+            </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-between items-center">
+            <div class="flex bg-white p-1 rounded-lg border border-gray-300 gap-1 text-xs font-bold w-full sm:w-auto">
+                <button onclick="filtrarEstado('todos')" id="btn-todos" class="flex-1 px-4 py-2 rounded bg-slate-800 text-white transition">Todos</button>
+                <button onclick="filtrarEstado('online')" id="btn-online" class="flex-1 px-4 py-2 rounded text-slate-600 hover:bg-gray-100 transition">Online</button>
+                <button onclick="filtrarEstado('offline')" id="btn-offline" class="flex-1 px-4 py-2 rounded text-slate-600 hover:bg-gray-100 transition">Offline</button>
+            </div>
+            <input type="text" id="buscador" class="w-full sm:max-w-xs px-4 py-2 text-sm bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-sky-500 shadow-sm" placeholder="🔍 Buscar dispositivo por nombre...">
+        </div>
+
+        <div class="premium-card overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full">
                     <thead>
-                        <tr>
+                        <tr class="border-b border-gray-300 text-left">
                             <th>Name</th>
                             <th>Current Status</th>
                             <th>Latest Offline Time</th>
                             <th>Total Offline Duration</th>
                         </tr>
                     </thead>
-                    <tbody id="tabla-camaras">
+                    <tbody id="tabla-datos" class="divide-y divide-gray-200">
                         <tr>
-                            <td colspan="4" class="loading-text">Cargando registros...</td>
+                            <td colspan="4" class="p-8 text-center text-gray-400 font-medium">Sincronizando con el repositorio...</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
+
     </div>
 
     <script>
-        async function cargarDatos() {
+        let dispositivoMaster = [];
+        let filtroActual = 'todos';
+        let chartInstancia = null;
+
+        // Reloj digital en tiempo real (Esquina superior derecha)
+        function actualizarReloj() {
+            const ahora = new Date();
+            document.getElementById('reloj-vivo').innerText = ahora.toLocaleTimeString('es-CL');
+        }
+        setInterval(actualizarReloj, 1000);
+
+        // Convertir strings "HH:MM:SS" a segundos para poder ordenar matemáticamente
+        function duracionASegundos(str) {
+            if (!str || str === "0" || str === "00:00:00") return 0;
+            const partes = str.split(':');
+            if (partes.length !== 3) return 0;
+            return (parseInt(partes[0]) * 3600) + (parseInt(partes[1]) * 60) + parseInt(partes[2]);
+        }
+
+        async function cargarDashboard() {
             try {
-                // Evitamos caché para tener datos inmediatos
-                const respuesta = await fetch('datos.json?t=' + new Date().getTime());
+                const respuesta = await fetch('datos.json?v=' + Date.now());
                 const datos = await respuesta.json();
                 
-                document.getElementById('fecha-actualizacion').innerText = datos.ultima_actualizacion || 'No disponible';
+                dispositivoMaster = datos.dispositivos || [];
                 
-                const tabla = document.getElementById('tabla-camaras');
-                tabla.innerHTML = '';
-                
-                const registros = datos.camaras || [];
-                
-                if (registros.length === 0) {
-                    tabla.innerHTML = '<tr><td colspan="4" class="loading-text">No hay cámaras fuera de línea registradas.</td></tr>';
-                    return;
+                // Setear estampas de fechas
+                document.getElementById('update-time').innerText = datos.ultima_actualizacion || '--';
+                if(datos.ultima_actualizacion) {
+                    document.getElementById('cinta-fecha').innerText = datos.ultima_actualizacion.split(',')[0];
                 }
-                
-                registros.forEach(item => {
-                    const fila = document.createElement('tr');
-                    
-                    const estadoLower = (item['Current Status'] || '').toLowerCase();
-                    const badgeClass = estadoLower.includes('online') ? 'badge-online' : 'badge-offline';
-                    
-                    fila.innerHTML = `
-                        <strong style="display:block; padding-top:4px;">${item['Name'] || 'Sin Nombre'}</strong>
-                        <td><span class="badge ${badgeClass}">${item['Current Status'] || 'Offline'}</span></td>
-                        <td>${item['Latest Offline Time'] || '--:--'}</td>
-                        <td>${item['Total Offline Duration'] || '0 min'}</td>
-                    `;
-                    tabla.appendChild(fila);
-                });
 
-                // Lógica del buscador rápido en tiempo real
-                document.getElementById('buscar-camaras').addEventListener('input', function(e) {
-                    const termino = e.target.value.toLowerCase();
-                    const filas = tabla.getElementsByTagName('tr');
-                    
-                    for (let i = 0; i < filas.length; i++) {
-                        const textoFila = filas[i].innerText.toLowerCase();
-                        filas[i].style.display = textoFila.includes(termino) ? '' : 'none';
-                    }
-                });
+                // Calcular KPIs matemáticos
+                const total = dispositivoMaster.length;
+                const online = dispositivoMaster.filter(d => {
+                    const st = d["Current Status"].toLowerCase();
+                    return st.includes('online') || st.includes('línea') || st.includes('linea');
+                }).length;
+                const offline = total - online;
+                const porcentaje = total > 0 ? ((online / total) * 100).toFixed(1) : 0;
+
+                // Inyectar KPIs
+                document.getElementById('kpi-total').innerText = total;
+                document.getElementById('kpi-online').innerText = online;
+                document.getElementById('kpi-offline').innerText = offline;
+                document.getElementById('kpi-porcentaje').innerText = porcentaje + '%';
+
+                // Generar Gráfico de Criticidad (Top 7 caídos por tiempo)
+                const caidosOrdenados = dispositivoMaster
+                    .filter(d => !d["Current Status"].toLowerCase().includes('online'))
+                    .sort((a,b) => duracionASegundos(b["Total Offline Duration"]) - duracionASegundos(a["Total Offline Duration"]))
+                    .slice(0, 7);
+
+                construirGrafico(caidosOrdenados);
+                renderizarTabla();
 
             } catch (error) {
-                console.error("Error al cargar el JSON:", error);
-                document.getElementById('tabla-camaras').innerHTML = '<tr><td colspan="4" class="loading-text" style="color: #ef4444;">Error al cargar los datos actualizados.</td></tr>';
+                console.error("Error leyendo datos.json:", error);
             }
         }
 
-        // Ejecutar la carga inmediatamente al abrir la web
-        cargarDatos();
+        function renderizarTabla() {
+            const tbody = document.getElementById('tabla-datos');
+            const busqueda = document.getElementById('buscador').value.toLowerCase().trim();
+            tbody.innerHTML = '';
+
+            // 1. Filtrar según estado y caja de búsqueda
+            let filtrados = dispositivoMaster.filter(d => {
+                const statusText = d["Current Status"].toLowerCase();
+                const isOnline = statusText.includes('online') || statusText.includes('línea') || statusText.includes('linea');
+                
+                if (filtroActual === 'online' && !isOnline) return false;
+                if (filtroActual === 'offline' && isOnline) return false;
+                
+                if (busqueda !== '') {
+                    return d["Name"].toLowerCase().includes(busqueda);
+                }
+                return true;
+            });
+
+            // 2. ORDENACIÓN PRIORITARIA CRUCIAL: Los que llevan más tiempo caídos siempre van primero
+            filtrados.sort((a, b) => {
+                const estadoA = a["Current Status"].toLowerCase().includes('online');
+                const estadoB = b["Current Status"].toLowerCase().includes('online');
+                
+                // Si ambos están caídos, ordenar por la duración del corte de mayor a menor
+                if (!estadoA && !estadoB) {
+                    return duracionASegundos(b["Total Offline Duration"]) - duracionASegundos(a["Total Offline Duration"]);
+                }
+                // Los offline siempre flotan al inicio sobre los online
+                return estadoA - estadoB;
+            });
+
+            if(filtrados.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="4" class="p-6 text-center text-gray-400">No se encontraron dispositivos con los criterios aplicados.</td></tr>`;
+                return;
+            }
+
+            // 3. Dibujar filas en la tabla
+            filtrados.forEach(d => {
+                const statusText = d["Current Status"].toLowerCase();
+                const isOnline = statusText.includes('online') || statusText.includes('línea') || statusText.includes('linea');
+                
+                const badgeClass = isOnline ? 'status-online' : 'status-offline';
+                const statusHtml = isOnline ? 'ONLINE' : 'OFFLINE';
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="font-bold text-slate-700">${d["Name"]}</td>
+                    <td><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${badgeClass}">${statusHtml}</span></td>
+                    <td class="font-mono text-xs text-slate-600">${d["Latest Offline Time"]}</td>
+                    <td class="font-mono text-xs font-bold text-slate-700">${d["Total Offline Duration"]}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Cambiar estilos de los botones de filtro dinámicamente
+        function filtrarEstado(estado) {
+            filtroActual = estado;
+            ['todos', 'online', 'offline'].forEach(id => {
+                const btn = document.getElementById('btn-' + id);
+                if(id === estado) {
+                    btn.className = "flex-1 px-4 py-2 rounded bg-slate-800 text-white transition";
+                } else {
+                    btn.className = "flex-1 px-4 py-2 rounded text-slate-600 hover:bg-gray-100 transition";
+                }
+            });
+            renderizarTabla();
+        }
+
+        // Listener para la caja de búsqueda en tiempo real
+        document.getElementById('buscador').addEventListener('input', renderizarTabla);
+
+        // Generar Gráfico de Barras Verticales idéntico al de tu imagen de referencia
+        function construirGrafico(datosCaidos) {
+            const ctx = document.getElementById('graficoCriticidad').getContext('2d');
+            
+            if (chartInstancia) {
+                chartInstancia.destroy();
+            }
+
+            // Si no hay equipos caídos, mostrar gráfico vacío elegante
+            const labels = datosCaidos.length > 0 ? datosCaidos.map(d => d["Name"]) : ["Todos los sistemas estables"];
+            const duracionesHoras = datosCaidos.length > 0 ? datosCaidos.map(d => (duracionASegundos(d["Total Offline Duration"]) / 3600).toFixed(2)) : [0];
+
+            chartInstancia = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Horas acumuladas fuera de línea',
+                        data: duracionesHoras,
+                        backgroundColor: '#bd1c1c', // Rojo corporativo idéntico a tu referencia
+                        borderRadius: 4,
+                        barThickness: 28
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: { grid: { display: false }, ticks: { color: '#64748b', font: { size: 10 } } },
+                        y: { 
+                            beginAtZero: true,
+                            ticks: { color: '#64748b', font: { size: 11 } },
+                            title: { display: true, text: 'Horas Offline', color: '#94a3b8', font: { size: 11 } }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Arrancar carga de datos al abrir la web
+        document.addEventListener('DOMContentLoaded', () => {
+            actualizarReloj();
+            cargarDashboard();
+        });
     </script>
 </body>
 </html>
