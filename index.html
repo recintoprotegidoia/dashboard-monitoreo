@@ -7,6 +7,28 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script>
+        (function() {
+            // Contraseña de acceso oficial (Puedes cambiarla aquí por la que prefieras)
+            const claveCorrecta = "RP2026"; 
+            let acceso = sessionStorage.getItem("acceso_autorizado");
+            
+            while (acceso !== "true") {
+                let intento = prompt("🔒 Acceso Restringido. Ingrese la contraseña de Recinto Protegido:");
+                if (intento === claveCorrecta) {
+                    sessionStorage.setItem("acceso_autorizado", "true");
+                    acceso = "true";
+                } else if (intento === null) {
+                    window.location.href = "https://www.google.com";
+                    break;
+                } else {
+                    alert("❌ Contraseña incorrecta. Intente nuevamente.");
+                }
+            }
+        })();
+    </script>
+
     <script>
         // Configuración de Tailwind para forzar colores corporativos exactos
         tailwind.config = {
@@ -26,7 +48,7 @@
     </script>
     <style>
         body { background-color: #eeebe6; transition: background-color 0.3s, color 0.3s; }
-        /* Forzado de Modo Oscuro con colores oficiales: Negro Puro, Rojo y Blanco */
+        /* Forzado de Modo Oscuro Oficial: Negro Puro, Rojo y Blanco */
         .dark body { background-color: #000000 !important; color: #ffffff !important; }
         
         .premium-card { background: white; border-radius: 8px; border: 1px solid #dbdad5; box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: all 0.3s; }
@@ -48,17 +70,17 @@
     <div class="max-w-7xl mx-auto space-y-6">
         
         <div class="premium-card p-6 flex flex-col md:flex-row justify-between items-center gap-4">
-            <img src="./Logo_NegativoPerfil.png" alt="Recinto Protegido" class="h-16 object-contain rounded" onerror="this.src='Logo_NegativoPerfil.png'">
+            <img src="https://recintoprotegidoia.github.io/dashboard-monitoreo/Logo_NegativoPerfil.png" alt="Recinto Protegido" class="h-16 object-contain rounded" onerror="this.src='./Logo_NegativoPerfil.png'">
             
             <div class="text-center">
                 <p class="text-xs uppercase tracking-widest text-gray-400 font-bold dark:text-slate-400">Reporte de Disponibilidad - Servicio 24/7</p>
                 <h1 class="text-2xl font-black tracking-tight text-slate-900 dark:text-white">Monitoreo de Dispositivos</h1>
-                <p class="text-xs text-gray-500 mt-1 dark:text-slate-400">Cliente: <span class="font-bold text-slate-700 dark:text-slate-200">CMO - CRA</span> · Monitoreado por: <span class="font-bold text-empresa-rojo">Recinto Protegido</span></p>
+                <p class="text-xs text-gray-500 mt-1 dark:text-slate-400">Cliente: <span class="font-bold text-slate-700 dark:text-slate-200">CMO - CRA</span> · Monitoreado por: <span class="font-bold text-red-500">Recinto Protegido</span></p>
             </div>
             
             <div class="flex items-center gap-4">
                 <div class="text-right text-xs text-slate-500 space-y-1 dark:text-slate-400">
-                    <div><i class="fa-solid fa-clock text-empresa-rojo"></i> Reloj Local: <span id="reloj-vivo" class="font-mono font-bold text-slate-800 dark:text-white">00:00:00</span></div>
+                    <div><i class="fa-solid fa-clock text-red-500"></i> Reloj Local: <span id="reloj-vivo" class="font-mono font-bold text-slate-800 dark:text-white">00:00:00</span></div>
                     <div class="text-[10px] text-gray-400">Último reporte: <span id="update-time">--</span></div>
                 </div>
                 <button id="btn-tema" class="p-2.5 rounded-full border border-gray-300 hover:bg-gray-100 dark:border-slate-700 dark:hover:bg-slate-800 transition bg-white dark:bg-black">
@@ -82,9 +104,9 @@
                 <div class="text-4xl font-black text-emerald-500 dark:text-emerald-400" id="kpi-online">-</div>
                 <p class="text-[10px] text-gray-400 dark:text-slate-500">Reportados operativos</p>
             </div>
-            <div class="premium-card p-6 text-center space-y-2 border-t-4 border-red-500 dark:border-empresa-rojo">
+            <div class="premium-card p-6 text-center space-y-2 border-t-4 border-red-500">
                 <p class="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">Sin Conexión</p>
-                <div class="text-4xl font-black text-empresa-rojo" id="kpi-offline">-</div>
+                <div class="text-4xl font-black text-red-500" id="kpi-offline">-</div>
                 <p class="text-[10px] text-gray-400 dark:text-slate-500">Equipos requieren atención</p>
             </div>
             <div class="premium-card p-6 text-center space-y-2">
@@ -110,11 +132,11 @@
 
         <div class="flex flex-col sm:flex-row gap-4 justify-between items-center">
             <div class="flex bg-white p-1 rounded-lg border border-gray-300 gap-1 text-xs font-bold w-full sm:w-auto shadow-sm dark:bg-slate-900 dark:border-slate-700">
-                <button onclick="filtrarEstado('todos')" id="btn-todos" class="flex-1 px-5 py-2 rounded bg-slate-800 text-white transition dark:bg-slate-700">Todos</button>
+                <button onclick="filtrarEstado('todos')" id="btn-todos" class="flex-1 px-5 py-2 rounded bg-slate-800 text-white transition dark:bg-slate-600">Todos</button>
                 <button onclick="filtrarEstado('online')" id="btn-online" class="flex-1 px-5 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Online</button>
                 <button onclick="filtrarEstado('offline')" id="btn-offline" class="flex-1 px-5 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Offline</button>
             </div>
-            <input type="text" id="buscador" class="w-full sm:max-w-xs px-4 py-2 text-sm bg-white dark:bg-slate-900 border border-gray-300 dark:border-slate-700 rounded-lg focus:outline-none focus:border-red-400 dark:focus:border-empresa-rojo shadow-sm text-slate-700 dark:text-white" placeholder="🔍 Buscar cliente por nombre...">
+            <input type="text" id="buscador" class="w-full sm:max-w-xs px-4 py-2 text-sm bg-white dark:bg-slate-900 border border-gray-300 dark:border-slate-700 rounded-lg focus:outline-none focus:border-red-400 dark:focus:border-red-500 shadow-sm text-slate-700 dark:text-white" placeholder="🔍 Buscar cliente por nombre...">
         </div>
 
         <div class="premium-card overflow-hidden">
@@ -144,14 +166,12 @@
         let filtroActual = 'todos';
         let chartInstancia = null;
 
-        // Reloj digital en vivo
         function actualizarReloj() {
             const ahora = new Date();
             document.getElementById('reloj-vivo').innerText = ahora.toLocaleTimeString('es-CL');
         }
         setInterval(actualizarReloj, 1000);
 
-        // Lógica del botón de tema adaptado a colores corporativos exactos
         const btnTema = document.getElementById('btn-tema');
         const iconoTema = document.getElementById('icono-tema');
         
@@ -172,7 +192,6 @@
             }
         });
 
-        // Convertir "HH:MM:SS" a segundos para ordenación matemática precisa
         function duracionASegundos(str) {
             if (!str || str === "0" || str === "00:00:00" || str.includes('--')) return 0;
             const partes = str.split(':');
@@ -200,7 +219,6 @@
                 const offline = total - online;
                 const porcentaje = total > 0 ? ((online / total) * 100).toFixed(1) : 0;
 
-                // Inyectar analítica en tarjetas superiores
                 document.getElementById('kpi-total').innerText = total;
                 document.getElementById('kpi-online').innerText = online;
                 document.getElementById('kpi-offline').innerText = offline;
@@ -232,7 +250,6 @@
                 return true;
             });
 
-            // Ordenación prioritaria: Los caídos con mayor tiempo offline van arriba siempre
             filtrados.sort((a, b) => {
                 const statusA = a["Current Status"].toLowerCase();
                 const statusB = b["Current Status"].toLowerCase();
@@ -282,15 +299,13 @@
             renderizarTabla();
         }
 
-        document.getElementById('buscador').addEventListener('input', renderizarTabla);
-
-        // Barra estadística comparativa horizontal (Online vs Offline)
         function construirGraficoBarras(online, offline) {
             const ctx = document.getElementById('graficoComparativo').getContext('2d');
             if (chartInstancia) chartInstancia.destroy();
 
             const modoOscuroActivo = document.documentElement.classList.contains('dark');
 
+            // Corregida de raíz la línea duplicada que rompía la carga del gráfico
             chartInstancia = new Chart(ctx, {
                 type: 'bar',
                 data: {
@@ -304,7 +319,6 @@
                         },
                         {
                             label: 'Equipos Offline',
-                            data: '#ef4444', // Rojo corporativo oficial
                             data: [offline],
                             backgroundColor: '#ef4444', 
                             barPercentage: 0.4
@@ -337,12 +351,14 @@
             });
         }
 
-        // Escuchar cambios de tema para redibujar las leyendas del gráfico en tiempo real
         document.getElementById('btn-tema').addEventListener('click', () => {
             setTimeout(() => {
                 if(chartInstancia) {
                     const total = dispositivoMaster.length;
-                    const online = dispositivoMaster.filter(d => d["Current Status"].toLowerCase() === 'online').length;
+                    const online = dispositivoMaster.filter(d => {
+                        const st = d["Current Status"].toLowerCase();
+                        return st === 'online' || st.includes('línea') || st.includes('linea');
+                    }).length;
                     const offline = total - online;
                     construirGraficoBarras(online, offline);
                 }
