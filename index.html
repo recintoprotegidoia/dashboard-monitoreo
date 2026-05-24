@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reporte de Disponibilidad - Servicio 24/7</title>
+    <title>Reporte de Disponibilidad - CMO - CRA</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -19,16 +19,16 @@
     <div class="max-w-7xl mx-auto space-y-6">
         
         <div class="premium-card p-6 flex flex-col md:flex-row justify-between items-center gap-4">
-            <img src="https://cristian-iarp.github.io/Dahboard-Camaras/logo.png" alt="Logo Empresa" class="h-12 object-contain" onerror="this.src='https://placehold.co/150x50?text=LOGO+EMPRESA'">
+            <img src="https://cristian-iarp.github.io/Dahboard-Camaras/logo.png" alt="Logo Empresa" class="h-12 object-contain" onerror="this.src='https://placehold.co/150x50?text=RECINTO+PROTEGIDO'">
             
             <div class="text-center">
                 <p class="text-xs uppercase tracking-widest text-gray-400 font-bold">Reporte de Disponibilidad - Servicio 24/7</p>
                 <h1 class="text-2xl font-black text-slate-800 tracking-tight">Monitoreo de Dispositivos</h1>
-                <p class="text-xs text-gray-500 mt-1">Cliente: <span class="font-bold text-slate-700">CONCRETA</span> · Monitoreado por: <span class="font-bold text-slate-700">Recinto Protegido</span></p>
+                <p class="text-xs text-gray-500 mt-1">Cliente: <span class="font-bold text-slate-700">CMO - CRA</span> · Monitoreado por: <span class="font-bold text-sky-600">Recinto Protegido</span></p>
             </div>
             
             <div class="text-right text-xs text-slate-500 space-y-1">
-                <div><i class="fa-solid fa-clock text-sky-500"></i> Sincronizado: <span id="reloj-vivo" class="font-mono font-bold text-slate-800">00:00:00</span></div>
+                <div><i class="fa-solid fa-clock text-sky-500"></i> Reloj Local: <span id="reloj-vivo" class="font-mono font-bold text-slate-800">00:00:00</span></div>
                 <div class="text-[10px] text-gray-400">Último reporte: <span id="update-time">Cargando...</span></div>
             </div>
         </div>
@@ -36,16 +36,16 @@
         <div class="premium-card px-6 py-3 flex flex-wrap justify-between items-center text-xs font-bold text-slate-600 gap-2">
             <div class="flex items-center gap-2">
                 <span class="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span>Servicio activo</span>
+                <span>Servicio Activo Continuo</span>
             </div>
             <div>GENERADO: <span id="cinta-fecha" class="text-slate-800">--/--/--</span></div>
-            <div>CLIENTE: <span class="text-slate-800">CONCRETA</span></div>
+            <div>OPERACIÓN: <span class="text-slate-800">CMO - CRA "RECINTO PROTEGIDO"</span></div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div class="premium-card p-6 text-center space-y-2">
                 <p class="text-xs font-bold uppercase tracking-wider text-gray-400">Equipos en Línea</p>
-                <div class="text-4xl font-black text-slate-800" id="kpi-online">-</div>
+                <div class="text-4xl font-black text-emerald-500" id="kpi-online">-</div>
                 <p class="text-[10px] text-gray-400">Reportados operativos</p>
             </div>
             <div class="premium-card p-6 text-center space-y-2 border-t-4 border-red-500">
@@ -54,7 +54,7 @@
                 <p class="text-[10px] text-gray-400">Equipos requieren atención</p>
             </div>
             <div class="premium-card p-6 text-center space-y-2">
-                <p class="text-xs font-bold uppercase tracking-wider text-gray-400">Disponibilidad</p>
+                <p class="text-xs font-bold uppercase tracking-wider text-gray-400">Disponibilidad Global</p>
                 <div class="text-4xl font-black text-slate-800" id="kpi-porcentaje">- %</div>
                 <p class="text-[10px] text-gray-400">Online sobre el total</p>
             </div>
@@ -66,12 +66,11 @@
         </div>
 
         <div class="premium-card p-6">
-            <h3 class="text-sm font-bold text-slate-700 mb-4 flex justify-between">
-                <span><i class="fa-solid fa-chart-bar text-slate-500 mr-1"></i> Dispositivos con mayor criticidad</span>
-                <span class="text-xs font-normal text-gray-400 uppercase">Top 7 Fuera de Línea</span>
+            <h3 class="text-sm font-bold text-slate-700 mb-4 uppercase tracking-wider">
+                <i class="fa-solid fa-chart-pie text-slate-500 mr-1"></i> Balance Estadístico de Infraestructura (Online vs Offline)
             </h3>
-            <div class="h-64 w-100">
-                <canvas id="graficoCriticidad"></canvas>
+            <div class="h-32 w-full">
+                <canvas id="graficoComparativo"></canvas>
             </div>
         </div>
 
@@ -88,16 +87,16 @@
             <div class="overflow-x-auto">
                 <table class="w-full">
                     <thead>
-                        <tr class="border-b border-gray-300 text-left">
-                            <th>Name</th>
-                            <th>Current Status</th>
-                            <th>Latest Offline Time</th>
-                            <th>Total Offline Duration</th>
+                        <tr class="border-b border-gray-300 text-left bg-slate-50 text-slate-600 text-xs font-bold uppercase tracking-wider">
+                            <th class="p-4">Name</th>
+                            <th class="p-4">Current Status</th>
+                            <th class="p-4">Latest Offline Time</th>
+                            <th class="p-4">Total Offline Duration</th>
                         </tr>
                     </thead>
                     <tbody id="tabla-datos" class="divide-y divide-gray-200">
                         <tr>
-                            <td colspan="4" class="p-8 text-center text-gray-400 font-medium">Sincronizando con el repositorio...</td>
+                            <td colspan="4" class="p-8 text-center text-gray-400 font-medium">Sincronizando con n8n...</td>
                         </tr>
                     </tbody>
                 </table>
@@ -111,16 +110,14 @@
         let filtroActual = 'todos';
         let chartInstancia = null;
 
-        // Reloj digital en tiempo real (Esquina superior derecha)
         function actualizarReloj() {
             const ahora = new Date();
             document.getElementById('reloj-vivo').innerText = ahora.toLocaleTimeString('es-CL');
         }
         setInterval(actualizarReloj, 1000);
 
-        // Convertir strings "HH:MM:SS" a segundos para poder ordenar matemáticamente
         function duracionASegundos(str) {
-            if (!str || str === "0" || str === "00:00:00") return 0;
+            if (!str || str === "0" || str === "00:00:00" || str.includes('--')) return 0;
             const partes = str.split(':');
             if (partes.length !== 3) return 0;
             return (parseInt(partes[0]) * 3600) + (parseInt(partes[1]) * 60) + parseInt(partes[2]);
@@ -133,34 +130,22 @@
                 
                 dispositivoMaster = datos.dispositivos || [];
                 
-                // Setear estampas de fechas
                 document.getElementById('update-time').innerText = datos.ultima_actualizacion || '--';
                 if(datos.ultima_actualizacion) {
                     document.getElementById('cinta-fecha').innerText = datos.ultima_actualizacion.split(',')[0];
                 }
 
-                // Calcular KPIs matemáticos
                 const total = dispositivoMaster.length;
-                const online = dispositivoMaster.filter(d => {
-                    const st = d["Current Status"].toLowerCase();
-                    return st.includes('online') || st.includes('línea') || st.includes('linea');
-                }).length;
+                const online = dispositivoMaster.filter(d => d["Current Status"].toLowerCase() === 'online').length;
                 const offline = total - online;
                 const porcentaje = total > 0 ? ((online / total) * 100).toFixed(1) : 0;
 
-                // Inyectar KPIs
                 document.getElementById('kpi-total').innerText = total;
                 document.getElementById('kpi-online').innerText = online;
                 document.getElementById('kpi-offline').innerText = offline;
                 document.getElementById('kpi-porcentaje').innerText = porcentaje + '%';
 
-                // Generar Gráfico de Criticidad (Top 7 caídos por tiempo)
-                const caidosOrdenados = dispositivoMaster
-                    .filter(d => !d["Current Status"].toLowerCase().includes('online'))
-                    .sort((a,b) => duracionASegundos(b["Total Offline Duration"]) - duracionASegundos(a["Total Offline Duration"]))
-                    .slice(0, 7);
-
-                construirGrafico(caidosOrdenados);
+                construirGraficoBarras(online, offline);
                 renderizarTabla();
 
             } catch (error) {
@@ -173,11 +158,8 @@
             const busqueda = document.getElementById('buscador').value.toLowerCase().trim();
             tbody.innerHTML = '';
 
-            // 1. Filtrar según estado y caja de búsqueda
             let filtrados = dispositivoMaster.filter(d => {
-                const statusText = d["Current Status"].toLowerCase();
-                const isOnline = statusText.includes('online') || statusText.includes('línea') || statusText.includes('linea');
-                
+                const isOnline = d["Current Status"].toLowerCase() === 'online';
                 if (filtroActual === 'online' && !isOnline) return false;
                 if (filtroActual === 'offline' && isOnline) return false;
                 
@@ -187,103 +169,88 @@
                 return true;
             });
 
-            // 2. ORDENACIÓN PRIORITARIA CRUCIAL: Los que llevan más tiempo caídos siempre van primero
+            // Ordenamiento prioritario: Los caídos con mayor tiempo offline van arriba siempre
             filtrados.sort((a, b) => {
-                const estadoA = a["Current Status"].toLowerCase().includes('online');
-                const estadoB = b["Current Status"].toLowerCase().includes('online');
-                
-                // Si ambos están caídos, ordenar por la duración del corte de mayor a menor
+                const estadoA = a["Current Status"].toLowerCase() === 'online';
+                const estadoB = b["Current Status"].toLowerCase() === 'online';
                 if (!estadoA && !estadoB) {
                     return duracionASegundos(b["Total Offline Duration"]) - duracionASegundos(a["Total Offline Duration"]);
                 }
-                // Los offline siempre flotan al inicio sobre los online
                 return estadoA - estadoB;
             });
 
             if(filtrados.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="4" class="p-6 text-center text-gray-400">No se encontraron dispositivos con los criterios aplicados.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="4" class="p-6 text-center text-gray-400">No hay registros que coincidan.</td></tr>`;
                 return;
             }
 
-            // 3. Dibujar filas en la tabla
             filtrados.forEach(d => {
-                const statusText = d["Current Status"].toLowerCase();
-                const isOnline = statusText.includes('online') || statusText.includes('línea') || statusText.includes('linea');
-                
+                const isOnline = d["Current Status"].toLowerCase() === 'online';
                 const badgeClass = isOnline ? 'status-online' : 'status-offline';
                 const statusHtml = isOnline ? 'ONLINE' : 'OFFLINE';
 
                 const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50 transition";
                 tr.innerHTML = `
-                    <td class="font-bold text-slate-700">${d["Name"]}</td>
-                    <td><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${badgeClass}">${statusHtml}</span></td>
-                    <td class="font-mono text-xs text-slate-600">${d["Latest Offline Time"]}</td>
-                    <td class="font-mono text-xs font-bold text-slate-700">${d["Total Offline Duration"]}</td>
+                    <td class="p-4 font-bold text-slate-700">${d["Name"]}</td>
+                    <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${badgeClass}">${statusHtml}</span></td>
+                    <td class="p-4 font-mono text-xs text-slate-500">${d["Latest Offline Time"]}</td>
+                    <td class="p-4 font-mono text-xs font-bold text-slate-700">${d["Total Offline Duration"]}</td>
                 `;
                 tbody.appendChild(tr);
             });
         }
 
-        // Cambiar estilos de los botones de filtro dinámicamente
         function filtrarEstado(estado) {
             filtroActual = estado;
             ['todos', 'online', 'offline'].forEach(id => {
                 const btn = document.getElementById('btn-' + id);
-                if(id === estado) {
-                    btn.className = "flex-1 px-4 py-2 rounded bg-slate-800 text-white transition";
-                } else {
-                    btn.className = "flex-1 px-4 py-2 rounded text-slate-600 hover:bg-gray-100 transition";
-                }
+                btn.className = id === estado ? "flex-1 px-4 py-2 rounded bg-slate-800 text-white transition" : "flex-1 px-4 py-2 rounded text-slate-600 hover:bg-gray-100 transition";
             });
             renderizarTabla();
         }
 
-        // Listener para la caja de búsqueda en tiempo real
         document.getElementById('buscador').addEventListener('input', renderizarTabla);
 
-        // Generar Gráfico de Barras Verticales idéntico al de tu imagen de referencia
-        function construirGrafico(datosCaidos) {
-            const ctx = document.getElementById('graficoCriticidad').getContext('2d');
-            
-            if (chartInstancia) {
-                chartInstancia.destroy();
-            }
-
-            // Si no hay equipos caídos, mostrar gráfico vacío elegante
-            const labels = datosCaidos.length > 0 ? datosCaidos.map(d => d["Name"]) : ["Todos los sistemas estables"];
-            const duracionesHoras = datosCaidos.length > 0 ? datosCaidos.map(d => (duracionASegundos(d["Total Offline Duration"]) / 3600).toFixed(2)) : [0];
+        // NUEVO: Barra Comparativa Horizontal Equilibrada (Online vs Offline)
+        function construirGraficoBarras(online, offline) {
+            const ctx = document.getElementById('graficoComparativo').getContext('2d');
+            if (chartInstancia) chartInstancia.destroy();
 
             chartInstancia = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Horas acumuladas fuera de línea',
-                        data: duracionesHoras,
-                        backgroundColor: '#bd1c1c', // Rojo corporativo idéntico a tu referencia
-                        borderRadius: 4,
-                        barThickness: 28
-                    }]
+                    labels: ['Estado General de la Red'],
+                    datasets: [
+                        {
+                            label: 'Equipos Online',
+                            data: [online],
+                            backgroundColor: '#10b981', // Verde esmeralda premium
+                            barPercentage: 0.5
+                        },
+                        {
+                            label: 'Equipos Offline',
+                            data: [offline],
+                            backgroundColor: '#ef4444', // Rojo rubí de alerta
+                            barPercentage: 0.5
+                        }
+                    ]
                 },
                 options: {
+                    indexAxis: 'y', // Fuerza el formato horizontal idéntico a los dashboards ejecutivos
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        legend: { display: false }
+                        legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11, weight: 'bold' } } }
                     },
                     scales: {
-                        x: { grid: { display: false }, ticks: { color: '#64748b', font: { size: 10 } } },
-                        y: { 
-                            beginAtZero: true,
-                            ticks: { color: '#64748b', font: { size: 11 } },
-                            title: { display: true, text: 'Horas Offline', color: '#94a3b8', font: { size: 11 } }
-                        }
+                        x: { beginAtZero: true, grid: { borderDash: [4,4] } },
+                        y: { display: false } // Oculta etiquetas del eje Y para máxima limpieza visual
                     }
                 }
             });
         }
 
-        // Arrancar carga de datos al abrir la web
         document.addEventListener('DOMContentLoaded', () => {
             actualizarReloj();
             cargarDashboard();
