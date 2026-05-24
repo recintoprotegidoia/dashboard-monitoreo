@@ -19,15 +19,15 @@
         .online { color: #27ae60; } 
         .offline { color: #e74c3c; } 
         
-        /* Estilos para las nuevas tablas de detalles */
+        /* Estilos para las tablas */
         .table-container { background: white; border-radius: 12px; padding: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow-x: auto; margin-bottom: 30px; }
         table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.95rem; }
         th { background-color: #f8f9fa; color: #2c3e50; padding: 12px 15px; border-bottom: 2px solid #e1e4e8; font-weight: 600; }
-        td { padding: 12px 15px; border-bottom: 1px solid #f0f2f5; }
+        td { padding: 12px 15px; border-bottom: 1px solid #f0f2f5; line-height: 1.4; }
         tr:hover { background-color: #f8f9fa; }
         
         /* Badges de estado */
-        .badge { padding: 4px 8px; border-radius: 6px; font-weight: bold; font-size: 0.85rem; text-transform: uppercase; }
+        .badge { padding: 5px 10px; border-radius: 6px; font-weight: bold; font-size: 0.85rem; text-transform: uppercase; display: inline-block; }
         .badge-online { background-color: #d4edda; color: #155724; }
         .badge-offline { background-color: #f8d7da; color: #721c24; }
     </style>
@@ -64,7 +64,7 @@
                     </tr>
                 </thead>
                 <tbody id="tabla-dispositivos">
-                    <tr><td colspan="6" style="text-align:center; color:#888;">Esperando datos de n8n...</td></tr>
+                    <tr><td colspan="6" style="text-align:center; color:#888;">Cargando registros...</td></tr>
                 </tbody>
             </table>
         </div>
@@ -94,38 +94,42 @@
                     </tr>
                 </thead>
                 <tbody id="tabla-camaras">
-                    <tr><td colspan="6" style="text-align:center; color:#888;">Esperando datos de n8n...</td></tr>
+                    <tr><td colspan="6" style="text-align:center; color:#888;">Cargando registros...</td></tr>
                 </tbody>
             </table>
         </div>
     </div>
 
     <script>
-        async cargarDashboard() {
+        // Corregido: Agregada la palabra clave 'function' para evitar el quiebre del navegador
+        async function cargarDashboard() {
             try {
                 // 1. Leer el JSON plano generado por tu n8n
                 const respuesta = await fetch('datos.json');
                 const datos = await respuesta.json();
 
-                // 2. Inyectar la estampa de tiempo
+                // 2. Sincronizar la estampa de tiempo
                 if (datos.ultima_actualizacion) {
                     document.getElementById('update-time').innerText = datos.ultima_actualizacion;
                 }
 
-                // Variables para llevar el conteo general automático
                 let devOnlineCount = 0, devOfflineCount = 0;
                 let camOnlineCount = 0, camOfflineCount = 0;
 
-                // Helper para generar el diseño de las filas de las tablas
+                // Helper blindado para construir filas sin romper el render por textos indefinidos
                 function crearFilaHtml(item) {
-                    const status = (item["Current Status"] || "").trim().toLowerCase();
-                    const isOnline = status.includes('online') || status.includes('en línea') || status.includes('en linea');
+                    const statusText = String(item["Current Status"] || 'Offline').trim();
+                    const isOnline = statusText.toLowerCase().includes('online') || statusText.toLowerCase().includes('línea') || statusText.toLowerCase().includes('linea');
+                    
                     const badgeClass = isOnline ? 'badge-online' : 'badge-offline';
                     const badgeText = isOnline ? 'Online' : 'Offline';
+                    
+                    // Si el nombre viene vacío (como en tu JSON), usamos el campo Área para identificar al cliente
+                    const identificador = (item["Name"] && item["Name"].trim() !== "") ? item["Name"] : (item["Area"] || 'Dispositivo General');
 
                     return `<tr>
-                        <td><strong>${item["Name"] || 'Desconocido'}</strong></td>
-                        <td>${item["Area"] || 'N/A'}</td>
+                        <td><strong>${identificador}</strong></td>
+                        <td>${item["Area"] || 'General'}</td>
                         <td><span class="badge ${badgeClass}">${badgeText}</span></td>
                         <td>${item["Latest Offline Time"] || 'Sin registro'}</td>
                         <td>${item["Total Offline Times"] || '0'}</td>
@@ -133,37 +137,41 @@
                     </tr>`;
                 }
 
-                // 3. Renderizar Tabla Dispositivos y calcular totales
+                // 3. Renderizar Tabla Dispositivos
                 const tablaDispositivos = document.getElementById('tabla-dispositivos');
                 if (tablaDispositivos && datos.dispositivos && datos.dispositivos.length > 0) {
                     tablaDispositivos.innerHTML = ''; 
                     datos.dispositivos.forEach(item => {
-                        const status = (item["Current Status"] || "").toLowerCase();
-                        if (status.includes('online') || status.includes('en línea') || status.includes('en linea')) devOnlineCount++;
-                        else devOfflineCount++;
-                        
+                        const statusText = String(item["Current Status"] || '').toLowerCase();
+                        if (statusText.includes('online') || statusText.includes('línea') || statusText.includes('linea')) {
+                            devOnlineCount++;
+                        } else {
+                            devOfflineCount++;
+                        }
                         tablaDispositivos.innerHTML += crearFilaHtml(item);
                     });
                 } else if (tablaDispositivos) {
-                    tablaDispositivos.innerHTML = `<tr><td colspan="6" style="text-align:center; color:#888;">No hay registros de dispositivos.</td></tr>`;
+                    tablaDispositivos.innerHTML = `<tr><td colspan="6" style="text-align:center; color:#888;">No hay registros de dispositivos cargados.</td></tr>`;
                 }
 
-                // 4. Renderizar Tabla Cámaras y calcular totales
+                // 4. Renderizar Tabla Cámaras
                 const tablaCamaras = document.getElementById('tabla-camaras');
                 if (tablaCamaras && datos.camaras && datos.camaras.length > 0) {
                     tablaCamaras.innerHTML = ''; 
                     datos.camaras.forEach(item => {
-                        const status = (item["Current Status"] || "").toLowerCase();
-                        if (status.includes('online') || status.includes('en línea') || status.includes('en linea')) camOnlineCount++;
-                        else camOfflineCount++;
-                        
+                        const statusText = String(item["Current Status"] || '').toLowerCase();
+                        if (statusText.includes('online') || statusText.includes('línea') || statusText.includes('linea')) {
+                            camOnlineCount++;
+                        } else {
+                            camOfflineCount++;
+                        }
                         tablaCamaras.innerHTML += crearFilaHtml(item);
                     });
                 } else if (tablaCamaras) {
-                    tablaCamaras.innerHTML = `<tr><td colspan="6" style="text-align:center; color:#888;">No hay registros de cámaras.</td></tr>`;
+                    tablaCamaras.innerHTML = `<tr><td colspan="6" style="text-align:center; color:#888;">No hay registros de cámaras cargados.</td></tr>`;
                 }
 
-                // 5. Inyectar los números totales calculados en los recuadros grandes
+                // 5. Mostrar los totales en las tarjetas de arriba
                 document.getElementById('dev-online').innerText = devOnlineCount;
                 document.getElementById('dev-offline').innerText = devOfflineCount;
                 document.getElementById('cam-online').innerText = camOnlineCount;
@@ -171,11 +179,11 @@
 
             } catch (error) {
                 console.error("Error al cargar los datos del JSON:", error);
-                document.getElementById('update-time').innerText = "Error al sincronizar.";
+                document.getElementById('update-time').innerText = "Error de sincronización.";
             }
         }
 
-        // Ejecutar carga automática al abrir la web
+        // Ejecutar al cargar la página
         document.addEventListener('DOMContentLoaded', cargarDashboard);
     </script>
 </body>
