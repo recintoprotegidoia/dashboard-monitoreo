@@ -36,7 +36,7 @@
     <div class="max-w-7xl mx-auto space-y-6">
         
         <div class="premium-card p-6 flex flex-col md:flex-row justify-between items-center gap-4">
-            <img src="https://cristian-iarp.github.io/Dahboard-Camaras/RP%20LOGO%20BASIC.png" alt="Recinto Protegido" class="h-16 object-contain">
+            <img src="Logo_NegativoPerfil.png" alt="Recinto Protegido" class="h-20 object-contain rounded-lg">
             
             <div class="text-center">
                 <p class="text-xs uppercase tracking-widest text-gray-400 font-bold dark:text-slate-400">Reporte de Disponibilidad - Servicio 24/7</p>
@@ -143,8 +143,7 @@
         const btnTema = document.getElementById('btn-tema');
         const iconoTema = document.getElementById('icono-tema');
         
-        // Cargar tema guardado
-        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').all)) {
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
             iconoTema.className = "fa-solid fa-sun text-amber-400";
         }
@@ -174,14 +173,14 @@
                 const respuesta = await fetch('datos.json?v=' + Date.now());
                 const datos = await respuesta.json();
                 
-                dispositivoMaster = datos.dispositivos || [];
+                // Corregido: Mapeando la clave exacta "registros" de tu datos.json público
+                dispositivoMaster = datos.registros || [];
                 
                 document.getElementById('update-time').innerText = datos.ultima_actualizacion || '--';
                 if(datos.ultima_actualizacion) {
                     document.getElementById('cinta-fecha').innerText = datos.ultima_actualizacion.split(',')[0];
                 }
 
-                // Cálculos de analítica en base a datos reales recibidos
                 const total = dispositivoMaster.length;
                 const online = dispositivoMaster.filter(d => {
                     const st = d["Current Status"].toLowerCase();
@@ -209,7 +208,6 @@
             const busqueda = document.getElementById('buscador').value.toLowerCase().trim();
             tbody.innerHTML = '';
 
-            // 1. Filtrar según selección de botones y buscador
             let filtrados = dispositivoMaster.filter(d => {
                 const statusText = d["Current Status"].toLowerCase();
                 const isOnline = statusText === 'online' || statusText.includes('línea') || statusText.includes('linea');
@@ -223,7 +221,7 @@
                 return true;
             });
 
-            // 2. ORDENACIÓN PRIORITARIA EXIGIDA: Los que llevan más tiempo caídos (Offline) van primero
+            // Ordenación prioritaria: Los caídos con mayor tiempo offline van arriba siempre
             filtrados.sort((a, b) => {
                 const statusA = a["Current Status"].toLowerCase();
                 const statusB = b["Current Status"].toLowerCase();
@@ -231,10 +229,8 @@
                 const isOnlineB = statusB === 'online' || statusB.includes('línea') || statusB.includes('linea');
                 
                 if (!isOnlineA && !isOnlineB) {
-                    // Si ambos están caídos, ordenar por segundos acumulados de mayor a menor
                     return duracionASegundos(b["Total Offline Duration"]) - duracionASegundos(a["Total Offline Duration"]);
                 }
-                // Los offline flotan al inicio de la lista
                 return isOnlineA - isOnlineB;
             });
 
@@ -243,7 +239,6 @@
                 return;
             }
 
-            // 3. Imprimir filas limpias
             filtrados.forEach(d => {
                 const statusText = d["Current Status"].toLowerCase();
                 const isOnline = statusText === 'online' || statusText.includes('línea') || statusText.includes('linea');
@@ -330,7 +325,7 @@
             });
         }
 
-        // Monitorear cambios de tema para redibujar las leyendas del gráfico si es necesario
+        // Escuchar cambios de tema para redibujar las leyendas del gráfico en tiempo real
         document.getElementById('btn-tema').addEventListener('click', () => {
             setTimeout(() => {
                 if(chartInstancia) {
