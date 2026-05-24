@@ -8,13 +8,17 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // Configuración de Tailwind para transiciones fluidas de Modo Oscuro
+        // Configuración de Tailwind para forzar colores corporativos exactos
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        slate: { 950: '#0f172a' }
+                        empresa: {
+                            negro: '#000000',
+                            rojo: '#ef4444',
+                            blanco: '#ffffff'
+                        }
                     }
                 }
             }
@@ -22,13 +26,21 @@
     </script>
     <style>
         body { background-color: #eeebe6; transition: background-color 0.3s, color 0.3s; }
-        .dark body { background-color: #0f172a; }
+        /* Forzado de Modo Oscuro con colores oficiales: Negro Puro, Rojo y Blanco */
+        .dark body { background-color: #000000 !important; color: #ffffff !important; }
+        
         .premium-card { background: white; border-radius: 8px; border: 1px solid #dbdad5; box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: all 0.3s; }
-        .dark .premium-card { background: #1e293b; border-color: #334155; color: #f8fafc; }
+        .dark .premium-card { background: #111111 !important; border-color: #222222 !important; color: #ffffff !important; }
+        
         .status-online { background-color: #e2f5ec; color: #10b981; }
-        .dark .status-online { background-color: rgba(16, 185, 129, 0.2); color: #4ade80; }
+        .dark .status-online { background-color: rgba(16, 185, 129, 0.2) !important; color: #4ade80 !important; }
+        
         .status-offline { background-color: #fde8e8; color: #f05252; }
-        .dark .status-offline { background-color: rgba(239, 68, 68, 0.2); color: #f87171; }
+        .dark .status-offline { background-color: rgba(239, 68, 68, 0.2) !important; color: #f87171 !important; }
+        
+        th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; color: #94a3b8; }
+        .dark th { color: #94a3b8 !important; border-color: #222222 !important; }
+        .dark td { border-color: #222222 !important; }
     </style>
 </head>
 <body class="p-4 md:p-6 text-slate-800 dark:text-slate-100">
@@ -36,20 +48,20 @@
     <div class="max-w-7xl mx-auto space-y-6">
         
         <div class="premium-card p-6 flex flex-col md:flex-row justify-between items-center gap-4">
-            <img src="Logo_NegativoPerfil.png" alt="Recinto Protegido" class="h-20 object-contain rounded-lg">
+            <img src="./Logo_NegativoPerfil.png" alt="Recinto Protegido" class="h-16 object-contain rounded" onerror="this.src='Logo_NegativoPerfil.png'">
             
             <div class="text-center">
                 <p class="text-xs uppercase tracking-widest text-gray-400 font-bold dark:text-slate-400">Reporte de Disponibilidad - Servicio 24/7</p>
                 <h1 class="text-2xl font-black tracking-tight text-slate-900 dark:text-white">Monitoreo de Dispositivos</h1>
-                <p class="text-xs text-gray-500 mt-1 dark:text-slate-400">Cliente: <span class="font-bold text-slate-700 dark:text-slate-200">CMO - CRA</span> · Monitoreado por: <span class="font-bold text-red-500">Recinto Protegido</span></p>
+                <p class="text-xs text-gray-500 mt-1 dark:text-slate-400">Cliente: <span class="font-bold text-slate-700 dark:text-slate-200">CMO - CRA</span> · Monitoreado por: <span class="font-bold text-empresa-rojo">Recinto Protegido</span></p>
             </div>
             
             <div class="flex items-center gap-4">
                 <div class="text-right text-xs text-slate-500 space-y-1 dark:text-slate-400">
-                    <div><i class="fa-solid fa-clock text-red-500"></i> Reloj Local: <span id="reloj-vivo" class="font-mono font-bold text-slate-800 dark:text-white">00:00:00</span></div>
+                    <div><i class="fa-solid fa-clock text-empresa-rojo"></i> Reloj Local: <span id="reloj-vivo" class="font-mono font-bold text-slate-800 dark:text-white">00:00:00</span></div>
                     <div class="text-[10px] text-gray-400">Último reporte: <span id="update-time">--</span></div>
                 </div>
-                <button id="btn-tema" class="p-2.5 rounded-full border border-gray-300 hover:bg-gray-100 dark:border-slate-600 dark:hover:bg-slate-700 transition">
+                <button id="btn-tema" class="p-2.5 rounded-full border border-gray-300 hover:bg-gray-100 dark:border-slate-700 dark:hover:bg-slate-800 transition bg-white dark:bg-black">
                     <i id="icono-tema" class="fa-solid fa-moon text-slate-600 dark:text-slate-300"></i>
                 </button>
             </div>
@@ -67,12 +79,12 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div class="premium-card p-6 text-center space-y-2">
                 <p class="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">Equipos en Línea</p>
-                <div class="text-4xl font-black text-emerald-500" id="kpi-online">-</div>
+                <div class="text-4xl font-black text-emerald-500 dark:text-emerald-400" id="kpi-online">-</div>
                 <p class="text-[10px] text-gray-400 dark:text-slate-500">Reportados operativos</p>
             </div>
-            <div class="premium-card p-6 text-center space-y-2 border-t-4 border-red-500">
+            <div class="premium-card p-6 text-center space-y-2 border-t-4 border-red-500 dark:border-empresa-rojo">
                 <p class="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">Sin Conexión</p>
-                <div class="text-4xl font-black text-red-500" id="kpi-offline">-</div>
+                <div class="text-4xl font-black text-empresa-rojo" id="kpi-offline">-</div>
                 <p class="text-[10px] text-gray-400 dark:text-slate-500">Equipos requieren atención</p>
             </div>
             <div class="premium-card p-6 text-center space-y-2">
@@ -97,12 +109,12 @@
         </div>
 
         <div class="flex flex-col sm:flex-row gap-4 justify-between items-center">
-            <div class="flex bg-white dark:bg-slate-800 p-1 rounded-lg border border-gray-300 dark:border-slate-700 gap-1 text-xs font-bold w-full sm:w-auto shadow-sm">
-                <button onclick="filtrarEstado('todos')" id="btn-todos" class="flex-1 px-5 py-2 rounded bg-slate-800 text-white transition dark:bg-slate-600">Todos</button>
-                <button onclick="filtrarEstado('online')" id="btn-online" class="flex-1 px-5 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition">Online</button>
-                <button onclick="filtrarEstado('offline')" id="btn-offline" class="flex-1 px-5 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition">Offline</button>
+            <div class="flex bg-white p-1 rounded-lg border border-gray-300 gap-1 text-xs font-bold w-full sm:w-auto shadow-sm dark:bg-slate-900 dark:border-slate-700">
+                <button onclick="filtrarEstado('todos')" id="btn-todos" class="flex-1 px-5 py-2 rounded bg-slate-800 text-white transition dark:bg-slate-700">Todos</button>
+                <button onclick="filtrarEstado('online')" id="btn-online" class="flex-1 px-5 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Online</button>
+                <button onclick="filtrarEstado('offline')" id="btn-offline" class="flex-1 px-5 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Offline</button>
             </div>
-            <input type="text" id="buscador" class="w-full sm:max-w-xs px-4 py-2 text-sm bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-700 rounded-lg focus:outline-none focus:border-red-400 dark:focus:border-red-500 shadow-sm text-slate-700 dark:text-white" placeholder="🔍 Buscar cliente por nombre...">
+            <input type="text" id="buscador" class="w-full sm:max-w-xs px-4 py-2 text-sm bg-white dark:bg-slate-900 border border-gray-300 dark:border-slate-700 rounded-lg focus:outline-none focus:border-red-400 dark:focus:border-empresa-rojo shadow-sm text-slate-700 dark:text-white" placeholder="🔍 Buscar cliente por nombre...">
         </div>
 
         <div class="premium-card overflow-hidden">
@@ -116,7 +128,7 @@
                             <th class="p-4">Tiempo Total Fuera de Línea (Total Offline Duration)</th>
                         </tr>
                     </thead>
-                    <tbody id="tabla-datos" class="divide-y divide-gray-200 dark:divide-slate-700 font-medium">
+                    <tbody id="tabla-datos" class="divide-y divide-gray-200 dark:divide-slate-800 font-medium">
                         <tr>
                             <td colspan="4" class="p-8 text-center text-gray-400 dark:text-slate-500">Sincronizando base de datos...</td>
                         </tr>
@@ -139,13 +151,13 @@
         }
         setInterval(actualizarReloj, 1000);
 
-        // Lógica del botón de Modo Oscuro
+        // Lógica del botón de tema adaptado a colores corporativos exactos
         const btnTema = document.getElementById('btn-tema');
         const iconoTema = document.getElementById('icono-tema');
         
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
-            iconoTema.className = "fa-solid fa-sun text-amber-400";
+            iconoTema.className = "fa-solid fa-sun text-white";
         }
 
         btnTema.addEventListener('click', () => {
@@ -156,7 +168,7 @@
             } else {
                 document.documentElement.classList.add('dark');
                 localStorage.setItem('theme', 'dark');
-                iconoTema.className = "fa-solid fa-sun text-amber-400";
+                iconoTema.className = "fa-solid fa-sun text-white";
             }
         });
 
@@ -173,7 +185,6 @@
                 const respuesta = await fetch('datos.json?v=' + Date.now());
                 const datos = await respuesta.json();
                 
-                // Corregido: Mapeando la clave exacta "registros" de tu datos.json público
                 dispositivoMaster = datos.registros || [];
                 
                 document.getElementById('update-time').innerText = datos.ultima_actualizacion || '--';
@@ -247,11 +258,11 @@
                 const statusHtml = isOnline ? 'ONLINE' : 'OFFLINE';
 
                 const tr = document.createElement('tr');
-                tr.className = "hover:bg-slate-50 dark:hover:bg-slate-800/30 transition text-slate-700 dark:text-slate-200";
+                tr.className = "hover:bg-slate-50 dark:hover:bg-slate-800/20 transition text-slate-700 dark:text-slate-200 border-b border-gray-200 dark:border-slate-800";
                 tr.innerHTML = `
                     <td class="p-4 font-bold text-slate-900 dark:text-white">${d["Name"]}</td>
                     <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${badgeClass}">${statusHtml}</span></td>
-                    <td class="p-4 font-mono text-xs">${d["Latest Offline Time"]}</td>
+                    <td class="p-4 font-mono text-xs text-slate-500 dark:text-slate-400">${d["Latest Offline Time"]}</td>
                     <td class="p-4 font-mono text-xs font-bold text-slate-900 dark:text-white">${d["Total Offline Duration"]}</td>
                 `;
                 tbody.appendChild(tr);
@@ -265,7 +276,7 @@
                 if(id === estado) {
                     btn.className = "flex-1 px-5 py-2 rounded bg-slate-800 text-white transition dark:bg-slate-600";
                 } else {
-                    btn.className = "flex-1 px-5 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition";
+                    btn.className = "flex-1 px-5 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition";
                 }
             });
             renderizarTabla();
@@ -293,6 +304,7 @@
                         },
                         {
                             label: 'Equipos Offline',
+                            data: '#ef4444', // Rojo corporativo oficial
                             data: [offline],
                             backgroundColor: '#ef4444', 
                             barPercentage: 0.4
@@ -308,7 +320,7 @@
                             position: 'bottom', 
                             labels: { 
                                 boxWidth: 12, 
-                                color: modoOscuroActivo ? '#f8fafc' : '#1e293b',
+                                color: modoOscuroActivo ? '#ffffff' : '#1e293b',
                                 font: { size: 11, weight: 'bold' } 
                             } 
                         }
@@ -316,7 +328,7 @@
                     scales: {
                         x: { 
                             beginAtZero: true, 
-                            grid: { color: modoOscuroActivo ? '#334155' : '#e2e8f0' },
+                            grid: { color: modoOscuroActivo ? '#222222' : '#e2e8f0' },
                             ticks: { color: modoOscuroActivo ? '#94a3b8' : '#64748b' }
                         },
                         y: { display: false } 
