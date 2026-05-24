@@ -1,1 +1,81 @@
-<h1>Dashboard en construccion</h1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Monitoreo CCTV</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; color: #333; margin: 0; padding: 20px; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        .header { text-align: center; margin-bottom: 40px; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .header h1 { margin: 0 0 10px 0; color: #1a1a1a; }
+        .timestamp { color: #666; font-size: 0.95rem; margin: 0; font-weight: bold; }
+        .section-title { border-bottom: 3px solid #e1e4e8; padding-bottom: 10px; margin-bottom: 25px; color: #2c3e50; font-size: 1.5rem; }
+        .row { display: flex; gap: 25px; margin-bottom: 40px; flex-wrap: wrap; }
+        .card { flex: 1; min-width: 250px; background: white; border-radius: 12px; padding: 30px 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; transition: transform 0.2s; }
+        .card:hover { transform: translateY(-5px); }
+        .card h3 { margin-top: 0; color: #7f8c8d; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; }
+        .card .number { font-size: 3.5rem; font-weight: bold; margin: 15px 0 0 0; }
+        .online { color: #27ae60; } /* Verde */
+        .offline { color: #e74c3c; } /* Rojo */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Centro de Monitoreo de Infraestructura</h1>
+            <p class="timestamp">Última actualización: <span id="update-time">Cargando...</span></p>
+        </div>
+
+        <h2 class="section-title">🖥️ Estado de Dispositivos (NVR/Servidores)</h2>
+        <div class="row">
+            <div class="card" style="border-bottom: 5px solid #27ae60;">
+                <h3>Equipos En Línea</h3>
+                <div class="number online" id="dev-online">-</div>
+            </div>
+            <div class="card" style="border-bottom: 5px solid #e74c3c;">
+                <h3>Equipos Sin Conexión</h3>
+                <div class="number offline" id="dev-offline">-</div>
+            </div>
+        </div>
+
+        <h2 class="section-title">📹 Estado de Cámaras (Recursos)</h2>
+        <div class="row">
+            <div class="card" style="border-bottom: 5px solid #27ae60;">
+                <h3>Cámaras En Línea</h3>
+                <div class="number online" id="cam-online">-</div>
+            </div>
+            <div class="card" style="border-bottom: 5px solid #e74c3c;">
+                <h3>Cámaras Sin Conexión</h3>
+                <div class="number offline" id="cam-offline">-</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Esta función lee el archivo datos.json y actualiza la pantalla
+        async function cargarDatos() {
+            try {
+                // El '?t=' evita que el navegador guarde los datos viejos en caché
+                const response = await fetch('datos.json?t=' + new Date().getTime());
+                const data = await response.json();
+
+                // Pintamos los números en la pantalla
+                document.getElementById('dev-online').innerText = data.dispositivos.online;
+                document.getElementById('dev-offline').innerText = data.dispositivos.offline;
+                document.getElementById('cam-online').innerText = data.camaras.online;
+                document.getElementById('cam-offline').innerText = data.camaras.offline;
+                document.getElementById('update-time').innerText = data.ultima_actualizacion;
+
+            } catch (error) {
+                console.error('Error cargando los datos:', error);
+                document.getElementById('update-time').innerText = "Error al conectar con la base de datos";
+            }
+        }
+
+        // Ejecutar al abrir la página y luego recargar cada 60 segundos
+        cargarDatos();
+        setInterval(cargarDatos, 60000);
+    </script>
+</body>
+</html>
