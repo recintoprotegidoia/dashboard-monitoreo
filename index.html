@@ -3,10 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <title>ESTADO DISPOSITIVOS HCP - HIKVISION</title>
+    <title>Dashboard de Monitoreo - Recinto Protegido</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -115,7 +112,7 @@
             
             <div class="text-center">
                 <p class="text-[10px] md:text-xs uppercase tracking-widest text-gray-400 font-bold dark:text-slate-400">Reporte de Disponibilidad - Servicio 24/7</p>
-                <h1 class="text-xl md:text-2xl font-black tracking-tight text-slate-900 dark:text-white">ESTADO DISPOSITIVOS HCP - HIKVISION</h1>
+                <h1 class="text-xl md:text-2xl font-black tracking-tight text-slate-900 dark:text-white">Monitoreo de Dispositivos</h1>
                 <p class="text-xs text-gray-500 mt-1 dark:text-slate-400">Cliente: <span class="font-bold text-slate-700 dark:text-slate-200">CMO - CRA</span> · Monitoreado por: <span class="font-bold text-red-500">Recinto Protegido</span></p>
             </div>
             
@@ -257,70 +254,21 @@
             return (parseInt(partes[0]) * 3600) + (parseInt(partes[1]) * 60) + parseInt(partes[2]);
         }
 
-        const FUENTES_DATOS_HCP = [
-            {
-                nombre: 'GitHub Raw main',
-                url: 'https://raw.githubusercontent.com/recintoprotegidoia/dashboard-monitoreo/main/datos.json'
-            },
-            {
-                nombre: 'GitHub Pages',
-                url: new URL('./datos.json', window.location.href).href
-            }
-        ];
-
-        async function leerDatosHcpSinCache() {
-            const errores = [];
-
-            for (const fuente of FUENTES_DATOS_HCP) {
-                const separador = fuente.url.includes('?') ? '&' : '?';
-                const urlFinal = fuente.url + separador + 'v=' + Date.now() + '-' + Math.random().toString(36).slice(2);
-
-                try {
-                    const respuesta = await fetch(urlFinal, {
-                        cache: 'no-store'
-                    });
-
-                    if (!respuesta.ok) {
-                        throw new Error('HTTP ' + respuesta.status);
-                    }
-
-                    const datos = await respuesta.json();
-
-                    if (!datos || !Array.isArray(datos.registros)) {
-                        throw new Error('Formato inválido: no existe arreglo registros');
-                    }
-
-                    console.info('[Dashboard HCP] Datos cargados desde:', fuente.nombre, {
-                        ultima_actualizacion: datos.ultima_actualizacion || '--',
-                        total_registros: datos.registros.length
-                    });
-
-                    return datos;
-                } catch (error) {
-                    errores.push(fuente.nombre + ': ' + error.message);
-                    console.warn('[Dashboard HCP] No se pudo cargar desde ' + fuente.nombre, error);
-                }
-            }
-
-            throw new Error('No se pudo leer datos.json desde ninguna fuente. ' + errores.join(' | '));
-        }
-
         async function cargarDashboard() {
             try {
-                const datos = await leerDatosHcpSinCache();
+                const respuesta = await fetch('datos.json?v=' + Date.now());
+                const datos = await respuesta.json();
                 
                 dispositivoMaster = datos.registros || [];
                 
                 document.getElementById('update-time').innerText = datos.ultima_actualizacion || '--';
                 if(datos.ultima_actualizacion) {
                     document.getElementById('cinta-fecha').innerText = datos.ultima_actualizacion.split(',')[0];
-                } else {
-                    document.getElementById('cinta-fecha').innerText = '--/--/--';
                 }
 
                 const total = dispositivoMaster.length;
                 const online = dispositivoMaster.filter(d => {
-                    const st = String(d["Current Status"] || '').toLowerCase();
+                    const st = d["Current Status"].toLowerCase();
                     return st === 'online' || st.includes('línea') || st.includes('linea');
                 }).length;
                 const offline = total - online;
@@ -335,9 +283,7 @@
                 renderizarTabla();
 
             } catch (error) {
-                console.error('Error leyendo datos.json:', error);
-                const updateTime = document.getElementById('update-time');
-                if (updateTime) updateTime.innerText = 'Error al leer datos.json';
+                console.error("Error leyendo datos.json:", error);
             }
         }
 
@@ -488,9 +434,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             actualizarReloj();
             cargarDashboard();
-
-            // Vuelve a consultar datos.json automáticamente cada 60 segundos
-            setInterval(cargarDashboard, 60 * 1000);
         });
     </script>
 </body>
