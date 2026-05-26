@@ -53,6 +53,25 @@
         .dark th { color: #94a3b8 !important; border-color: #222222 !important; }
         .dark td { border-color: #222222 !important; }
 
+        .brand-logo-box {
+            background: #0a060b;
+            border: 1px solid rgba(255,255,255,0.10);
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .brand-logo-img {
+            display: block;
+            width: 9rem;
+            height: auto;
+            object-fit: contain;
+        }
+        @media (min-width: 768px) {
+            .brand-logo-img { width: 11rem; }
+        }
+        @media (min-width: 1024px) {
+            .brand-logo-img { width: 13rem; }
+        }
+
         /* REGLAS PARA PDF PERFECTO NATIVO */
         @media print {
             body { background-color: white !important; color: black !important; padding: 0 !important; margin: 0 !important;}
@@ -74,8 +93,20 @@
     <div id="contenido-dashboard" class="max-w-7xl mx-auto space-y-4 md:space-y-6 bg-transparent">
         
         <div class="premium-card p-4 md:p-6 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="bg-slate-950 p-2 rounded-lg flex items-center justify-center shadow-md">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEb0lEQVR4nO2dS2hcVRSGv9NMo9GmTUpbS6tEUUuLgoKID4pQitAsFCwWXLgQit9KXwVBwYVudOHChQsXLgRxpSgI7UORpkh9gI9S09g2bZqmSZM0M3OduZpLeIe5zST3nHvOnXv+D4bM3Dlz7v9yb86552wKBAKBQCAQCAQCcREHegHngS0S/VfXUuALw6+X9fM4MByg3w7gID6C9AL7gAnZbgf6A+SdB9bI9iswLdt/Abf6mEwPcFiyjUnWCg3wZWAH0Odn6gP0Ascl69Yw/S0Z30l87+P5XwH3S7ZhyV7R8N/SgV6C3w30S/YhM78f+DTAXF/G630F3As8B3QCvwEPmXl9wCHZfyHAZ16wDqArwG9Ww9w+mX8beEwZgE/Z53wX8BwwDLzF0rGvVbY/SvaLwInIeR3Asw3yA9gZOfcxM6/SAnVp7f8E/ALckwPfB7wA7GfG9NfAIynzdgK7aswbZ8bsk9h6XWf7GzW3Yf1mYmY+C+yT7D7gK7aswbZ8bsk9h6XWf7GzW3Yf1mYmY+C+yT7D7gKDAp8/uAL63OicbXG6DfhK0Y/YV9X2V/7Yn5E8BDwGXgS4v7AnBNo1vC1v0K+6p5bV1vWb8vAtuAY8BxGfP3gMda266pXg3mCtsC+z9lYjS/R2P/lYzzf62XUuXm66G169m6Ufve069w/fXvBfAL8D2w0+IeB44D52N8+5jRzWvX01Xb8U6t3aixH03K/DFrX6N9WvsatV6vR229nB/X8wD+YmbXvnb9mPXPWeZ1L8ZgYVvMvOnm7asbWrsRzU9mveN+vWh8n7bWvN8j9rV6fWe9vunmUetWb6f/8wLwaR79SgZ90Z/7VdbXGqXf8wLwfR79mNf6wbyWqOdfre9v8v7M/N6/9VfWe6wP+u6vWe9wP/p91vffjO9D81vW+5rX+sD8lvXeN7/rD87n+f0347uX832V8f3A/Lp6V1nfB+Z3XfWqfX/p9zXf12y9R/P9D6ZkX6V6v/L7Ppvv8zDfd6pXrfm+U71qzfed6hVrvq/UesX6m9bW3zSve9TWW6Wp1mvWfL/T2vqb5nWv+p0Zk/mDls+R9XWv7Z78UuRzjHwO/883D9+Wl9eB6b1H7FukGg8S61q8GvXN9wV+97U40K/g9YgX8gGv9XWv6u5V8Lrf6pGv9z08I0WvI+8A3shY/4/4W03wO7E+rLp78v4f+tqH6e6fXveF3vdXfU+T7v/R6p6wZ+XwR2C7ZN4AtwF7gqfIisUv6bAOmgI/Z53wE2wO0n/M3SfZ6YIdkvwi8wMzreXwE6ZfP+eMyvxP4XFvX6/k8W9frS8A9wMeSPSbZj8D7wGvA62beK8D+mDEnZPy9WrfjFvaWjO9963UaeAr4SveFscwZkb3C6vX4Peb1qfI+N6/C/g7gtO6vWw7Lw/o+K/OfA9+Xz3BqfO9br1P96Fca+6DWhWwX+V7L973M+r40v+X7XmZ9H+X3bUet72XW91F+33Y8Yt8idmX8B9Gv6f06+hW3q6/vjE6W9X0ZfUvWfe/w9P6X6lD/+L1g+6f+b0f/ZTX3gH79vU7wO/YV37v7tN5P7TvaN/vS7D/A9O7MAs9RofkAAAAAElFTkSuQmCC" alt="Recinto Protegido" class="h-12 md:h-16 w-auto object-contain">
+            <div class="brand-logo-box p-3 rounded-xl flex items-center justify-center shadow-md">
+                <img 
+                    src="./assets/logo-recinto-protegido.png" 
+                    alt="Recinto Protegido" 
+                    class="brand-logo-img"
+                    decoding="async"
+                    fetchpriority="high"
+                    onerror="this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');"
+                >
+                <div class="logo-fallback hidden text-center leading-none">
+                    <div class="text-white text-xl md:text-2xl font-black tracking-tight">RECINTO</div>
+                    <div class="text-red-500 text-xl md:text-2xl font-black tracking-tight">PROTEGIDO</div>
+                    <div class="text-white text-[9px] md:text-[10px] font-bold tracking-[0.35em] mt-1">24 HORAS</div>
+                </div>
             </div>
             
             <div class="text-center">
@@ -180,6 +211,9 @@
         let tabActual = 'HCP'; 
         let dataHCP = [];
         let dataDSS = [];
+        let resumenDSS = {};
+        let canalesDSS = [];
+        let discosDSS = [];
         let timeHCP = '--';
         let timeDSS = '--';
         let filtroHCP = 'todos';
@@ -226,8 +260,9 @@
         }
         function checkProblemaDisco(status) {
             if(!status) return false;
-            let s = status.toLowerCase();
-            return s !== 'normal' && s !== 'online' && s.trim() !== '';
+            let s = String(status).toLowerCase().trim();
+            if(s === '' || s === '-' || s === '--' || s === 'n/a') return false;
+            return s !== 'normal' && s !== 'online';
         }
         function duracionASegundos(str) {
             if (!str || str === "0" || str === "00:00:00" || str.includes('--')) return 0;
@@ -240,22 +275,33 @@
         async function cargarTodo() {
             try {
                 // Hikvision
-                const resHCP = await fetch('datos.json?v=' + Date.now()).catch(()=>null);
+                const resHCP = await fetch('./datos.json?v=' + Date.now(), { cache: 'no-store' }).catch(()=>null);
                 if(resHCP && resHCP.ok) {
                     const jsonHCP = await resHCP.json();
                     dataHCP = jsonHCP.registros || [];
                     timeHCP = jsonHCP.ultima_actualizacion || '--';
                 }
                 
-                // Dahua - Corregida la lectura del nodo "Dispositivos" de tu datos_dss_dahua.json
-                const resDSS = await fetch('datos_dss_dahua.json?v=' + Date.now()).catch(()=>null);
+                // Dahua
+                const resDSS = await fetch('./datos_dss_dahua.json?v=' + Date.now(), { cache: 'no-store' }).catch(()=>null);
                 if(resDSS && resDSS.ok) {
                     const jsonDSS = await resDSS.json();
-                    dataDSS = jsonDSS.Dispositivos || jsonDSS.registros || [];
+                    dataDSS = jsonDSS.dispositivos || jsonDSS.Dispositivos || jsonDSS.registros || [];
+                    canalesDSS = jsonDSS.canales || [];
+                    discosDSS = jsonDSS.discos || [];
+                    resumenDSS = jsonDSS.resumen || {};
                     timeDSS = jsonDSS.ultima_actualizacion || '--';
+                    console.log('[DSS DAHUA] cargado:', {
+                        dispositivos: dataDSS.length,
+                        canales: canalesDSS.length,
+                        discos: discosDSS.length,
+                        resumen: resumenDSS
+                    });
+                } else {
+                    console.error('No se pudo cargar datos_dss_dahua.json', resDSS && resDSS.status);
                 }
-                
-                cambiarTab('HCP');
+
+                cambiarTab(tabActual || 'HCP');
             } catch(e) {
                 console.error("Error global de sincronización:", e);
             }
@@ -276,10 +322,10 @@
                 document.getElementById('update-time').innerText = timeHCP;
                 
                 document.getElementById('cabecera-tabla').innerHTML = `
-                    <th class="p-4">Cliente (Name)</th>
-                    <th class="p-4">Estado (Current Status)</th>
+                    <th class="p-4">Cliente</th>
+                    <th class="p-4">Estado</th>
                     <th class="p-4">Última Desconexión</th>
-                    <th class="p-4">Tiempo Offline Duration</th>
+                    <th class="p-4">Tiempo Total Fuera de Línea</th>
                 `;
 
                 document.getElementById('label-kpi-1').innerText = "EQUIPOS ONLINE";
@@ -397,19 +443,15 @@
                 renderizarGraficoHCP(onlineCount, offlineCount);
 
             } else {
-                let total = dataDSS.length;
-                let onlineDCount = 0; let offlineDCount = 0; let abnormalDiskCount = 0; let abnormalChanCount = 0;
-                let totalProblemasGeneral = 0;
-
-                dataDSS.forEach(d => {
-                    let isOnline = d["Estado de dispositivo"] === 'Online';
-                    if(isOnline) onlineDCount++; else offlineDCount++;
-                    let badDisk = checkProblemaDisco(d["Estado del disco"]);
-                    if(badDisk) abnormalDiskCount++;
-                    let badChan = checkProblemaCanal(d["Estado de canal"]);
-                    if(badChan) abnormalChanCount++;
-                    if(!isOnline || badDisk || badChan) totalProblemasGeneral++;
-                });
+                let total = resumenDSS.dispositivos?.total ?? dataDSS.length;
+                let onlineDCount = resumenDSS.dispositivos?.online ?? dataDSS.filter(d => String(d["conexion"] || "").toLowerCase() === "online").length;
+                let offlineDCount = resumenDSS.dispositivos?.offline ?? Math.max(total - onlineDCount, 0);
+                let abnormalDiskCount = resumenDSS.discos?.abnormal ?? dataDSS.filter(d => checkProblemaDisco(d["estado_disco"])).length;
+                let abnormalChanCount = resumenDSS.canales?.abnormal ?? dataDSS.filter(d => checkProblemaCanal(d["estado_canal"])).length;
+                let totalProblemasGeneral = resumenDSS.general?.total_problemas ?? dataDSS.filter(d => {
+                    const isOnline = String(d["conexion"] || "").toLowerCase() === "online";
+                    return !isOnline || checkProblemaDisco(d["estado_disco"]) || checkProblemaCanal(d["estado_canal"]);
+                }).length;
 
                 document.getElementById('kpi-1-val').innerText = onlineDCount;
                 document.getElementById('kpi-offline-val').innerText = offlineDCount;
@@ -417,9 +459,9 @@
                 document.getElementById('kpi-total-val').innerText = total;
 
                 let fData = dataDSS.filter(d => {
-                    let isO = d["Estado de dispositivo"] === 'Online';
-                    let badDisk = checkProblemaDisco(d["Estado del disco"]);
-                    let badChan = checkProblemaCanal(d["Estado de canal"]);
+                    let isO = String(d['conexion'] || '').toLowerCase() === 'online';
+                    let badDisk = checkProblemaDisco(d["estado_disco"]);
+                    let badChan = checkProblemaCanal(d["estado_canal"]);
                     let isProblem = !isO || badDisk || badChan;
 
                     if (filtroDSS === 'problemas' && !isProblem) return false;
@@ -427,40 +469,40 @@
                     if (filtroDSS === 'discos' && !badDisk) return false;
                     if (filtroDSS === 'canales' && !badChan) return false;
                     
-                    if (term !== '' && !d["Dispositivo"].toLowerCase().includes(term) && !d["IP"].includes(term)) return false;
+                    if (term !== '' && !(d['nombre'] || '').toLowerCase().includes(term) && !(d['ip'] || '').toLowerCase().includes(term)) return false;
                     return true;
                 }).sort((a, b) => {
-                    let isOa = a["Estado de dispositivo"] === 'Online';
-                    let isOb = b["Estado de dispositivo"] === 'Online';
+                    let isOa = String(a['conexion'] || '').toLowerCase() === 'online';
+                    let isOb = String(b['conexion'] || '').toLowerCase() === 'online';
                     return isOa - isOb;
                 });
 
                 fData.forEach(d => {
-                    const isO = d["Estado de dispositivo"] === 'Online';
-                    const badDisk = checkProblemaDisco(d["Estado del disco"]);
-                    const badChan = checkProblemaCanal(d["Estado de canal"]);
+                    const isO = String(d["conexion"] || "").toLowerCase() === "online";
+                    const badDisk = checkProblemaDisco(d["estado_disco"]);
+                    const badChan = checkProblemaCanal(d["estado_canal"]);
 
                     const bcDev = isO ? 'status-online' : 'status-offline';
                     const bcDisk = badDisk ? 'status-offline' : 'status-online';
                     const bcChan = badChan ? 'bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400' : 'status-online';
 
                     htmlTable += `<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/20 transition text-slate-700 dark:text-slate-200 border-b border-gray-200 dark:border-slate-800">
-                        <td class="p-4 font-bold text-slate-900 dark:text-white">${d["Dispositivo"]}</td>
-                        <td class="p-4 font-mono text-xs text-slate-500 dark:text-slate-400">${d["IP"]}</td>
-                        <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bcDev}">${d["Estado de dispositivo"]}</span></td>
-                        <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bcChan}">${d["Estado de canal"]||'OK'}</span></td>
-                        <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bcDisk}">${d["Estado del disco"]||'OK'}</span></td>
+                        <td class="p-4 font-bold text-slate-900 dark:text-white">${d["nombre"]}</td>
+                        <td class="p-4 font-mono text-xs text-slate-500 dark:text-slate-400">${d["ip"]}</td>
+                        <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bcDev}">${d["conexion"]}</span></td>
+                        <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bcChan}">${d["estado_canal"]||'OK'}</span></td>
+                        <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bcDisk}">${d["estado_disco"]||'OK'}</span></td>
                     </tr>`;
 
                     htmlMovil += `<div class="p-4 space-y-2 text-sm text-slate-700 dark:text-slate-300">
                         <div class="flex justify-between items-start gap-2">
-                            <span class="font-bold text-slate-900 dark:text-white text-base">${d["Dispositivo"]}</span>
-                            <span class="px-2 py-0.5 rounded text-[10px] font-black tracking-wide ${bcDev}">${d["Estado de dispositivo"]}</span>
+                            <span class="font-bold text-slate-900 dark:text-white text-base">${d["nombre"]}</span>
+                            <span class="px-2 py-0.5 rounded text-[10px] font-black tracking-wide ${bcDev}">${d["conexion"]}</span>
                         </div>
-                        <div class="text-xs text-slate-500 dark:text-slate-400">IP: <span class="font-mono">${d["IP"]}</span></div>
+                        <div class="text-xs text-slate-500 dark:text-slate-400">IP: <span class="font-mono">${d["ip"]}</span></div>
                         <div class="text-xs flex justify-between items-center pt-1 border-t border-gray-100 dark:border-slate-800">
-                            <span class="font-semibold text-slate-600 dark:text-slate-300">Canales: <span class="px-1.5 py-0.5 rounded font-black ${bcChan}">${d["Estado de canal"]||'OK'}</span></span>
-                            <span class="font-semibold text-slate-600 dark:text-slate-300">Disco: <span class="px-1.5 py-0.5 rounded font-black ${bcDisk}">${d["Estado del disco"]||'OK'}</span></span>
+                            <span class="font-semibold text-slate-600 dark:text-slate-300">Canales: <span class="px-1.5 py-0.5 rounded font-black ${bcChan}">${d["estado_canal"]||'OK'}</span></span>
+                            <span class="font-semibold text-slate-600 dark:text-slate-300">Disco: <span class="px-1.5 py-0.5 rounded font-black ${bcDisk}">${d["estado_disco"]||'OK'}</span></span>
                         </div>
                     </div>`;
                 });
@@ -515,6 +557,13 @@
         document.addEventListener('DOMContentLoaded', () => {
             actualizarReloj();
             cargarTodo();
+
+            const buscador = document.getElementById('buscador');
+            if (buscador) {
+                buscador.addEventListener('input', renderizarTablaYGrafico);
+            }
+
+            setInterval(cargarTodo, 60000);
         });
     </script>
 </body>
