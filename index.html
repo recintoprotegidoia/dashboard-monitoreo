@@ -75,7 +75,7 @@
         
         <div class="premium-card p-4 md:p-6 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="bg-slate-950 p-2 rounded-lg flex items-center justify-center shadow-md">
-                <img src="https://raw.githubusercontent.com/recintoprotegidoia/dashboard-monitoreo/main/Logo_NegativoPerfil.png" alt="Recinto Protegido" class="h-12 md:h-16 w-auto object-contain">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEb0lEQVR4nO2dS2hcVRSGv9NMo9GmTUpbS6tEUUuLgoKID4pQitAsFCwWXLgQit9KXwVBwYVudOHChQsXLgRxpSgI7UORpkh9gI9S09g2bZqmSZM0M3OduZpLeIe5zST3nHvOnXv+D4bM3Dlz7v9yb86552wKBAKBQCAQCAQCcREHegHngS0S/VfXUuALw6+X9fM4MByg3w7gID6C9AL7gAnZbgf6A+SdB9bI9iswLdt/Abf6mEwPcFiyjUnWCg3wZWAH0Odn6gP0Ascl69Yw/S0Z30l87+P5XwH3S7ZhyV7R8N/SgV6C3w30S/YhM78f+DTAXF/G630F3As8B3QCvwEPmXl9wCHZfyHAZ16wDqArwG9Ww9w+mX8beEwZgE/Z53wX8BwwDLzF0rGvVbY/SvaLwInIeR3Asw3yA9gZOfcxM6/SAnVp7f8E/ALckwPfB7wA7GfG9NfAIynzdgK7aswbZ8bsk9h6XWf7GzW3Yf1mYmY+C+yT7D7gK7aswbZ8bsk9h6XWf7GzW3Yf1mYmY+C+yT7D7gKDAp8/uAL63OicbXG6DfhK0Y/YV9X2V/7Yn5E8BDwGXgS4v7AnBNo1vC1v0K+6p5bV1vWb8vAtuAY8BxGfP3gMda266pXg3mCtsC+z9lYjS/R2P/lYzzf62XUuXm66G169m6Ufve069w/fXvBfAL8D2w0+IeB44D52N8+5jRzWvX01Xb8U6t3aixH03K/DFrX6N9WvsatV6vR229nB/X8wD+YmbXvnb9mPXPWeZ1L8ZgYVvMvOnm7asbWrsRzU9mveN+vWh8n7bWvN8j9rV6fWe9vunmUetWb6f/8wLwaR79SgZ90Z/7VdbXGqXf8wLwfR79mNf6wbyWqOdfre9v8v7M/N6/9VfWe6wP+u6vWe9wP/p91vffjO9D81vW+5rX+sD8lvXeN7/rD87n+f0347uX832V8f3A/Lp6V1nfB+Z3XfWqfX/p9zXf12y9R/P9D6ZkX6V6v/L7Ppvv8zDfd6pXrfm+U71qzfed6hVrvq/UesX6m9bW3zSve9TWW6Wp1mvWfL/T2vqb5nWv+p0Zk/mDls+R9XWv7Z78UuRzjHwO/883D9+Wl9eB6b1H7FukGg8S61q8GvXN9wV+97U40K/g9YgX8gGv9XWv6u5V8Lrf6pGv9z08I0WvI+8A3shY/4/4W03wO7E+rLp78v4f+tqH6e6fXveF3vdXfU+T7v/R6p6wZ+XwR2C7ZN4AtwF7gqfIisUv6bAOmgI/Z53wE2wO0n/M3SfZ6YIdkvwi8wMzreXwE6ZfP+eMyvxP4XFvX6/k8W9frS8A9wMeSPSbZj8D7wGvA62beK8D+mDEnZPy9WrfjFvaWjO9963UaeAr4SveFscwZkb3C6vX4Peb1qfI+N6/C/g7gtO6vWw7Lw/o+K/OfA9+Xz3BqfO9br1P96Fca+6DWhWwX+V7L973M+r40v+X7XmZ9H+X3bUet72XW91F+33Y8Yt8idmX8B9Gv6f06+hW3q6/vjE6W9X0ZfUvWfe/w9P6X6lD/+L1g+6f+b0f/ZTX3gH79vU7wO/YV37v7tN5P7TvaN/vS7D/A9O7MAs9RofkAAAAAElFTkSuQmCC" alt="Recinto Protegido" class="h-12 md:h-16 w-auto object-contain">
             </div>
             
             <div class="text-center">
@@ -111,7 +111,7 @@
             </div>
             <div class="premium-card p-4 md:p-6 text-center space-y-1 md:space-y-2 border-t-4 border-red-500 dark:border-red-500">
                 <p id="label-kpi-2" class="text-[10px] md:text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">EQUIPOS OFFLINE</p>
-                <div class="text-2xl md:text-4xl font-black text-red-500" id="kpi-2-val">-</div>
+                <div class="text-2xl md:text-4xl font-black text-red-500" id="kpi-offline-val">-</div>
             </div>
             <div class="premium-card p-4 md:p-6 text-center space-y-1 md:space-y-2">
                 <p id="label-kpi-3" class="text-[10px] md:text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">DISPONIBILIDAD</p>
@@ -119,7 +119,7 @@
             </div>
             <div class="premium-card p-4 md:p-6 text-center space-y-1 md:space-y-2">
                 <p id="label-kpi-4" class="text-[10px] md:text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">TOTAL EQUIPOS</p>
-                <div class="text-2xl md:text-4xl font-black text-sky-500" id="kpi-4-val">-</div>
+                <div class="text-2xl md:text-4xl font-black text-sky-500" id="kpi-total-val">-</div>
             </div>
         </div>
 
@@ -149,7 +149,7 @@
             </div>
 
             <div class="flex gap-2 w-full lg:w-auto">
-                <input type="text" id="buscador" class="w-full lg:max-w-xs px-4 py-2 text-sm bg-white dark:bg-slate-900 border border-gray-300 dark:border-slate-700 rounded-lg focus:outline-none focus:border-red-400 dark:focus:border-red-500 shadow-sm text-slate-700 dark:text-white" placeholder="🔍 Buscar cliente / dispositivo...">
+                <input type="text" id="buscador" class="w-full lg:max-w-xs px-4 py-2 text-sm bg-white dark:bg-slate-900 border border-gray-300 dark:border-slate-700 rounded-lg focus:outline-none focus:border-red-400 dark:focus:border-red-500 shadow-sm text-slate-700 dark:text-white" placeholder="🔍 Buscar dispositivo / IP...">
                 <button onclick="window.print()" class="flex items-center justify-center gap-2 px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700 active:scale-95 transition dark:bg-red-700 dark:hover:bg-red-800 whitespace-nowrap">
                     <i class="fa-solid fa-file-pdf"></i> PDF
                 </button>
@@ -177,17 +177,15 @@
     </div>
 
     <script>
-        // ESTADO GLOBAL
-        let tabActual = 'HCP'; // Empieza por defecto en Hikvision
+        let tabActual = 'HCP'; 
         let dataHCP = [];
         let dataDSS = [];
         let timeHCP = '--';
         let timeDSS = '--';
         let filtroHCP = 'todos';
-        let filtroDSS = 'problemas'; // DSS abre por defecto en problemas para cargar rápido
+        let filtroDSS = 'problemas'; 
         let chartInstancia = null;
 
-        // RELOJ Y TEMA (Core UI)
         function actualizarReloj() {
             const ahora = new Date();
             const elReloj = document.getElementById('reloj-vivo');
@@ -212,10 +210,10 @@
                 localStorage.setItem('theme', 'dark');
                 iconoTema.className = "fa-solid fa-sun text-white";
             }
-            setTimeout(() => renderizarGrafico(), 350);
+            setTimeout(() => renderizarTablaYGrafico(), 350);
         });
 
-        // UTILIDADES Y REGLAS DE NEGOCIO DSS (DAHUA)
+        // REGLAS DAHUA
         function checkProblemaCanal(status) {
             if(!status) return false;
             let s = status.toLowerCase();
@@ -238,10 +236,10 @@
             return (parseInt(p[0]) * 3600) + (parseInt(p[1]) * 60) + parseInt(p[2]);
         }
 
-        // FETCH MULTIPLE JSON
+        // CARGA INTELIGENTE DESDE REPOSITORIOS
         async function cargarTodo() {
             try {
-                // Fetch HCP (Hikvision)
+                // Hikvision
                 const resHCP = await fetch('datos.json?v=' + Date.now()).catch(()=>null);
                 if(resHCP && resHCP.ok) {
                     const jsonHCP = await resHCP.json();
@@ -249,27 +247,24 @@
                     timeHCP = jsonHCP.ultima_actualizacion || '--';
                 }
                 
-                // Fetch DSS (Dahua)
+                // Dahua - Corregida la lectura del nodo "Dispositivos" de tu datos_dss_dahua.json
                 const resDSS = await fetch('datos_dss_dahua.json?v=' + Date.now()).catch(()=>null);
                 if(resDSS && resDSS.ok) {
                     const jsonDSS = await resDSS.json();
-                    dataDSS = jsonDSS.reporte_dahua || [];
+                    dataDSS = jsonDSS.Dispositivos || jsonDSS.registros || [];
                     timeDSS = jsonDSS.ultima_actualizacion || '--';
                 }
                 
-                // Arrancar UI con tab actual
                 cambiarTab('HCP');
             } catch(e) {
-                console.error("Error global de carga:", e);
+                console.error("Error global de sincronización:", e);
             }
         }
 
-        // CONTROLADOR DE PESTAÑAS
         function cambiarTab(tab) {
             tabActual = tab;
             document.getElementById('buscador').value = '';
 
-            // Update Tab Estilos
             const btnHCP = document.getElementById('tab-hcp');
             const btnDSS = document.getElementById('tab-dss');
 
@@ -280,7 +275,6 @@
                 document.getElementById('titulo-modulo').innerText = "ESTADO DISPOSITIVOS HCP - HIKVISION";
                 document.getElementById('update-time').innerText = timeHCP;
                 
-                // Configurar Cabeceras de tabla HCP
                 document.getElementById('cabecera-tabla').innerHTML = `
                     <th class="p-4">Cliente (Name)</th>
                     <th class="p-4">Estado (Current Status)</th>
@@ -288,13 +282,11 @@
                     <th class="p-4">Tiempo Offline Duration</th>
                 `;
 
-                // Configurar Tarjetas HCP
                 document.getElementById('label-kpi-1').innerText = "EQUIPOS ONLINE";
                 document.getElementById('label-kpi-2').innerText = "EQUIPOS OFFLINE";
                 document.getElementById('label-kpi-3').innerText = "DISPONIBILIDAD";
                 document.getElementById('label-kpi-4').innerText = "TOTAL EQUIPOS";
 
-                // Mostrar controles HCP
                 document.getElementById('filtros-hcp').classList.remove('hidden');
                 document.getElementById('filtros-dss').classList.add('hidden');
                 
@@ -306,7 +298,6 @@
                 document.getElementById('titulo-modulo').innerText = "ESTADO DISPOSITIVOS DSS - DAHUA";
                 document.getElementById('update-time').innerText = timeDSS;
                 
-                // Configurar Cabeceras de tabla DSS
                 document.getElementById('cabecera-tabla').innerHTML = `
                     <th class="p-4">Dispositivo</th>
                     <th class="p-4">IP</th>
@@ -315,13 +306,11 @@
                     <th class="p-4">Disco</th>
                 `;
 
-                // Configurar Tarjetas DSS
                 document.getElementById('label-kpi-1').innerText = "DISPOSITIVOS ONLINE";
                 document.getElementById('label-kpi-2').innerText = "DISPOSITIVOS CAÍDOS";
                 document.getElementById('label-kpi-3').innerText = "TOTAL PROBLEMAS (ALERTA)";
                 document.getElementById('label-kpi-4').innerText = "TOTAL DISPOSITIVOS";
 
-                // Mostrar controles DSS
                 document.getElementById('filtros-hcp').classList.add('hidden');
                 document.getElementById('filtros-dss').classList.remove('hidden');
                 
@@ -329,7 +318,6 @@
             }
         }
 
-        // RENDERIZADOR HCP HIKVISION
         function filtrarEstadoHCP(estado) {
             filtroHCP = estado;
             ['todos', 'online', 'offline'].forEach(id => {
@@ -339,7 +327,6 @@
             renderizarTablaYGrafico();
         }
 
-        // RENDERIZADOR DSS DAHUA
         function filtrarEstadoDSS(estado) {
             filtroDSS = estado;
             ['todos', 'problemas', 'offline', 'discos', 'canales'].forEach(id => {
@@ -349,9 +336,6 @@
             renderizarTablaYGrafico();
         }
 
-        document.getElementById('buscador').addEventListener('input', renderizarTablaYGrafico);
-
-        // MOTOR PRINCIPAL DE DIBUJADO DE TABLAS Y GRÁFICOS
         function renderizarTablaYGrafico() {
             const tbody = document.getElementById('tabla-datos');
             const divMovil = document.getElementById('vista-movil');
@@ -361,16 +345,15 @@
             let htmlMovil = '';
 
             if (tabActual === 'HCP') {
-                // LÓGICA HIKVISION
                 let total = dataHCP.length;
                 let onlineCount = dataHCP.filter(d => d["Current Status"].toLowerCase().includes('online')).length;
                 let offlineCount = total - onlineCount;
                 let pct = total > 0 ? ((onlineCount/total)*100).toFixed(1) : 0;
                 
                 document.getElementById('kpi-1-val').innerText = onlineCount;
-                document.getElementById('kpi-2-val').innerText = offlineCount;
+                document.getElementById('kpi-offline-val').innerText = offlineCount;
                 document.getElementById('kpi-3-val').innerText = pct + '%';
-                document.getElementById('kpi-4-val').innerText = total;
+                document.getElementById('kpi-total-val').innerText = total;
 
                 let fData = dataHCP.filter(d => {
                     const st = d["Current Status"].toLowerCase();
@@ -414,7 +397,6 @@
                 renderizarGraficoHCP(onlineCount, offlineCount);
 
             } else {
-                // LÓGICA DAHUA
                 let total = dataDSS.length;
                 let onlineDCount = 0; let offlineDCount = 0; let abnormalDiskCount = 0; let abnormalChanCount = 0;
                 let totalProblemasGeneral = 0;
@@ -430,9 +412,9 @@
                 });
 
                 document.getElementById('kpi-1-val').innerText = onlineDCount;
-                document.getElementById('kpi-2-val').innerText = offlineDCount;
-                document.getElementById('kpi-3-val').innerText = totalProblemasGeneral; // Tarjeta Alerta
-                document.getElementById('kpi-4-val').innerText = total;
+                document.getElementById('kpi-offline-val').innerText = offlineDCount;
+                document.getElementById('kpi-3-val').innerText = totalProblemasGeneral; 
+                document.getElementById('kpi-total-val').innerText = total;
 
                 let fData = dataDSS.filter(d => {
                     let isO = d["Estado de dispositivo"] === 'Online';
@@ -448,10 +430,9 @@
                     if (term !== '' && !d["Dispositivo"].toLowerCase().includes(term) && !d["IP"].includes(term)) return false;
                     return true;
                 }).sort((a, b) => {
-                    // Ordenar por problemas críticos arriba
                     let isOa = a["Estado de dispositivo"] === 'Online';
                     let isOb = b["Estado de dispositivo"] === 'Online';
-                    return isOa - isOb; // Los offline suben
+                    return isOa - isOb;
                 });
 
                 fData.forEach(d => {
@@ -496,7 +477,6 @@
             divMovil.innerHTML = htmlMovil;
         }
 
-        // CONTROL DE GRÁFICOS
         function renderizarGraficoHCP(online, offline) {
             const ctx = document.getElementById('graficoComparativo').getContext('2d');
             if (chartInstancia) chartInstancia.destroy();
@@ -530,11 +510,6 @@
                 },
                 options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: dark ? '#ffffff' : '#1e293b' } } }, scales: { x: { grid: { color: dark ? '#222222' : '#e2e8f0' }, ticks: { color: dark ? '#94a3b8' : '#64748b' } }, y: { display: false } } }
             });
-        }
-
-        function renderizarGrafico() {
-            // Helper para redibujar al cambiar el tema oscuro
-            renderizarTablaYGrafico();
         }
 
         document.addEventListener('DOMContentLoaded', () => {
