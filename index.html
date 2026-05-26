@@ -117,8 +117,8 @@
             
             <div class="flex items-center gap-4 justify-between w-full md:w-auto">
                 <div class="text-left md:text-right text-xs text-slate-500 space-y-1 dark:text-slate-400">
-                    <div><i class="fa-solid fa-clock text-red-500"></i> Reloj Local: <span id="reloj-vivo" class="font-mono font-bold text-slate-800 dark:text-white">00:00:00</span></div>
-                    <div class="text-[10px] text-gray-400">Última sincro: <span id="update-time">--</span></div>
+                    <div><i class="fa-solid fa-clock text-red-500"></i> Reloj Chile: <span id="reloj-vivo" class="font-mono font-bold text-slate-800 dark:text-white">00:00:00</span></div>
+                    <div class="text-[10px] text-gray-400">Última sincro: <span id="update-time" class="inline-block px-2 py-0.5 rounded bg-slate-100 text-slate-900 font-black dark:bg-slate-800 dark:text-white border border-slate-300 dark:border-slate-700">--</span></div>
                 </div>
                 <button id="btn-tema" class="p-2.5 rounded-full border border-gray-300 hover:bg-gray-100 dark:border-slate-700 dark:hover:bg-slate-800 transition bg-white dark:bg-black">
                     <i id="icono-tema" class="fa-solid fa-moon text-slate-600 dark:text-slate-300"></i>
@@ -151,6 +151,25 @@
             <div class="premium-card p-4 md:p-6 text-center space-y-1 md:space-y-2">
                 <p id="label-kpi-4" class="text-[10px] md:text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">TOTAL EQUIPOS</p>
                 <div class="text-2xl md:text-4xl font-black text-sky-500" id="kpi-total-val">-</div>
+            </div>
+        </div>
+
+        <div id="kpis-hcp-camaras" class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+            <div class="premium-card p-4 md:p-6 text-center space-y-1 md:space-y-2">
+                <p class="text-[10px] md:text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">CÁMARAS ONLINE</p>
+                <div class="text-2xl md:text-4xl font-black text-emerald-500 dark:text-emerald-400" id="kpi-cam-online-val">-</div>
+            </div>
+            <div class="premium-card p-4 md:p-6 text-center space-y-1 md:space-y-2 border-t-4 border-red-500 dark:border-red-500">
+                <p class="text-[10px] md:text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">CÁMARAS OFFLINE</p>
+                <div class="text-2xl md:text-4xl font-black text-red-500" id="kpi-cam-offline-val">-</div>
+            </div>
+            <div class="premium-card p-4 md:p-6 text-center space-y-1 md:space-y-2">
+                <p class="text-[10px] md:text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">TOTAL CÁMARAS</p>
+                <div class="text-2xl md:text-4xl font-black text-sky-500" id="kpi-cam-total-val">-</div>
+            </div>
+            <div class="premium-card p-4 md:p-6 text-center space-y-1 md:space-y-2">
+                <p class="text-[10px] md:text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">DISPONIBILIDAD CÁMARAS</p>
+                <div class="text-2xl md:text-4xl font-black text-slate-800 dark:text-white" id="kpi-cam-disponibilidad-val">- %</div>
             </div>
         </div>
 
@@ -228,9 +247,73 @@
         function actualizarReloj() {
             const ahora = new Date();
             const elReloj = document.getElementById('reloj-vivo');
-            if(elReloj) elReloj.innerText = ahora.toLocaleTimeString('es-CL');
+            if (elReloj) {
+                const horaChile = new Intl.DateTimeFormat('es-CL', {
+                    timeZone: 'America/Santiago',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: false
+                }).format(ahora);
+                elReloj.innerText = `${horaChile} America/Santiago`;
+            }
         }
         setInterval(actualizarReloj, 1000);
+
+
+        function formatearFechaSincroChile(valor) {
+            if (!valor || valor === '--') return '--';
+            const texto = String(valor).trim();
+            const match = texto.match(/(\d{1,2})-(\d{1,2})-(\d{4}),?\s*(\d{1,2}):(\d{2})(?::(\d{2}))?\s*(a\.?\s*m\.?|p\.?\s*m\.?)?/i);
+            if (match) {
+                let [, dd, mm, yyyy, hh, min, sec, meridiano] = match;
+                let hora = parseInt(hh, 10);
+                const mer = (meridiano || '').toLowerCase().replace(/\s/g, '');
+                if (mer.includes('p') && hora < 12) hora += 12;
+                if (mer.includes('a') && hora === 12) hora = 0;
+                return `${dd.padStart(2, '0')}-${mm.padStart(2, '0')}-${yyyy} ${String(hora).padStart(2, '0')}:${min}:${(sec || '00').padStart(2, '0')} America/Santiago`;
+            }
+            const fecha = new Date(texto);
+            if (!Number.isNaN(fecha.getTime())) {
+                const partes = new Intl.DateTimeFormat('es-CL', {
+                    timeZone: 'America/Santiago',
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: false
+                }).formatToParts(fecha).reduce((acc, p) => {
+                    acc[p.type] = p.value;
+                    return acc;
+                }, {});
+                return `${partes.day}-${partes.month}-${partes.year} ${partes.hour}:${partes.minute}:${partes.second} America/Santiago`;
+            }
+            return `${texto} America/Santiago`;
+        }
+
+        function actualizarTextoSincro(valor) {
+            const el = document.getElementById('update-time');
+            if (el) el.innerText = formatearFechaSincroChile(valor);
+        }
+
+        function actualizarKpisCamarasHCP() {
+            const totalCamaras = dataHCPResource.length;
+            const camarasOnline = dataHCPResource.filter(d => String(d["Current Status"] || '').toLowerCase().includes('online')).length;
+            const camarasOffline = Math.max(totalCamaras - camarasOnline, 0);
+            const disponibilidadCamaras = totalCamaras > 0 ? ((camarasOnline / totalCamaras) * 100).toFixed(1) : '0.0';
+
+            const onlineEl = document.getElementById('kpi-cam-online-val');
+            const offlineEl = document.getElementById('kpi-cam-offline-val');
+            const totalEl = document.getElementById('kpi-cam-total-val');
+            const dispEl = document.getElementById('kpi-cam-disponibilidad-val');
+
+            if (onlineEl) onlineEl.innerText = camarasOnline;
+            if (offlineEl) offlineEl.innerText = camarasOffline;
+            if (totalEl) totalEl.innerText = totalCamaras;
+            if (dispEl) dispEl.innerText = `${disponibilidadCamaras}%`;
+        }
 
         const btnTema = document.getElementById('btn-tema');
         const iconoTema = document.getElementById('icono-tema');
@@ -401,7 +484,7 @@
                 btnDSS.className = "flex-1 px-4 py-3 font-black text-sm md:text-base border-b-4 border-transparent text-gray-500 hover:text-slate-800 dark:hover:text-slate-200 transition bg-gray-50 dark:bg-slate-950 rounded-t-lg shadow-sm opacity-70";
                 
                 document.getElementById('titulo-modulo').innerText = "ESTADO DISPOSITIVOS HCP - HIKVISION";
-                document.getElementById('update-time').innerText = timeHCP;
+                actualizarTextoSincro(timeHCP);
                 
                 document.getElementById('cabecera-tabla').innerHTML = `
                     <th class="p-4">Cliente</th>
@@ -417,6 +500,7 @@
 
                 document.getElementById('filtros-hcp').classList.remove('hidden');
                 document.getElementById('filtros-dss').classList.add('hidden');
+                document.getElementById('kpis-hcp-camaras').classList.remove('hidden');
                 
                 filtrarEstadoHCP(filtroHCP);
             } else {
@@ -424,7 +508,7 @@
                 btnHCP.className = "flex-1 px-4 py-3 font-black text-sm md:text-base border-b-4 border-transparent text-gray-500 hover:text-slate-800 dark:hover:text-slate-200 transition bg-gray-50 dark:bg-slate-950 rounded-t-lg shadow-sm opacity-70";
                 
                 document.getElementById('titulo-modulo').innerText = "ESTADO DISPOSITIVOS DSS - DAHUA";
-                document.getElementById('update-time').innerText = timeDSS;
+                actualizarTextoSincro(timeDSS);
                 
                 document.getElementById('cabecera-tabla').innerHTML = `
                     <th class="p-4">Clientes</th>
@@ -440,6 +524,7 @@
 
                 document.getElementById('filtros-hcp').classList.add('hidden');
                 document.getElementById('filtros-dss').classList.remove('hidden');
+                document.getElementById('kpis-hcp-camaras').classList.add('hidden');
                 
                 filtrarEstadoDSS(filtroDSS);
             }
@@ -482,6 +567,7 @@
                 document.getElementById('kpi-offline-val').innerText = offlineCount;
                 document.getElementById('kpi-3-val').innerText = pct + '%';
                 document.getElementById('kpi-total-val').innerText = total;
+                actualizarKpisCamarasHCP();
 
                 if (filtroHCP === 'recursos') {
                     document.getElementById('cabecera-tabla').innerHTML = `
