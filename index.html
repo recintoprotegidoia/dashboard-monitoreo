@@ -169,8 +169,8 @@
                 <button onclick="filtrarEstadoHCP('todos')" id="btn-hcp-todos" class="flex-1 px-4 py-2 rounded bg-slate-800 text-white transition dark:bg-slate-600">Dispositivos</button>
                 <button onclick="filtrarEstadoHCP('online')" id="btn-hcp-online" class="flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Online</button>
                 <button onclick="filtrarEstadoHCP('offline')" id="btn-hcp-offline" class="flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Offline</button>
-                <button onclick="filtrarEstadoHCP('recursos')" id="btn-hcp-recursos" class="flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Recursos</button>
-                <button onclick="filtrarEstadoHCP('grabaciones')" id="btn-hcp-grabaciones" class="flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Grabaciones</button>
+                <button onclick="filtrarEstadoHCP('recursos')" id="btn-hcp-recursos" class="flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Estado de Cámara</button>
+                <button onclick="filtrarEstadoHCP('grabaciones')" id="btn-hcp-grabaciones" class="flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Estado de Grabaciones</button>
             </div>
 
             <div id="filtros-dss" class="flex flex-wrap bg-white dark:bg-slate-900 p-1 rounded-lg border border-gray-300 dark:border-slate-700 gap-1 text-xs font-bold w-full lg:w-auto shadow-sm hidden">
@@ -283,6 +283,49 @@
                 .replace(/\bnormal\b/gi, 'Normal')
                 .replace(/\boffline\b/gi, 'Offline')
                 .replace(/\bonline\b/gi, 'Online');
+        }
+
+
+        function obtenerNumeroPorcentaje(valor) {
+            if (valor === null || valor === undefined) return null;
+            const texto = String(valor).trim().replace('%', '').replace(',', '.');
+            if (texto === '' || texto === '--' || texto.toLowerCase() === 'n/a') return null;
+            const numero = Number(texto);
+            return Number.isFinite(numero) ? numero : null;
+        }
+
+        function evaluarEstadoDiscoGrabacion(valor) {
+            const texto = String(valor ?? '').trim();
+            const numero = obtenerNumeroPorcentaje(texto);
+
+            // Según regla solicitada: si no contiene datos o es igual/mayor que 0, mostrar En Falla.
+            if (texto === '' || texto === '--' || texto.toLowerCase() === 'n/a' || numero === null || numero >= 0) {
+                return {
+                    texto: 'En Falla',
+                    clase: 'bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400'
+                };
+            }
+
+            return {
+                texto: 'Normal',
+                clase: 'status-online'
+            };
+        }
+
+        function evaluarEstadoGrabacion(valor) {
+            const numero = obtenerNumeroPorcentaje(valor);
+
+            if (numero !== null && numero >= 80 && numero <= 100) {
+                return {
+                    texto: '100% Normal',
+                    clase: 'status-online'
+                };
+            }
+
+            return {
+                texto: 'En Falla',
+                clase: 'bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400'
+            };
         }
 
         // CARGA INTELIGENTE DESDE REPOSITORIOS
@@ -456,8 +499,8 @@
                     document.getElementById('cabecera-tabla').innerHTML = `
                         <th class="p-4">Recurso / Cámara</th>
                         <th class="p-4">Cliente / Área</th>
-                        <th class="p-4">Interrupción</th>
-                        <th class="p-4">Integridad</th>
+                        <th class="p-4">ESTADO DISCO</th>
+                        <th class="p-4">ESTADO DE GRABACIÓN</th>
                     `;
 
                     let fData = dataHCPRecording.filter(d => {
@@ -470,19 +513,22 @@
                     });
 
                     fData.forEach(d => {
-                        const integrity = String(d["Recording Integrity Rate"] || '--');
-                        const interrupted = String(d["Recording Interruption"] || '0') !== '0';
-                        const bc = interrupted || integrity !== '100%' ? 'status-offline' : 'status-online';
+                        const estadoDisco = evaluarEstadoDiscoGrabacion(d["Recording Interruption"]);
+                        const estadoGrabacion = evaluarEstadoGrabacion(d["Recording Integrity Rate"]);
+
                         htmlTable += `<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/20 transition text-slate-700 dark:text-slate-200 border-b border-gray-200 dark:border-slate-800">
                             <td class="p-4 font-bold text-slate-900 dark:text-white">${d["Name"] || '--'}</td>
                             <td class="p-4 text-xs text-slate-500 dark:text-slate-400">${d["Area"] || '--'}</td>
-                            <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bc}">${d["Recording Interruption"] || '0'}</span></td>
-                            <td class="p-4 font-mono text-xs font-bold text-slate-900 dark:text-white">${integrity}</td>
+                            <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${estadoDisco.clase}">${estadoDisco.texto}</span></td>
+                            <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${estadoGrabacion.clase}">${estadoGrabacion.texto}</span></td>
                         </tr>`;
                         htmlMovil += `<div class="p-4 space-y-2 text-sm text-slate-700 dark:text-slate-300">
                             <div class="font-bold text-slate-900 dark:text-white text-base">${d["Name"] || '--'}</div>
                             <div class="text-xs text-slate-500 dark:text-slate-400">Cliente / Área: ${d["Area"] || '--'}</div>
-                            <div class="text-xs flex justify-between border-t border-gray-100 dark:border-slate-800 pt-1"><span>Interrupción: ${d["Recording Interruption"] || '0'}</span><span>Integridad: ${integrity}</span></div>
+                            <div class="text-xs flex flex-col sm:flex-row gap-2 justify-between border-t border-gray-100 dark:border-slate-800 pt-1">
+                                <span>ESTADO DISCO: <span class="px-1.5 py-0.5 rounded font-black ${estadoDisco.clase}">${estadoDisco.texto}</span></span>
+                                <span>ESTADO DE GRABACIÓN: <span class="px-1.5 py-0.5 rounded font-black ${estadoGrabacion.clase}">${estadoGrabacion.texto}</span></span>
+                            </div>
                         </div>`;
                     });
 
