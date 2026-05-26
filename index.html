@@ -176,7 +176,7 @@
                 <button onclick="filtrarEstadoDSS('todos')" id="btn-dss-todos" class="flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Ver Todos</button>
                 <button onclick="filtrarEstadoDSS('offline')" id="btn-dss-offline" class="flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Dispositivos Caídos</button>
                 <button onclick="filtrarEstadoDSS('discos')" id="btn-dss-discos" class="flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Errores Disco</button>
-                <button onclick="filtrarEstadoDSS('canales')" id="btn-dss-canales" class="flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Errores Canal</button>
+                <button onclick="filtrarEstadoDSS('canales')" id="btn-dss-canales" class="flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Estado de Cámara/NVR</button>
             </div>
 
             <div class="flex gap-2 w-full lg:w-auto">
@@ -346,9 +346,8 @@
                 
                 document.getElementById('cabecera-tabla').innerHTML = `
                     <th class="p-4">Dispositivo</th>
-                    <th class="p-4">IP</th>
                     <th class="p-4">Red</th>
-                    <th class="p-4">Canales</th>
+                    <th class="p-4">Estado de Cámara/NVR</th>
                     <th class="p-4">Disco</th>
                 `;
 
@@ -419,23 +418,26 @@
                     const isO = d["Current Status"].toLowerCase().includes('online');
                     const bc = isO ? 'status-online' : 'status-offline';
                     const sh = isO ? 'ONLINE' : 'OFFLINE';
+                    const estadoCanalTexto = (d["estado_canal"] || 'OK')
+                        .replace(/abnormal/gi, 'En falla');
+                    const estadoCanalMovil = (d["estado_canal"] || 'OK')
+                        .replace(/abnormal/gi, 'En falla');
                     
                     htmlTable += `<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/20 transition text-slate-700 dark:text-slate-200 border-b border-gray-200 dark:border-slate-800">
-                        <td class="p-4 font-bold text-slate-900 dark:text-white">${d["Name"]}</td>
-                        <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bc}">${sh}</span></td>
-                        <td class="p-4 font-mono text-xs text-slate-500 dark:text-slate-400">${d["Latest Offline Time"] || '--'}</td>
-                        <td class="p-4 font-mono text-xs font-bold text-slate-900 dark:text-white">${d["Total Offline Duration"] || '--'}</td>
+                        <td class="p-4 font-bold text-slate-900 dark:text-white">${d["nombre"]}</td>
+                        <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bcDev}">${d["conexion"]}</span></td>
+                        <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bcChan}">${estadoCanalTexto}</span></td>
+                        <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bcDisk}">${d["estado_disco"]||'OK'}</span></td>
                     </tr>`;
 
                     htmlMovil += `<div class="p-4 space-y-2 text-sm text-slate-700 dark:text-slate-300">
                         <div class="flex justify-between items-start gap-2">
-                            <span class="font-bold text-slate-900 dark:text-white text-base">${d["Name"]}</span>
-                            <span class="px-2 py-0.5 rounded text-[10px] font-black tracking-wide ${bc}">${sh}</span>
+                            <span class="font-bold text-slate-900 dark:text-white text-base">${d["nombre"]}</span>
+                            <span class="px-2 py-0.5 rounded text-[10px] font-black tracking-wide ${bcDev}">${d["conexion"]}</span>
                         </div>
-                        <div class="text-xs text-slate-500 dark:text-slate-400">Offline desde: ${d["Latest Offline Time"] || '--'}</div>
                         <div class="text-xs flex justify-between items-center pt-1 border-t border-gray-100 dark:border-slate-800">
-                            <span class="font-semibold text-slate-600 dark:text-slate-300">Duración Offline:</span>
-                            <span class="font-mono font-bold text-slate-900 dark:text-white">${d["Total Offline Duration"] || '--'}</span>
+                        <span class="font-semibold text-slate-600 dark:text-slate-300">Estado de Cámara/NVR: <span class="px-1.5 py-0.5 rounded font-black ${bcChan}">${estadoCanalMovil}</span></span>
+                            <span class="font-semibold text-slate-600 dark:text-slate-300">Disco: <span class="px-1.5 py-0.5 rounded font-black ${bcDisk}">${d["estado_disco"]||'OK'}</span></span>
                         </div>
                     </div>`;
                 });
@@ -547,7 +549,7 @@
                     datasets: [
                         { label: 'Dispositivos Offline', data: [offline], backgroundColor: '#ef4444', barPercentage: 0.8 },
                         { label: 'Problemas de Disco', data: [discosBad], backgroundColor: '#f97316', barPercentage: 0.8 },
-                        { label: 'Canales Anormales', data: [chanBad], backgroundColor: '#eab308', barPercentage: 0.8 }
+                        { label: 'Estado de Cámara/NVR', data: [chanBad], backgroundColor: '#eab308', barPercentage: 0.8 }
                     ]
                 },
                 options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: dark ? '#ffffff' : '#1e293b' } } }, scales: { x: { grid: { color: dark ? '#222222' : '#e2e8f0' }, ticks: { color: dark ? '#94a3b8' : '#64748b' } }, y: { display: false } } }
