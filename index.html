@@ -53,6 +53,26 @@
         .dark th { color: #94a3b8 !important; border-color: #222222 !important; }
         .dark td { border-color: #222222 !important; }
 
+        .brand-logo-box {
+            background: #0a060b;
+            border: 1px solid rgba(255,255,255,0.10);
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .brand-logo-img {
+            display: block;
+            width: 9rem;
+            height: auto;
+            object-fit: contain;
+        }
+        @media (min-width: 768px) {
+            .brand-logo-img { width: 11rem; }
+        }
+        @media (min-width: 1024px) {
+            .brand-logo-img { width: 13rem; }
+        }
+
+
         /* REGLAS ESTRICTAS PARA GENERAR UN PDF PERFECTO DIRECTO DEL NAVEGADOR */
         @media print {
             body { background-color: white !important; color: black !important; }
@@ -74,8 +94,20 @@
     <div id="contenido-dashboard" class="max-w-7xl mx-auto space-y-4 md:space-y-6 bg-transparent">
         
         <div class="premium-card p-4 md:p-6 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="bg-slate-950 p-2 rounded-lg flex items-center justify-center shadow-md">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEb0lEQVR4nO2dS2hcVRSGv9NMo9GmTUpbS6tEUUuLgoKID4pQitAsFCwWXLgQit9KXwVBwYVudOHChQsXLgRxpSgI7UORpkh9gI9S09g2bZqmSZM0M3OduZpLeIe5zST3nHvOnXv+D4bM3Dlz7v9yb86552wKBAKBQCAQCAQCcREHegHngS0S/VfXUuALw6+X9fM4MByg3w7gID6C9AL7gAnZbgf6A+SdB9bI9iswLdt/Abf6mEwPcFiyjUnWCg3wZWAH0Odn6gP0Ascl69Yw/S0Z30l87+P5XwH3S7ZhyV7R8N/SgV6C3w30S/YhM78f+DTAXF/G630F3As8B3QCvwEPmXl9wCHZfyHAZ16wDqArwG9Ww9w+mX8beEwZgE/Z53wX8BwwDLzF0rGvVbY/SvaLwInIeR3Asw3yA9gZOfcxM6/SAnVp7f8E/ALckwPfB7wA7GfG9NfAIynzdgK7aswbZ8bsk9h6XWf7GzW3Yf1mYmY+C+yT7D7gK7aswbZ8bsk9h6XWf7GzW3Yf1mYmY+C+yT7D7gKDAp8/uAL63OicbXG6DfhK0Y/YV9X2V/7Yn5E8BDwGXgS4v7AnBNo1vC1v0K+6p5bV1vWb8vAtuAY8BxGfP3gMda266pXg3mCtsC+z9lYjS/R2P/lYzzf62XUuXm66G169m6Ufve069w/fXvBfAL8D2w0+IeB44D52N8+5jRzWvX01Xb8U6t3aixH03K/DFrX6N9WvsatV6vR229nB/X8wD+YmbXvnb9mPXPWeZ1L8ZgYVvMvOnm7asbWrsRzU9mveN+vWh8n7bWvN8j9rV6fWe9vunmUetWb6f/8wLwaR79SgZ90Z/7VdbXGqXf8wLwfR79mNf6wbyWqOdfre9v8v7M/N6/9VfWe6wP+u6vWe9wP/p91vffjO9D81vW+5rX+sD8lvXeN7/rD87n+f0347uX832V8f3A/Lp6V1nfB+Z3XfWqfX/p9zXf12y9R/P9D6ZkX6V6v/L7Ppvv8zDfd6pXrfm+U71qzfed6hVrvq/UesX6m9bW3zSve9TWW6Wp1mvWfL/T2vqb5nWv+p0Zk/mDls+R9XWv7Z78UuRzjHwO/883D9+Wl9eB6b1H7FukGg8S61q8GvXN9wV+97U40K/g9YgX8gGv9XWv6u5V8Lrf6pGv9z08I0WvI+8A3shY/4/4W03wO7E+rLp78v4f+tqH6e6fXveF3vdXfU+T7v/R6p6wZ+XwR2C7ZN4AtwF7gqfIisUv6bAOmgI/Z53wE2wO0n/M3SfZ6YIdkvwi8wMzreXwE6ZfP+eMyvxP4XFvX6/k8W9frS8A9wMeSPSbZj8D7wGvA62beK8D+mDEnZPy9WrfjFvaWjO9963UaeAr4SveFscwZkb3C6vX4Peb1qfI+N6/C/g7gtO6vWw7Lw/o+K/OfA9+Xz3BqfO9br1P96Fca+6DWhWwX+V7L973M+r40v+X7XmZ9H+X3bUet72XW91F+33Y8Yt8idmX8B9Gv6f06+hW3q6/vjE6W9X0ZfUvWpfe/w9P6X6lD/+L1g+6f+b0f/ZTX3gH79vU7wO/YV37v7tN5P7TvaN/vS7D/A9O7MAs9RofkAAAAAElFTkSuQmCC" alt="Recinto Protegido" class="h-12 md:h-16 w-auto object-contain">
+            <div class="brand-logo-box p-3 rounded-xl flex items-center justify-center shadow-md">
+                <img 
+                    src="./assets/logo-recinto-protegido.png" 
+                    alt="Recinto Protegido" 
+                    class="brand-logo-img"
+                    decoding="async"
+                    fetchpriority="high"
+                    onerror="this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');"
+                >
+                <div class="logo-fallback hidden text-center leading-none">
+                    <div class="text-white text-xl md:text-2xl font-black tracking-tight">RECINTO</div>
+                    <div class="text-red-500 text-xl md:text-2xl font-black tracking-tight">PROTEGIDO</div>
+                    <div class="text-white text-[9px] md:text-[10px] font-bold tracking-[0.35em] mt-1">24 HORAS</div>
+                </div>
             </div>
             
             <div class="text-center">
@@ -201,6 +233,16 @@
                     document.documentElement.classList.add('dark');
                     localStorage.setItem('theme', 'dark');
                     iconoTema.className = "fa-solid fa-sun text-white";
+                }
+
+                // Redibuja el gráfico para que la leyenda y grilla respeten el modo claro/oscuro.
+                if (dispositivoMaster.length > 0) {
+                    const total = dispositivoMaster.length;
+                    const online = dispositivoMaster.filter(d => {
+                        const st = d["Current Status"].toLowerCase();
+                        return st === 'online' || st.includes('línea') || st.includes('linea');
+                    }).length;
+                    construirGraficoBarras(online, total - online);
                 }
             });
         }
