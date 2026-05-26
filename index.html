@@ -301,35 +301,42 @@
 
         function evaluarEstadoGrabacion(valor) {
             const numero = obtenerNumeroPorcentaje(valor);
+            const claseFalla = 'status-offline';
 
-            if (numero !== null && numero >= 80 && numero <= 100) {
+            // Regla solicitada:
+            // 1% a 100% = Normal, respetando el porcentaje real del archivo.
+            // 0% o sin información = En Falla en rojo.
+            if (numero !== null && numero > 0 && numero <= 100) {
                 return {
                     texto: `${formatearPorcentajeReal(numero)}% Normal`,
                     normal: true,
-                    clase: 'status-online'
+                    clase: 'status-online',
+                    porcentaje: numero
                 };
             }
 
-            if (numero !== null && numero < 80) {
+            if (numero !== null && numero <= 0) {
                 return {
                     texto: `${formatearPorcentajeReal(numero)}% En Falla`,
                     normal: false,
-                    clase: 'bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400'
+                    clase: claseFalla,
+                    porcentaje: numero
                 };
             }
 
             return {
-                texto: 'En Falla',
+                texto: 'Sin datos - En Falla',
                 normal: false,
-                clase: 'bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400'
+                clase: claseFalla,
+                porcentaje: null
             };
         }
 
         function evaluarEstadoDiscoGrabacion(valorInterrupcion, valorIntegridad) {
             const estadoGrabacion = evaluarEstadoGrabacion(valorIntegridad);
 
-            // Regla corregida: si la grabación está entre 80% y 100%, el disco se muestra Normal.
-            // Si la grabación no trae dato o está bajo 80%, el disco queda En Falla.
+            // Si existe grabación entre 1% y 100%, el disco queda Normal.
+            // Si la grabación es 0% o no trae datos, el disco queda En Falla.
             if (estadoGrabacion.normal) {
                 return {
                     texto: 'Normal',
@@ -339,7 +346,7 @@
 
             return {
                 texto: 'En Falla',
-                clase: 'bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400'
+                clase: 'status-offline'
             };
         }
 
@@ -588,7 +595,8 @@
                     });
                 }
 
-                renderizarGraficoHCP(onlineCount, offlineCount);
+                const grabacionesEnFalla = dataHCPRecording.filter(d => !evaluarEstadoGrabacion(d["Recording Integrity Rate"]).normal).length;
+                renderizarGraficoHCP(onlineCount, offlineCount, grabacionesEnFalla);
 
             } else {
                 let total = resumenDSS.dispositivos?.total ?? dataDSS.length;
@@ -671,7 +679,7 @@
             divMovil.innerHTML = htmlMovil;
         }
 
-        function renderizarGraficoHCP(online, offline) {
+        function renderizarGraficoHCP(online, offline, grabacionesEnFalla = 0) {
             const ctx = document.getElementById('graficoComparativo').getContext('2d');
             if (chartInstancia) chartInstancia.destroy();
             const dark = document.documentElement.classList.contains('dark');
@@ -680,8 +688,9 @@
                 data: {
                     labels: ['HCP HIKVISION'],
                     datasets: [
-                        { label: 'Online', data: [online], backgroundColor: '#10b981', barPercentage: 0.4 },
-                        { label: 'Offline', data: [offline], backgroundColor: '#ef4444', barPercentage: 0.4 }
+                        { label: 'Online', data: [online], backgroundColor: '#10b981', barPercentage: 0.55 },
+                        { label: 'Offline', data: [offline], backgroundColor: '#ef4444', barPercentage: 0.55 },
+                        { label: 'Estado de Grabación En Falla', data: [grabacionesEnFalla], backgroundColor: '#eab308', barPercentage: 0.55 }
                     ]
                 },
                 options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: dark ? '#ffffff' : '#1e293b' } } }, scales: { x: { grid: { color: dark ? '#222222' : '#e2e8f0' }, ticks: { color: dark ? '#94a3b8' : '#64748b' } }, y: { display: false } } }
