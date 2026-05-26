@@ -166,9 +166,11 @@
         <div class="controles-filtros flex flex-col lg:flex-row gap-3 justify-between items-center">
             
             <div id="filtros-hcp" class="flex flex-wrap bg-white dark:bg-slate-900 p-1 rounded-lg border border-gray-300 dark:border-slate-700 gap-1 text-xs font-bold w-full lg:w-auto shadow-sm">
-                <button onclick="filtrarEstadoHCP('todos')" id="btn-hcp-todos" class="flex-1 px-4 py-2 rounded bg-slate-800 text-white transition dark:bg-slate-600">Todos</button>
+                <button onclick="filtrarEstadoHCP('todos')" id="btn-hcp-todos" class="flex-1 px-4 py-2 rounded bg-slate-800 text-white transition dark:bg-slate-600">Dispositivos</button>
                 <button onclick="filtrarEstadoHCP('online')" id="btn-hcp-online" class="flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Online</button>
                 <button onclick="filtrarEstadoHCP('offline')" id="btn-hcp-offline" class="flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Offline</button>
+                <button onclick="filtrarEstadoHCP('recursos')" id="btn-hcp-recursos" class="flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Recursos</button>
+                <button onclick="filtrarEstadoHCP('grabaciones')" id="btn-hcp-grabaciones" class="flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Grabaciones</button>
             </div>
 
             <div id="filtros-dss" class="flex flex-wrap bg-white dark:bg-slate-900 p-1 rounded-lg border border-gray-300 dark:border-slate-700 gap-1 text-xs font-bold w-full lg:w-auto shadow-sm hidden">
@@ -210,6 +212,9 @@
     <script>
         let tabActual = 'HCP'; 
         let dataHCP = [];
+        let dataHCPDevice = [];
+        let dataHCPResource = [];
+        let dataHCPRecording = [];
         let dataDSS = [];
         let resumenDSS = {};
         let canalesDSS = [];
@@ -287,7 +292,10 @@
                 const resHCP = await fetch('./datos.json?v=' + Date.now(), { cache: 'no-store' }).catch(()=>null);
                 if(resHCP && resHCP.ok) {
                     const jsonHCP = await resHCP.json();
-                    dataHCP = jsonHCP.registros || [];
+                    dataHCPDevice = jsonHCP.device_online_offline_log || jsonHCP.registros || [];
+                    dataHCPResource = jsonHCP.resource_online_offline_log || [];
+                    dataHCPRecording = jsonHCP.resource_recording_log || [];
+                    dataHCP = jsonHCP.registros || dataHCPDevice || [];
                     timeHCP = jsonHCP.ultima_actualizacion || '--';
                 }
                 
@@ -374,7 +382,7 @@
 
         function filtrarEstadoHCP(estado) {
             filtroHCP = estado;
-            ['todos', 'online', 'offline'].forEach(id => {
+            ['todos', 'online', 'offline', 'recursos', 'grabaciones'].forEach(id => {
                 const b = document.getElementById('btn-hcp-' + id);
                 b.className = id === estado ? "flex-1 px-4 py-2 rounded bg-slate-800 text-white transition dark:bg-slate-600" : "flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition";
             });
@@ -399,54 +407,125 @@
             let htmlMovil = '';
 
             if (tabActual === 'HCP') {
-                let total = dataHCP.length;
-                let onlineCount = dataHCP.filter(d => d["Current Status"].toLowerCase().includes('online')).length;
-                let offlineCount = total - onlineCount;
-                let pct = total > 0 ? ((onlineCount/total)*100).toFixed(1) : 0;
-                
+                const dispositivos = dataHCPDevice.length ? dataHCPDevice : dataHCP;
+                const total = dispositivos.length;
+                const onlineCount = dispositivos.filter(d => String(d["Current Status"] || "").toLowerCase().includes('online')).length;
+                const offlineCount = total - onlineCount;
+                const pct = total > 0 ? ((onlineCount / total) * 100).toFixed(1) : 0;
+
                 document.getElementById('kpi-1-val').innerText = onlineCount;
                 document.getElementById('kpi-offline-val').innerText = offlineCount;
                 document.getElementById('kpi-3-val').innerText = pct + '%';
                 document.getElementById('kpi-total-val').innerText = total;
 
-                let fData = dataHCP.filter(d => {
-                    const st = d["Current Status"].toLowerCase();
-                    const isO = st.includes('online') || st.includes('línea');
-                    if (filtroHCP === 'online' && !isO) return false;
-                    if (filtroHCP === 'offline' && isO) return false;
-                    if (term !== '' && !d["Name"].toLowerCase().includes(term)) return false;
-                    return true;
-                }).sort((a, b) => {
-                    const oA = a["Current Status"].toLowerCase().includes('online');
-                    const oB = b["Current Status"].toLowerCase().includes('online');
-                    if (!oA && !oB) return duracionASegundos(b["Total Offline Duration"]) - duracionASegundos(a["Total Offline Duration"]);
-                    return oA - oB;
-                });
+                if (filtroHCP === 'recursos') {
+                    document.getElementById('cabecera-tabla').innerHTML = `
+                        <th class="p-4">Recurso / Cámara</th>
+                        <th class="p-4">Cliente / Área</th>
+                        <th class="p-4">Estado</th>
+                        <th class="p-4">Tiempo Total Fuera de Línea</th>
+                    `;
 
-                fData.forEach(d => {
-                    const isO = d["Current Status"].toLowerCase().includes('online');
-                    const bc = isO ? 'status-online' : 'status-offline';
-                    const sh = isO ? 'ONLINE' : 'OFFLINE';
+                    let fData = dataHCPResource.filter(d => {
+                        const texto = `${d["Name"] || ''} ${d["Area"] || ''} ${d["Current Status"] || ''}`.toLowerCase();
+                        return term === '' || texto.includes(term);
+                    }).sort((a, b) => {
+                        const aOnline = String(a["Current Status"] || '').toLowerCase().includes('online');
+                        const bOnline = String(b["Current Status"] || '').toLowerCase().includes('online');
+                        return aOnline - bOnline;
+                    });
 
-                    htmlTable += `<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/20 transition text-slate-700 dark:text-slate-200 border-b border-gray-200 dark:border-slate-800">
-                        <td class="p-4 font-bold text-slate-900 dark:text-white">${d["Name"]}</td>
-                        <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bc}">${sh}</span></td>
-                        <td class="p-4 font-mono text-xs text-slate-500 dark:text-slate-400">${d["Latest Offline Time"] || '--'}</td>
-                        <td class="p-4 font-mono text-xs font-bold text-slate-900 dark:text-white">${d["Total Offline Duration"] || '--'}</td>
-                    </tr>`;
+                    fData.forEach(d => {
+                        const isO = String(d["Current Status"] || "").toLowerCase().includes('online');
+                        const bc = isO ? 'status-online' : 'status-offline';
+                        const sh = isO ? 'ONLINE' : 'OFFLINE';
+                        htmlTable += `<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/20 transition text-slate-700 dark:text-slate-200 border-b border-gray-200 dark:border-slate-800">
+                            <td class="p-4 font-bold text-slate-900 dark:text-white">${d["Name"] || '--'}</td>
+                            <td class="p-4 text-xs text-slate-500 dark:text-slate-400">${d["Area"] || '--'}</td>
+                            <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bc}">${sh}</span></td>
+                            <td class="p-4 font-mono text-xs font-bold text-slate-900 dark:text-white">${d["Total Offline Duration"] || '--'}</td>
+                        </tr>`;
+                        htmlMovil += `<div class="p-4 space-y-2 text-sm text-slate-700 dark:text-slate-300">
+                            <div class="flex justify-between items-start gap-2"><span class="font-bold text-slate-900 dark:text-white text-base">${d["Name"] || '--'}</span><span class="px-2 py-0.5 rounded text-[10px] font-black tracking-wide ${bc}">${sh}</span></div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400">Cliente / Área: ${d["Area"] || '--'}</div>
+                            <div class="text-xs font-semibold">Duración Offline: <span class="font-mono">${d["Total Offline Duration"] || '--'}</span></div>
+                        </div>`;
+                    });
 
-                    htmlMovil += `<div class="p-4 space-y-2 text-sm text-slate-700 dark:text-slate-300">
-                        <div class="flex justify-between items-start gap-2">
-                            <span class="font-bold text-slate-900 dark:text-white text-base">${d["Name"]}</span>
-                            <span class="px-2 py-0.5 rounded text-[10px] font-black tracking-wide ${bc}">${sh}</span>
-                        </div>
-                        <div class="text-xs text-slate-500 dark:text-slate-400">Offline desde: ${d["Latest Offline Time"] || '--'}</div>
-                        <div class="text-xs flex justify-between items-center pt-1 border-t border-gray-100 dark:border-slate-800">
-                            <span class="font-semibold text-slate-600 dark:text-slate-300">Duración Offline:</span>
-                            <span class="font-mono font-bold text-slate-900 dark:text-white">${d["Total Offline Duration"] || '--'}</span>
-                        </div>
-                    </div>`;
-                });
+                } else if (filtroHCP === 'grabaciones') {
+                    document.getElementById('cabecera-tabla').innerHTML = `
+                        <th class="p-4">Recurso / Cámara</th>
+                        <th class="p-4">Cliente / Área</th>
+                        <th class="p-4">Interrupción</th>
+                        <th class="p-4">Integridad</th>
+                    `;
+
+                    let fData = dataHCPRecording.filter(d => {
+                        const texto = `${d["Name"] || ''} ${d["Area"] || ''} ${d["Recording Integrity Rate"] || ''}`.toLowerCase();
+                        return term === '' || texto.includes(term);
+                    }).sort((a, b) => {
+                        const ai = parseFloat(String(a["Recording Integrity Rate"] || '0').replace('%','')) || 0;
+                        const bi = parseFloat(String(b["Recording Integrity Rate"] || '0').replace('%','')) || 0;
+                        return ai - bi;
+                    });
+
+                    fData.forEach(d => {
+                        const integrity = String(d["Recording Integrity Rate"] || '--');
+                        const interrupted = String(d["Recording Interruption"] || '0') !== '0';
+                        const bc = interrupted || integrity !== '100%' ? 'status-offline' : 'status-online';
+                        htmlTable += `<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/20 transition text-slate-700 dark:text-slate-200 border-b border-gray-200 dark:border-slate-800">
+                            <td class="p-4 font-bold text-slate-900 dark:text-white">${d["Name"] || '--'}</td>
+                            <td class="p-4 text-xs text-slate-500 dark:text-slate-400">${d["Area"] || '--'}</td>
+                            <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bc}">${d["Recording Interruption"] || '0'}</span></td>
+                            <td class="p-4 font-mono text-xs font-bold text-slate-900 dark:text-white">${integrity}</td>
+                        </tr>`;
+                        htmlMovil += `<div class="p-4 space-y-2 text-sm text-slate-700 dark:text-slate-300">
+                            <div class="font-bold text-slate-900 dark:text-white text-base">${d["Name"] || '--'}</div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400">Cliente / Área: ${d["Area"] || '--'}</div>
+                            <div class="text-xs flex justify-between border-t border-gray-100 dark:border-slate-800 pt-1"><span>Interrupción: ${d["Recording Interruption"] || '0'}</span><span>Integridad: ${integrity}</span></div>
+                        </div>`;
+                    });
+
+                } else {
+                    document.getElementById('cabecera-tabla').innerHTML = `
+                        <th class="p-4">Cliente</th>
+                        <th class="p-4">Estado</th>
+                        <th class="p-4">Última Desconexión</th>
+                        <th class="p-4">Tiempo Total Fuera de Línea</th>
+                    `;
+
+                    let fData = dispositivos.filter(d => {
+                        const st = String(d["Current Status"] || '').toLowerCase();
+                        const isO = st.includes('online') || st.includes('línea');
+                        const name = String(d["Name"] || '').toLowerCase();
+                        if (filtroHCP === 'online' && !isO) return false;
+                        if (filtroHCP === 'offline' && isO) return false;
+                        if (term !== '' && !name.includes(term)) return false;
+                        return true;
+                    }).sort((a, b) => {
+                        const oA = String(a["Current Status"] || '').toLowerCase().includes('online');
+                        const oB = String(b["Current Status"] || '').toLowerCase().includes('online');
+                        if (!oA && !oB) return duracionASegundos(b["Total Offline Duration"]) - duracionASegundos(a["Total Offline Duration"]);
+                        return oA - oB;
+                    });
+
+                    fData.forEach(d => {
+                        const isO = String(d["Current Status"] || '').toLowerCase().includes('online');
+                        const bc = isO ? 'status-online' : 'status-offline';
+                        const sh = isO ? 'ONLINE' : 'OFFLINE';
+                        htmlTable += `<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/20 transition text-slate-700 dark:text-slate-200 border-b border-gray-200 dark:border-slate-800">
+                            <td class="p-4 font-bold text-slate-900 dark:text-white">${d["Name"] || '--'}</td>
+                            <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bc}">${sh}</span></td>
+                            <td class="p-4 font-mono text-xs text-slate-500 dark:text-slate-400">${d["Latest Offline Time"] || '--'}</td>
+                            <td class="p-4 font-mono text-xs font-bold text-slate-900 dark:text-white">${d["Total Offline Duration"] || '--'}</td>
+                        </tr>`;
+                        htmlMovil += `<div class="p-4 space-y-2 text-sm text-slate-700 dark:text-slate-300">
+                            <div class="flex justify-between items-start gap-2"><span class="font-bold text-slate-900 dark:text-white text-base">${d["Name"] || '--'}</span><span class="px-2 py-0.5 rounded text-[10px] font-black tracking-wide ${bc}">${sh}</span></div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400">Offline desde: ${d["Latest Offline Time"] || '--'}</div>
+                            <div class="text-xs flex justify-between items-center pt-1 border-t border-gray-100 dark:border-slate-800"><span class="font-semibold text-slate-600 dark:text-slate-300">Duración Offline:</span><span class="font-mono font-bold text-slate-900 dark:text-white">${d["Total Offline Duration"] || '--'}</span></div>
+                        </div>`;
+                    });
+                }
 
                 renderizarGraficoHCP(onlineCount, offlineCount);
 
