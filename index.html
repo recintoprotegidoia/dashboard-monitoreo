@@ -53,30 +53,10 @@
         .dark th { color: #94a3b8 !important; border-color: #222222 !important; }
         .dark td { border-color: #222222 !important; }
 
-        .brand-logo-box {
-            background: #0a060b;
-            border: 1px solid rgba(255,255,255,0.10);
-            -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
-        }
-        .brand-logo-img {
-            display: block;
-            width: 9rem;
-            height: auto;
-            object-fit: contain;
-        }
-        @media (min-width: 768px) {
-            .brand-logo-img { width: 11rem; }
-        }
-        @media (min-width: 1024px) {
-            .brand-logo-img { width: 13rem; }
-        }
-
-
-        /* REGLAS ESTRICTAS PARA GENERAR UN PDF PERFECTO DIRECTO DEL NAVEGADOR */
+        /* REGLAS PARA PDF PERFECTO NATIVO */
         @media print {
-            body { background-color: white !important; color: black !important; }
-            .no-print, #buscador, .controles-filtros, #btn-tema { display: none !important; }
+            body { background-color: white !important; color: black !important; padding: 0 !important; margin: 0 !important;}
+            .no-print, #buscador, .controles-filtros, #btn-tema, #tabs-navegacion { display: none !important; }
             .premium-card { border: none !important; box-shadow: none !important; padding: 0 !important; margin-bottom: 20px !important; }
             table { page-break-after: auto; width: 100% !important; }
             tr { page-break-inside: avoid; page-break-after: auto; }
@@ -94,32 +74,20 @@
     <div id="contenido-dashboard" class="max-w-7xl mx-auto space-y-4 md:space-y-6 bg-transparent">
         
         <div class="premium-card p-4 md:p-6 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="brand-logo-box p-3 rounded-xl flex items-center justify-center shadow-md">
-                <img 
-                    src="./assets/logo-recinto-protegido.png" 
-                    alt="Recinto Protegido" 
-                    class="brand-logo-img"
-                    decoding="async"
-                    fetchpriority="high"
-                    onerror="this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');"
-                >
-                <div class="logo-fallback hidden text-center leading-none">
-                    <div class="text-white text-xl md:text-2xl font-black tracking-tight">RECINTO</div>
-                    <div class="text-red-500 text-xl md:text-2xl font-black tracking-tight">PROTEGIDO</div>
-                    <div class="text-white text-[9px] md:text-[10px] font-bold tracking-[0.35em] mt-1">24 HORAS</div>
-                </div>
+            <div class="bg-slate-950 p-2 rounded-lg flex items-center justify-center shadow-md">
+                <img src="https://raw.githubusercontent.com/recintoprotegidoia/dashboard-monitoreo/main/Logo_NegativoPerfil.png" alt="Recinto Protegido" class="h-12 md:h-16 w-auto object-contain">
             </div>
             
             <div class="text-center">
                 <p class="text-[10px] md:text-xs uppercase tracking-widest text-gray-400 font-bold dark:text-slate-400">Reporte de Disponibilidad - Servicio 24/7</p>
-                <h1 class="text-xl md:text-2xl font-black tracking-tight text-slate-900 dark:text-white">Monitoreo de Dispositivos</h1>
+                <h1 id="titulo-modulo" class="text-xl md:text-2xl font-black tracking-tight text-slate-900 dark:text-white">ESTADO DISPOSITIVOS HCP - HIKVISION</h1>
                 <p class="text-xs text-gray-500 mt-1 dark:text-slate-400">Cliente: <span class="font-bold text-slate-700 dark:text-slate-200">CMO - CRA</span> · Monitoreado por: <span class="font-bold text-red-500">Recinto Protegido</span></p>
             </div>
             
             <div class="flex items-center gap-4 justify-between w-full md:w-auto">
                 <div class="text-left md:text-right text-xs text-slate-500 space-y-1 dark:text-slate-400">
                     <div><i class="fa-solid fa-clock text-red-500"></i> Reloj Local: <span id="reloj-vivo" class="font-mono font-bold text-slate-800 dark:text-white">00:00:00</span></div>
-                    <div class="text-[10px] text-gray-400">Último reporte: <span id="update-time">--</span></div>
+                    <div class="text-[10px] text-gray-400">Última sincro: <span id="update-time">--</span></div>
                 </div>
                 <button id="btn-tema" class="p-2.5 rounded-full border border-gray-300 hover:bg-gray-100 dark:border-slate-700 dark:hover:bg-slate-800 transition bg-white dark:bg-black">
                     <i id="icono-tema" class="fa-solid fa-moon text-slate-600 dark:text-slate-300"></i>
@@ -127,37 +95,37 @@
             </div>
         </div>
 
-        <div class="premium-card px-4 md:px-6 py-3 flex flex-col sm:flex-row justify-between items-center text-[11px] md:text-xs font-bold text-slate-600 gap-2 dark:text-slate-300 text-center sm:text-left">
-            <div class="flex items-center gap-2">
-                <span class="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span>Servicio Activo Continuo</span>
-            </div>
-            <div>GENERADO: <span id="cinta-fecha" class="text-slate-800 dark:text-white">--/--/--</span></div>
-            <div>OPERACIÓN: <span class="text-slate-800 dark:text-white">CMO - CRA "RECINTO PROTEGIDO"</span></div>
+        <div id="tabs-navegacion" class="flex flex-col sm:flex-row gap-2 border-b border-gray-300 dark:border-slate-700 pb-2">
+            <button id="tab-hcp" onclick="cambiarTab('HCP')" class="flex-1 px-4 py-3 font-black text-sm md:text-base border-b-4 border-red-600 text-slate-900 dark:text-white transition bg-white dark:bg-slate-900 rounded-t-lg shadow-sm">
+                <i class="fa-solid fa-shield-halved text-red-600 mr-2"></i> ESTADO DISPOSITIVOS HCP - HIKVISION
+            </button>
+            <button id="tab-dss" onclick="cambiarTab('DSS')" class="flex-1 px-4 py-3 font-black text-sm md:text-base border-b-4 border-transparent text-gray-500 hover:text-slate-800 dark:hover:text-slate-200 transition bg-gray-50 dark:bg-slate-950 rounded-t-lg shadow-sm">
+                <i class="fa-solid fa-server text-gray-400 mr-2"></i> ESTADO DISPOSITIVOS DSS - DAHUA
+            </button>
         </div>
 
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
             <div class="premium-card p-4 md:p-6 text-center space-y-1 md:space-y-2">
-                <p class="text-[10px] md:text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">EQUIPOS ONLINE</p>
-                <div class="text-2xl md:text-4xl font-black text-emerald-500 dark:text-emerald-400" id="kpi-online">-</div>
+                <p id="label-kpi-1" class="text-[10px] md:text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">EQUIPOS ONLINE</p>
+                <div class="text-2xl md:text-4xl font-black text-emerald-500 dark:text-emerald-400" id="kpi-1-val">-</div>
             </div>
             <div class="premium-card p-4 md:p-6 text-center space-y-1 md:space-y-2 border-t-4 border-red-500 dark:border-red-500">
-                <p class="text-[10px] md:text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">EQUIPOS OFFLINE</p>
-                <div class="text-2xl md:text-4xl font-black text-red-500" id="kpi-offline">-</div>
+                <p id="label-kpi-2" class="text-[10px] md:text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">EQUIPOS OFFLINE</p>
+                <div class="text-2xl md:text-4xl font-black text-red-500" id="kpi-2-val">-</div>
             </div>
             <div class="premium-card p-4 md:p-6 text-center space-y-1 md:space-y-2">
-                <p class="text-[10px] md:text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">Disponibilidad</p>
-                <div class="text-2xl md:text-4xl font-black text-slate-800 dark:text-white" id="kpi-porcentaje">- %</div>
+                <p id="label-kpi-3" class="text-[10px] md:text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">DISPONIBILIDAD</p>
+                <div class="text-2xl md:text-4xl font-black text-slate-800 dark:text-white" id="kpi-3-val">- %</div>
             </div>
             <div class="premium-card p-4 md:p-6 text-center space-y-1 md:space-y-2">
-                <p class="text-[10px] md:text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">TOTAL EQUIPOS</p>
-                <div class="text-2xl md:text-4xl font-black text-sky-500" id="kpi-total">-</div>
+                <p id="label-kpi-4" class="text-[10px] md:text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">TOTAL EQUIPOS</p>
+                <div class="text-2xl md:text-4xl font-black text-sky-500" id="kpi-4-val">-</div>
             </div>
         </div>
 
         <div class="premium-card p-4 md:p-6 no-print">
             <h3 class="text-xs md:text-sm font-bold text-slate-700 dark:text-slate-300 mb-3 uppercase tracking-wider">
-                <i class="fa-solid fa-chart-pie text-slate-400 mr-1"></i> Balance Estadístico de Infraestructura
+                <i class="fa-solid fa-chart-pie text-slate-400 mr-1"></i> Balance de Infraestructura
             </h3>
             <div class="h-24 md:h-28 w-full">
                 <canvas id="graficoComparativo"></canvas>
@@ -165,38 +133,43 @@
         </div>
 
         <div class="controles-filtros flex flex-col lg:flex-row gap-3 justify-between items-center">
-            <div class="flex flex-wrap bg-white dark:bg-slate-900 p-1 rounded-lg border border-gray-300 dark:border-slate-700 gap-1 text-xs font-bold w-full lg:w-auto shadow-sm">
-                <button onclick="filtrarEstado('todos')" id="btn-todos" class="flex-1 px-4 py-2 rounded bg-slate-800 text-white transition dark:bg-slate-600">Todos</button>
-                <button onclick="filtrarEstado('online')" id="btn-online" class="flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Online</button>
-                <button onclick="filtrarEstado('offline')" id="btn-offline" class="flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Offline</button>
-                
-                <button onclick="window.print()" class="flex items-center justify-center gap-2 px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700 active:scale-95 transition dark:bg-red-700 dark:hover:bg-red-800 w-full sm:w-auto mt-1 sm:mt-0">
-                    <i class="fa-solid fa-file-pdf"></i> Bajar PDF
+            
+            <div id="filtros-hcp" class="flex flex-wrap bg-white dark:bg-slate-900 p-1 rounded-lg border border-gray-300 dark:border-slate-700 gap-1 text-xs font-bold w-full lg:w-auto shadow-sm">
+                <button onclick="filtrarEstadoHCP('todos')" id="btn-hcp-todos" class="flex-1 px-4 py-2 rounded bg-slate-800 text-white transition dark:bg-slate-600">Todos</button>
+                <button onclick="filtrarEstadoHCP('online')" id="btn-hcp-online" class="flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Online</button>
+                <button onclick="filtrarEstadoHCP('offline')" id="btn-hcp-offline" class="flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Offline</button>
+            </div>
+
+            <div id="filtros-dss" class="flex flex-wrap bg-white dark:bg-slate-900 p-1 rounded-lg border border-gray-300 dark:border-slate-700 gap-1 text-xs font-bold w-full lg:w-auto shadow-sm hidden">
+                <button onclick="filtrarEstadoDSS('problemas')" id="btn-dss-problemas" class="flex-1 px-4 py-2 rounded bg-slate-800 text-white transition dark:bg-slate-600"><i class="fa-solid fa-triangle-exclamation text-red-400"></i> Solo Problemas</button>
+                <button onclick="filtrarEstadoDSS('todos')" id="btn-dss-todos" class="flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Ver Todos</button>
+                <button onclick="filtrarEstadoDSS('offline')" id="btn-dss-offline" class="flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Dispositivos Caídos</button>
+                <button onclick="filtrarEstadoDSS('discos')" id="btn-dss-discos" class="flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Errores Disco</button>
+                <button onclick="filtrarEstadoDSS('canales')" id="btn-dss-canales" class="flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Errores Canal</button>
+            </div>
+
+            <div class="flex gap-2 w-full lg:w-auto">
+                <input type="text" id="buscador" class="w-full lg:max-w-xs px-4 py-2 text-sm bg-white dark:bg-slate-900 border border-gray-300 dark:border-slate-700 rounded-lg focus:outline-none focus:border-red-400 dark:focus:border-red-500 shadow-sm text-slate-700 dark:text-white" placeholder="🔍 Buscar cliente / dispositivo...">
+                <button onclick="window.print()" class="flex items-center justify-center gap-2 px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700 active:scale-95 transition dark:bg-red-700 dark:hover:bg-red-800 whitespace-nowrap">
+                    <i class="fa-solid fa-file-pdf"></i> PDF
                 </button>
             </div>
-            <input type="text" id="buscador" class="w-full lg:max-w-xs px-4 py-2 text-sm bg-white dark:bg-slate-900 border border-gray-300 dark:border-slate-700 rounded-lg focus:outline-none focus:border-red-400 dark:focus:border-red-500 shadow-sm text-slate-700 dark:text-white" placeholder="🔍 Buscar cliente por nombre...">
         </div>
 
         <div class="premium-card overflow-hidden">
             <div class="w-full overflow-x-auto">
                 <table id="tabla-escritorio" class="w-full text-left border-collapse hidden md:table">
                     <thead>
-                        <tr class="border-b border-gray-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-xs font-bold uppercase">
-                            <th class="p-4">Cliente</th>
-                            <th class="p-4">Estado</th>
-                            <th class="p-4">Última Desconexión</th>
-                            <th class="p-4">Tiempo Total Fuera de Línea</th>
-                        </tr>
+                        <tr id="cabecera-tabla" class="border-b border-gray-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-xs font-bold uppercase">
+                            </tr>
                     </thead>
                     <tbody id="tabla-datos" class="divide-y divide-gray-200 dark:divide-slate-700 font-medium text-sm">
-                        <tr>
-                            <td colspan="4" class="p-8 text-center text-gray-400 dark:text-slate-500">Sincronizando base de datos...</td>
-                        </tr>
+                        <tr><td colspan="5" class="p-8 text-center text-gray-400 dark:text-slate-500"><i class="fa-solid fa-spinner fa-spin"></i> Sincronizando repositorios...</td></tr>
                     </tbody>
                 </table>
 
                 <div id="vista-movil" class="block md:hidden divide-y divide-gray-200 dark:divide-slate-800">
-                    <p class="p-6 text-center text-gray-400 dark:text-slate-500">Cargando datos...</p>
+                    <p class="p-6 text-center text-gray-400 dark:text-slate-500"><i class="fa-solid fa-spinner fa-spin"></i> Cargando...</p>
                 </div>
             </div>
         </div>
@@ -204,10 +177,17 @@
     </div>
 
     <script>
-        let dispositivoMaster = [];
-        let filtroActual = 'todos';
+        // ESTADO GLOBAL
+        let tabActual = 'HCP'; // Empieza por defecto en Hikvision
+        let dataHCP = [];
+        let dataDSS = [];
+        let timeHCP = '--';
+        let timeDSS = '--';
+        let filtroHCP = 'todos';
+        let filtroDSS = 'problemas'; // DSS abre por defecto en problemas para cargar rápido
         let chartInstancia = null;
 
+        // RELOJ Y TEMA (Core UI)
         function actualizarReloj() {
             const ahora = new Date();
             const elReloj = document.getElementById('reloj-vivo');
@@ -217,223 +197,349 @@
 
         const btnTema = document.getElementById('btn-tema');
         const iconoTema = document.getElementById('icono-tema');
-        
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
             if(iconoTema) iconoTema.className = "fa-solid fa-sun text-white";
         }
 
-        if(btnTema) {
-            btnTema.addEventListener('click', () => {
-                if (document.documentElement.classList.contains('dark')) {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('theme', 'light');
-                    iconoTema.className = "fa-solid fa-moon text-slate-600";
-                } else {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('theme', 'dark');
-                    iconoTema.className = "fa-solid fa-sun text-white";
-                }
+        btnTema.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                iconoTema.className = "fa-solid fa-moon text-slate-600";
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                iconoTema.className = "fa-solid fa-sun text-white";
+            }
+            setTimeout(() => renderizarGrafico(), 350);
+        });
 
-                // Redibuja el gráfico para que la leyenda y grilla respeten el modo claro/oscuro.
-                if (dispositivoMaster.length > 0) {
-                    const total = dispositivoMaster.length;
-                    const online = dispositivoMaster.filter(d => {
-                        const st = d["Current Status"].toLowerCase();
-                        return st === 'online' || st.includes('línea') || st.includes('linea');
-                    }).length;
-                    construirGraficoBarras(online, total - online);
-                }
-            });
+        // UTILIDADES Y REGLAS DE NEGOCIO DSS (DAHUA)
+        function checkProblemaCanal(status) {
+            if(!status) return false;
+            let s = status.toLowerCase();
+            if(s.includes('abnormal') || s.includes('offline')) return true;
+            if(s.includes('/')) {
+                let p = s.split('/');
+                if(p.length === 2 && parseInt(p[0]) < parseInt(p[1])) return true;
+            }
+            return false;
         }
-
+        function checkProblemaDisco(status) {
+            if(!status) return false;
+            let s = status.toLowerCase();
+            return s !== 'normal' && s !== 'online' && s.trim() !== '';
+        }
         function duracionASegundos(str) {
             if (!str || str === "0" || str === "00:00:00" || str.includes('--')) return 0;
-            const partes = str.split(':');
-            if (partes.length !== 3) return 0;
-            return (parseInt(partes[0]) * 3600) + (parseInt(partes[1]) * 60) + parseInt(partes[2]);
+            const p = str.split(':');
+            if (p.length !== 3) return 0;
+            return (parseInt(p[0]) * 3600) + (parseInt(p[1]) * 60) + parseInt(p[2]);
         }
 
-        async function cargarDashboard() {
+        // FETCH MULTIPLE JSON
+        async function cargarTodo() {
             try {
-                const respuesta = await fetch('datos.json?v=' + Date.now());
-                const datos = await respuesta.json();
-                
-                dispositivoMaster = datos.registros || [];
-                
-                document.getElementById('update-time').innerText = datos.ultima_actualizacion || '--';
-                if(datos.ultima_actualizacion) {
-                    document.getElementById('cinta-fecha').innerText = datos.ultima_actualizacion.split(',')[0];
+                // Fetch HCP (Hikvision)
+                const resHCP = await fetch('datos.json?v=' + Date.now()).catch(()=>null);
+                if(resHCP && resHCP.ok) {
+                    const jsonHCP = await resHCP.json();
+                    dataHCP = jsonHCP.registros || [];
+                    timeHCP = jsonHCP.ultima_actualizacion || '--';
                 }
-
-                const total = dispositivoMaster.length;
-                const online = dispositivoMaster.filter(d => {
-                    const st = d["Current Status"].toLowerCase();
-                    return st === 'online' || st.includes('línea') || st.includes('linea');
-                }).length;
-                const offline = total - online;
-                const porcentaje = total > 0 ? ((online / total) * 100).toFixed(1) : 0;
-
-                document.getElementById('kpi-total').innerText = total;
-                document.getElementById('kpi-online').innerText = online;
-                document.getElementById('kpi-offline').innerText = offline;
-                document.getElementById('kpi-porcentaje').innerText = porcentaje + '%';
-
-                construirGraficoBarras(online, offline);
-                renderizarTabla();
-
-            } catch (error) {
-                console.error("Error leyendo datos.json:", error);
+                
+                // Fetch DSS (Dahua)
+                const resDSS = await fetch('datos_dss_dahua.json?v=' + Date.now()).catch(()=>null);
+                if(resDSS && resDSS.ok) {
+                    const jsonDSS = await resDSS.json();
+                    dataDSS = jsonDSS.reporte_dahua || [];
+                    timeDSS = jsonDSS.ultima_actualizacion || '--';
+                }
+                
+                // Arrancar UI con tab actual
+                cambiarTab('HCP');
+            } catch(e) {
+                console.error("Error global de carga:", e);
             }
         }
 
-        function renderizarTabla() {
+        // CONTROLADOR DE PESTAÑAS
+        function cambiarTab(tab) {
+            tabActual = tab;
+            document.getElementById('buscador').value = '';
+
+            // Update Tab Estilos
+            const btnHCP = document.getElementById('tab-hcp');
+            const btnDSS = document.getElementById('tab-dss');
+
+            if(tab === 'HCP') {
+                btnHCP.className = "flex-1 px-4 py-3 font-black text-sm md:text-base border-b-4 border-red-600 text-slate-900 dark:text-white transition bg-white dark:bg-slate-900 rounded-t-lg shadow-sm";
+                btnDSS.className = "flex-1 px-4 py-3 font-black text-sm md:text-base border-b-4 border-transparent text-gray-500 hover:text-slate-800 dark:hover:text-slate-200 transition bg-gray-50 dark:bg-slate-950 rounded-t-lg shadow-sm opacity-70";
+                
+                document.getElementById('titulo-modulo').innerText = "ESTADO DISPOSITIVOS HCP - HIKVISION";
+                document.getElementById('update-time').innerText = timeHCP;
+                
+                // Configurar Cabeceras de tabla HCP
+                document.getElementById('cabecera-tabla').innerHTML = `
+                    <th class="p-4">Cliente (Name)</th>
+                    <th class="p-4">Estado (Current Status)</th>
+                    <th class="p-4">Última Desconexión</th>
+                    <th class="p-4">Tiempo Offline Duration</th>
+                `;
+
+                // Configurar Tarjetas HCP
+                document.getElementById('label-kpi-1').innerText = "EQUIPOS ONLINE";
+                document.getElementById('label-kpi-2').innerText = "EQUIPOS OFFLINE";
+                document.getElementById('label-kpi-3').innerText = "DISPONIBILIDAD";
+                document.getElementById('label-kpi-4').innerText = "TOTAL EQUIPOS";
+
+                // Mostrar controles HCP
+                document.getElementById('filtros-hcp').classList.remove('hidden');
+                document.getElementById('filtros-dss').classList.add('hidden');
+                
+                filtrarEstadoHCP(filtroHCP);
+            } else {
+                btnDSS.className = "flex-1 px-4 py-3 font-black text-sm md:text-base border-b-4 border-red-600 text-slate-900 dark:text-white transition bg-white dark:bg-slate-900 rounded-t-lg shadow-sm";
+                btnHCP.className = "flex-1 px-4 py-3 font-black text-sm md:text-base border-b-4 border-transparent text-gray-500 hover:text-slate-800 dark:hover:text-slate-200 transition bg-gray-50 dark:bg-slate-950 rounded-t-lg shadow-sm opacity-70";
+                
+                document.getElementById('titulo-modulo').innerText = "ESTADO DISPOSITIVOS DSS - DAHUA";
+                document.getElementById('update-time').innerText = timeDSS;
+                
+                // Configurar Cabeceras de tabla DSS
+                document.getElementById('cabecera-tabla').innerHTML = `
+                    <th class="p-4">Dispositivo</th>
+                    <th class="p-4">IP</th>
+                    <th class="p-4">Red</th>
+                    <th class="p-4">Canales</th>
+                    <th class="p-4">Disco</th>
+                `;
+
+                // Configurar Tarjetas DSS
+                document.getElementById('label-kpi-1').innerText = "DISPOSITIVOS ONLINE";
+                document.getElementById('label-kpi-2').innerText = "DISPOSITIVOS CAÍDOS";
+                document.getElementById('label-kpi-3').innerText = "TOTAL PROBLEMAS (ALERTA)";
+                document.getElementById('label-kpi-4').innerText = "TOTAL DISPOSITIVOS";
+
+                // Mostrar controles DSS
+                document.getElementById('filtros-hcp').classList.add('hidden');
+                document.getElementById('filtros-dss').classList.remove('hidden');
+                
+                filtrarEstadoDSS(filtroDSS);
+            }
+        }
+
+        // RENDERIZADOR HCP HIKVISION
+        function filtrarEstadoHCP(estado) {
+            filtroHCP = estado;
+            ['todos', 'online', 'offline'].forEach(id => {
+                const b = document.getElementById('btn-hcp-' + id);
+                b.className = id === estado ? "flex-1 px-4 py-2 rounded bg-slate-800 text-white transition dark:bg-slate-600" : "flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition";
+            });
+            renderizarTablaYGrafico();
+        }
+
+        // RENDERIZADOR DSS DAHUA
+        function filtrarEstadoDSS(estado) {
+            filtroDSS = estado;
+            ['todos', 'problemas', 'offline', 'discos', 'canales'].forEach(id => {
+                const b = document.getElementById('btn-dss-' + id);
+                if(b) b.className = id === estado ? "flex-1 px-4 py-2 rounded bg-slate-800 text-white transition dark:bg-slate-600" : "flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition";
+            });
+            renderizarTablaYGrafico();
+        }
+
+        document.getElementById('buscador').addEventListener('input', renderizarTablaYGrafico);
+
+        // MOTOR PRINCIPAL DE DIBUJADO DE TABLAS Y GRÁFICOS
+        function renderizarTablaYGrafico() {
             const tbody = document.getElementById('tabla-datos');
             const divMovil = document.getElementById('vista-movil');
-            const busqueda = document.getElementById('buscador').value.toLowerCase().trim();
+            const term = document.getElementById('buscador').value.toLowerCase().trim();
             
-            tbody.innerHTML = '';
-            divMovil.innerHTML = '';
+            let htmlTable = '';
+            let htmlMovil = '';
 
-            let filtrados = dispositivoMaster.filter(d => {
-                const statusText = d["Current Status"].toLowerCase();
-                const isOnline = statusText === 'online' || statusText.includes('línea') || statusText.includes('linea');
+            if (tabActual === 'HCP') {
+                // LÓGICA HIKVISION
+                let total = dataHCP.length;
+                let onlineCount = dataHCP.filter(d => d["Current Status"].toLowerCase().includes('online')).length;
+                let offlineCount = total - onlineCount;
+                let pct = total > 0 ? ((onlineCount/total)*100).toFixed(1) : 0;
                 
-                if (filtroActual === 'online' && !isOnline) return false;
-                if (filtroActual === 'offline' && isOnline) return false;
-                
-                if (busqueda !== '') {
-                    return d["Name"].toLowerCase().includes(busqueda);
-                }
-                return true;
-            });
+                document.getElementById('kpi-1-val').innerText = onlineCount;
+                document.getElementById('kpi-2-val').innerText = offlineCount;
+                document.getElementById('kpi-3-val').innerText = pct + '%';
+                document.getElementById('kpi-4-val').innerText = total;
 
-            filtrados.sort((a, b) => {
-                const statusA = a["Current Status"].toLowerCase();
-                const statusB = b["Current Status"].toLowerCase();
-                const isOnlineA = statusA === 'online' || statusA.includes('línea') || statusA.includes('linea');
-                const isOnlineB = statusB === 'online' || statusB.includes('línea') || statusB.includes('linea');
-                
-                if (!isOnlineA && !isOnlineB) {
-                    return duracionASegundos(b["Total Offline Duration"]) - duracionASegundos(a["Total Offline Duration"]);
-                }
-                return isOnlineA - isOnlineB;
-            });
+                let fData = dataHCP.filter(d => {
+                    const st = d["Current Status"].toLowerCase();
+                    const isO = st.includes('online') || st.includes('línea');
+                    if (filtroHCP === 'online' && !isO) return false;
+                    if (filtroHCP === 'offline' && isO) return false;
+                    if (term !== '' && !d["Name"].toLowerCase().includes(term)) return false;
+                    return true;
+                }).sort((a, b) => {
+                    const oA = a["Current Status"].toLowerCase().includes('online');
+                    const oB = b["Current Status"].toLowerCase().includes('online');
+                    if (!oA && !oB) return duracionASegundos(b["Total Offline Duration"]) - duracionASegundos(a["Total Offline Duration"]);
+                    return oA - oB;
+                });
 
-            if(filtrados.length === 0) {
-                const filaVacia = `<tr><td colspan="4" class="p-6 text-center text-gray-400 dark:text-slate-500">No hay registros que coincidan.</td></tr>`;
-                tbody.innerHTML = filaVacia;
-                divMovil.innerHTML = `<p class="p-6 text-center text-gray-400 dark:text-slate-500">No hay registros que coincidan.</p>`;
-                return;
+                fData.forEach(d => {
+                    const isO = d["Current Status"].toLowerCase().includes('online');
+                    const bc = isO ? 'status-online' : 'status-offline';
+                    const sh = isO ? 'ONLINE' : 'OFFLINE';
+                    
+                    htmlTable += `<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/20 transition text-slate-700 dark:text-slate-200 border-b border-gray-200 dark:border-slate-800">
+                        <td class="p-4 font-bold text-slate-900 dark:text-white">${d["Name"]}</td>
+                        <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bc}">${sh}</span></td>
+                        <td class="p-4 font-mono text-xs text-slate-500 dark:text-slate-400">${d["Latest Offline Time"] || '--'}</td>
+                        <td class="p-4 font-mono text-xs font-bold text-slate-900 dark:text-white">${d["Total Offline Duration"] || '--'}</td>
+                    </tr>`;
+
+                    htmlMovil += `<div class="p-4 space-y-2 text-sm text-slate-700 dark:text-slate-300">
+                        <div class="flex justify-between items-start gap-2">
+                            <span class="font-bold text-slate-900 dark:text-white text-base">${d["Name"]}</span>
+                            <span class="px-2 py-0.5 rounded text-[10px] font-black tracking-wide ${bc}">${sh}</span>
+                        </div>
+                        <div class="text-xs text-slate-500 dark:text-slate-400">Offline desde: ${d["Latest Offline Time"] || '--'}</div>
+                        <div class="text-xs flex justify-between items-center pt-1 border-t border-gray-100 dark:border-slate-800">
+                            <span class="font-semibold text-slate-600 dark:text-slate-300">Duración Offline:</span>
+                            <span class="font-mono font-bold text-slate-900 dark:text-white">${d["Total Offline Duration"] || '--'}</span>
+                        </div>
+                    </div>`;
+                });
+
+                renderizarGraficoHCP(onlineCount, offlineCount);
+
+            } else {
+                // LÓGICA DAHUA
+                let total = dataDSS.length;
+                let onlineDCount = 0; let offlineDCount = 0; let abnormalDiskCount = 0; let abnormalChanCount = 0;
+                let totalProblemasGeneral = 0;
+
+                dataDSS.forEach(d => {
+                    let isOnline = d["Estado de dispositivo"] === 'Online';
+                    if(isOnline) onlineDCount++; else offlineDCount++;
+                    let badDisk = checkProblemaDisco(d["Estado del disco"]);
+                    if(badDisk) abnormalDiskCount++;
+                    let badChan = checkProblemaCanal(d["Estado de canal"]);
+                    if(badChan) abnormalChanCount++;
+                    if(!isOnline || badDisk || badChan) totalProblemasGeneral++;
+                });
+
+                document.getElementById('kpi-1-val').innerText = onlineDCount;
+                document.getElementById('kpi-2-val').innerText = offlineDCount;
+                document.getElementById('kpi-3-val').innerText = totalProblemasGeneral; // Tarjeta Alerta
+                document.getElementById('kpi-4-val').innerText = total;
+
+                let fData = dataDSS.filter(d => {
+                    let isO = d["Estado de dispositivo"] === 'Online';
+                    let badDisk = checkProblemaDisco(d["Estado del disco"]);
+                    let badChan = checkProblemaCanal(d["Estado de canal"]);
+                    let isProblem = !isO || badDisk || badChan;
+
+                    if (filtroDSS === 'problemas' && !isProblem) return false;
+                    if (filtroDSS === 'offline' && isO) return false;
+                    if (filtroDSS === 'discos' && !badDisk) return false;
+                    if (filtroDSS === 'canales' && !badChan) return false;
+                    
+                    if (term !== '' && !d["Dispositivo"].toLowerCase().includes(term) && !d["IP"].includes(term)) return false;
+                    return true;
+                }).sort((a, b) => {
+                    // Ordenar por problemas críticos arriba
+                    let isOa = a["Estado de dispositivo"] === 'Online';
+                    let isOb = b["Estado de dispositivo"] === 'Online';
+                    return isOa - isOb; // Los offline suben
+                });
+
+                fData.forEach(d => {
+                    const isO = d["Estado de dispositivo"] === 'Online';
+                    const badDisk = checkProblemaDisco(d["Estado del disco"]);
+                    const badChan = checkProblemaCanal(d["Estado de canal"]);
+
+                    const bcDev = isO ? 'status-online' : 'status-offline';
+                    const bcDisk = badDisk ? 'status-offline' : 'status-online';
+                    const bcChan = badChan ? 'bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400' : 'status-online';
+
+                    htmlTable += `<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/20 transition text-slate-700 dark:text-slate-200 border-b border-gray-200 dark:border-slate-800">
+                        <td class="p-4 font-bold text-slate-900 dark:text-white">${d["Dispositivo"]}</td>
+                        <td class="p-4 font-mono text-xs text-slate-500 dark:text-slate-400">${d["IP"]}</td>
+                        <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bcDev}">${d["Estado de dispositivo"]}</span></td>
+                        <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bcChan}">${d["Estado de canal"]||'OK'}</span></td>
+                        <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bcDisk}">${d["Estado del disco"]||'OK'}</span></td>
+                    </tr>`;
+
+                    htmlMovil += `<div class="p-4 space-y-2 text-sm text-slate-700 dark:text-slate-300">
+                        <div class="flex justify-between items-start gap-2">
+                            <span class="font-bold text-slate-900 dark:text-white text-base">${d["Dispositivo"]}</span>
+                            <span class="px-2 py-0.5 rounded text-[10px] font-black tracking-wide ${bcDev}">${d["Estado de dispositivo"]}</span>
+                        </div>
+                        <div class="text-xs text-slate-500 dark:text-slate-400">IP: <span class="font-mono">${d["IP"]}</span></div>
+                        <div class="text-xs flex justify-between items-center pt-1 border-t border-gray-100 dark:border-slate-800">
+                            <span class="font-semibold text-slate-600 dark:text-slate-300">Canales: <span class="px-1.5 py-0.5 rounded font-black ${bcChan}">${d["Estado de canal"]||'OK'}</span></span>
+                            <span class="font-semibold text-slate-600 dark:text-slate-300">Disco: <span class="px-1.5 py-0.5 rounded font-black ${bcDisk}">${d["Estado del disco"]||'OK'}</span></span>
+                        </div>
+                    </div>`;
+                });
+
+                renderizarGraficoDSS(offlineDCount, abnormalDiskCount, abnormalChanCount);
             }
 
-            filtrados.forEach(d => {
-                const statusText = d["Current Status"].toLowerCase();
-                const isOnline = statusText === 'online' || statusText.includes('línea') || statusText.includes('linea');
-                
-                const badgeClass = isOnline ? 'status-online' : 'status-offline';
-                const statusHtml = isOnline ? 'ONLINE' : 'OFFLINE';
+            if(htmlTable === '') {
+                htmlTable = `<tr><td colspan="5" class="p-6 text-center text-gray-400 dark:text-slate-500">No hay registros que coincidan o toda la red está estable.</td></tr>`;
+                htmlMovil = `<p class="p-6 text-center text-gray-400 dark:text-slate-500">No hay registros.</p>`;
+            }
 
-                const tr = document.createElement('tr');
-                tr.className = "hover:bg-slate-50 dark:hover:bg-slate-800/20 transition text-slate-700 dark:text-slate-200 border-b border-gray-200 dark:border-slate-800";
-                tr.innerHTML = `
-                    <td class="p-4 font-bold text-slate-900 dark:text-white">${d["Name"]}</td>
-                    <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${badgeClass}">${statusHtml}</span></td>
-                    <td class="p-4 font-mono text-xs text-slate-500 dark:text-slate-400">${d["Latest Offline Time"]}</td>
-                    <td class="p-4 font-mono text-xs font-bold text-slate-900 dark:text-white">${d["Total Offline Duration"]}</td>
-                `;
-                tbody.appendChild(tr);
-
-                const card = document.createElement('div');
-                card.className = "p-4 space-y-2 text-sm text-slate-700 dark:text-slate-300";
-                card.innerHTML = `
-                    <div class="flex justify-between items-start gap-2">
-                        <span class="font-bold text-slate-900 dark:text-white text-base">${d["Name"]}</span>
-                        <span class="px-2 py-0.5 rounded text-[10px] font-black tracking-wide ${badgeClass}">${statusHtml}</span>
-                    </div>
-                    <div class="text-xs text-slate-500 dark:text-slate-400">
-                        <span class="font-semibold text-slate-600 dark:text-slate-300">Última desconexión:</span> ${d["Latest Offline Time"]}
-                    </div>
-                    <div class="text-xs flex justify-between items-center pt-1 border-t border-gray-100 dark:border-slate-800">
-                        <span class="font-semibold text-slate-600 dark:text-slate-300">Tiempo total fuera de línea:</span>
-                        <span class="font-mono font-bold text-slate-900 dark:text-white">${d["Total Offline Duration"]}</span>
-                    </div>
-                `;
-                divMovil.appendChild(card);
-            });
+            tbody.innerHTML = htmlTable;
+            divMovil.innerHTML = htmlMovil;
         }
 
-        function filtrarEstado(estado) {
-            filtroActual = estado;
-            ['todos', 'online', 'offline'].forEach(id => {
-                const btn = document.getElementById('btn-' + id);
-                if(btn) {
-                    if(id === estado) {
-                        btn.className = "flex-1 px-4 py-2 rounded bg-slate-800 text-white transition dark:bg-slate-600";
-                    } else {
-                        btn.className = "flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition";
-                    }
-                }
-            });
-            renderizarTabla();
-        }
-
-        function construirGraficoBarras(online, offline) {
+        // CONTROL DE GRÁFICOS
+        function renderizarGraficoHCP(online, offline) {
             const ctx = document.getElementById('graficoComparativo').getContext('2d');
             if (chartInstancia) chartInstancia.destroy();
-
-            const modoOscuroActivo = document.documentElement.classList.contains('dark');
-
+            const dark = document.documentElement.classList.contains('dark');
             chartInstancia = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['Infraestructura'],
+                    labels: ['HCP HIKVISION'],
                     datasets: [
-                        {
-                            label: 'Equipos Online',
-                            data: [online],
-                            backgroundColor: '#10b981', 
-                            barPercentage: 0.4
-                        },
-                        {
-                            label: 'Equipos Offline',
-                            data: [offline],
-                            backgroundColor: '#ef4444', 
-                            barPercentage: 0.4
-                        }
+                        { label: 'Online', data: [online], backgroundColor: '#10b981', barPercentage: 0.4 },
+                        { label: 'Offline', data: [offline], backgroundColor: '#ef4444', barPercentage: 0.4 }
                     ]
                 },
-                options: {
-                    indexAxis: 'y', 
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { 
-                            position: 'bottom', 
-                            labels: { 
-                                boxWidth: 12, 
-                                color: modoOscuroActivo ? '#ffffff' : '#1e293b',
-                                font: { size: 11, weight: 'bold' } 
-                            } 
-                        }
-                    },
-                    scales: {
-                        x: { 
-                            beginAtZero: true, 
-                            grid: { color: modoOscuroActivo ? '#222222' : '#e2e8f0' },
-                            ticks: { color: modoOscuroActivo ? '#94a3b8' : '#64748b' }
-                        },
-                        y: { display: false } 
-                    }
-                }
+                options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: dark ? '#ffffff' : '#1e293b' } } }, scales: { x: { grid: { color: dark ? '#222222' : '#e2e8f0' }, ticks: { color: dark ? '#94a3b8' : '#64748b' } }, y: { display: false } } }
             });
         }
 
-        document.getElementById('buscador').addEventListener('input', renderizarTabla);
+        function renderizarGraficoDSS(offline, discosBad, chanBad) {
+            const ctx = document.getElementById('graficoComparativo').getContext('2d');
+            if (chartInstancia) chartInstancia.destroy();
+            const dark = document.documentElement.classList.contains('dark');
+            chartInstancia = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Problemas DAHUA'],
+                    datasets: [
+                        { label: 'Dispositivos Offline', data: [offline], backgroundColor: '#ef4444', barPercentage: 0.8 },
+                        { label: 'Problemas de Disco', data: [discosBad], backgroundColor: '#f97316', barPercentage: 0.8 },
+                        { label: 'Canales Anormales', data: [chanBad], backgroundColor: '#eab308', barPercentage: 0.8 }
+                    ]
+                },
+                options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: dark ? '#ffffff' : '#1e293b' } } }, scales: { x: { grid: { color: dark ? '#222222' : '#e2e8f0' }, ticks: { color: dark ? '#94a3b8' : '#64748b' } }, y: { display: false } } }
+            });
+        }
+
+        function renderizarGrafico() {
+            // Helper para redibujar al cambiar el tema oscuro
+            renderizarTablaYGrafico();
+        }
 
         document.addEventListener('DOMContentLoaded', () => {
             actualizarReloj();
-            cargarDashboard();
+            cargarTodo();
         });
     </script>
 </body>
