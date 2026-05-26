@@ -180,7 +180,7 @@
             </div>
 
             <div class="flex gap-2 w-full lg:w-auto">
-                <input type="text" id="buscador" class="w-full lg:max-w-xs px-4 py-2 text-sm bg-white dark:bg-slate-900 border border-gray-300 dark:border-slate-700 rounded-lg focus:outline-none focus:border-red-400 dark:focus:border-red-500 shadow-sm text-slate-700 dark:text-white" placeholder="🔍 Buscar dispositivo / IP...">
+                <input type="text" id="buscador" class="w-full lg:max-w-xs px-4 py-2 text-sm bg-white dark:bg-slate-900 border border-gray-300 dark:border-slate-700 rounded-lg focus:outline-none focus:border-red-400 dark:focus:border-red-500 shadow-sm text-slate-700 dark:text-white" placeholder="🔍 Buscar dispositivo...">
                 <button onclick="window.print()" class="flex items-center justify-center gap-2 px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700 active:scale-95 transition dark:bg-red-700 dark:hover:bg-red-800 whitespace-nowrap">
                     <i class="fa-solid fa-file-pdf"></i> PDF
                 </button>
@@ -269,6 +269,15 @@
             const p = str.split(':');
             if (p.length !== 3) return 0;
             return (parseInt(p[0]) * 3600) + (parseInt(p[1]) * 60) + parseInt(p[2]);
+        }
+
+        function formatearEstadoDSS(valor) {
+            if (valor === null || valor === undefined || valor === '') return 'OK';
+            return String(valor)
+                .replace(/abnormal/gi, 'En falla')
+                .replace(/\bnormal\b/gi, 'Normal')
+                .replace(/\boffline\b/gi, 'Offline')
+                .replace(/\bonline\b/gi, 'Online');
         }
 
         // CARGA INTELIGENTE DESDE REPOSITORIOS
@@ -418,26 +427,23 @@
                     const isO = d["Current Status"].toLowerCase().includes('online');
                     const bc = isO ? 'status-online' : 'status-offline';
                     const sh = isO ? 'ONLINE' : 'OFFLINE';
-                    const estadoCanalTexto = (d["estado_canal"] || 'OK')
-                        .replace(/abnormal/gi, 'En falla');
-                    const estadoCanalMovil = (d["estado_canal"] || 'OK')
-                        .replace(/abnormal/gi, 'En falla');
-                    
+
                     htmlTable += `<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/20 transition text-slate-700 dark:text-slate-200 border-b border-gray-200 dark:border-slate-800">
-                        <td class="p-4 font-bold text-slate-900 dark:text-white">${d["nombre"]}</td>
-                        <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bcDev}">${d["conexion"]}</span></td>
-                        <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bcChan}">${estadoCanalTexto}</span></td>
-                        <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bcDisk}">${d["estado_disco"]||'OK'}</span></td>
+                        <td class="p-4 font-bold text-slate-900 dark:text-white">${d["Name"]}</td>
+                        <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bc}">${sh}</span></td>
+                        <td class="p-4 font-mono text-xs text-slate-500 dark:text-slate-400">${d["Latest Offline Time"] || '--'}</td>
+                        <td class="p-4 font-mono text-xs font-bold text-slate-900 dark:text-white">${d["Total Offline Duration"] || '--'}</td>
                     </tr>`;
 
                     htmlMovil += `<div class="p-4 space-y-2 text-sm text-slate-700 dark:text-slate-300">
                         <div class="flex justify-between items-start gap-2">
-                            <span class="font-bold text-slate-900 dark:text-white text-base">${d["nombre"]}</span>
-                            <span class="px-2 py-0.5 rounded text-[10px] font-black tracking-wide ${bcDev}">${d["conexion"]}</span>
+                            <span class="font-bold text-slate-900 dark:text-white text-base">${d["Name"]}</span>
+                            <span class="px-2 py-0.5 rounded text-[10px] font-black tracking-wide ${bc}">${sh}</span>
                         </div>
+                        <div class="text-xs text-slate-500 dark:text-slate-400">Offline desde: ${d["Latest Offline Time"] || '--'}</div>
                         <div class="text-xs flex justify-between items-center pt-1 border-t border-gray-100 dark:border-slate-800">
-                        <span class="font-semibold text-slate-600 dark:text-slate-300">Estado de Cámara/NVR: <span class="px-1.5 py-0.5 rounded font-black ${bcChan}">${estadoCanalMovil}</span></span>
-                            <span class="font-semibold text-slate-600 dark:text-slate-300">Disco: <span class="px-1.5 py-0.5 rounded font-black ${bcDisk}">${d["estado_disco"]||'OK'}</span></span>
+                            <span class="font-semibold text-slate-600 dark:text-slate-300">Duración Offline:</span>
+                            <span class="font-mono font-bold text-slate-900 dark:text-white">${d["Total Offline Duration"] || '--'}</span>
                         </div>
                     </div>`;
                 });
@@ -471,7 +477,7 @@
                     if (filtroDSS === 'discos' && !badDisk) return false;
                     if (filtroDSS === 'canales' && !badChan) return false;
                     
-                    if (term !== '' && !(d['nombre'] || '').toLowerCase().includes(term) && !(d['ip'] || '').toLowerCase().includes(term)) return false;
+                    if (term !== '' && !(d['nombre'] || '').toLowerCase().includes(term)) return false;
                     return true;
                 }).sort((a, b) => {
                     let isOa = String(a['conexion'] || '').toLowerCase() === 'online';
@@ -488,23 +494,25 @@
                     const bcDisk = badDisk ? 'status-offline' : 'status-online';
                     const bcChan = badChan ? 'bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400' : 'status-online';
 
+                    const conexionTexto = formatearEstadoDSS(d["conexion"] || '--');
+                    const estadoCanalTexto = formatearEstadoDSS(d["estado_canal"] || 'OK');
+                    const estadoDiscoTexto = formatearEstadoDSS(d["estado_disco"] || 'OK');
+
                     htmlTable += `<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/20 transition text-slate-700 dark:text-slate-200 border-b border-gray-200 dark:border-slate-800">
-                        <td class="p-4 font-bold text-slate-900 dark:text-white">${d["nombre"]}</td>
-                        <td class="p-4 font-mono text-xs text-slate-500 dark:text-slate-400">${d["ip"]}</td>
-                        <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bcDev}">${d["conexion"]}</span></td>
-                        <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bcChan}">${d["estado_canal"]||'OK'}</span></td>
-                        <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bcDisk}">${d["estado_disco"]||'OK'}</span></td>
+                        <td class="p-4 font-bold text-slate-900 dark:text-white">${d["nombre"] || '--'}</td>
+                        <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bcDev}">${conexionTexto}</span></td>
+                        <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bcChan}">${estadoCanalTexto}</span></td>
+                        <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bcDisk}">${estadoDiscoTexto}</span></td>
                     </tr>`;
 
                     htmlMovil += `<div class="p-4 space-y-2 text-sm text-slate-700 dark:text-slate-300">
                         <div class="flex justify-between items-start gap-2">
-                            <span class="font-bold text-slate-900 dark:text-white text-base">${d["nombre"]}</span>
-                            <span class="px-2 py-0.5 rounded text-[10px] font-black tracking-wide ${bcDev}">${d["conexion"]}</span>
+                            <span class="font-bold text-slate-900 dark:text-white text-base">${d["nombre"] || '--'}</span>
+                            <span class="px-2 py-0.5 rounded text-[10px] font-black tracking-wide ${bcDev}">${conexionTexto}</span>
                         </div>
-                        <div class="text-xs text-slate-500 dark:text-slate-400">IP: <span class="font-mono">${d["ip"]}</span></div>
-                        <div class="text-xs flex justify-between items-center pt-1 border-t border-gray-100 dark:border-slate-800">
-                            <span class="font-semibold text-slate-600 dark:text-slate-300">Canales: <span class="px-1.5 py-0.5 rounded font-black ${bcChan}">${d["estado_canal"]||'OK'}</span></span>
-                            <span class="font-semibold text-slate-600 dark:text-slate-300">Disco: <span class="px-1.5 py-0.5 rounded font-black ${bcDisk}">${d["estado_disco"]||'OK'}</span></span>
+                        <div class="text-xs flex flex-col sm:flex-row gap-2 justify-between items-start sm:items-center pt-1 border-t border-gray-100 dark:border-slate-800">
+                            <span class="font-semibold text-slate-600 dark:text-slate-300">Estado de Cámara/NVR: <span class="px-1.5 py-0.5 rounded font-black ${bcChan}">${estadoCanalTexto}</span></span>
+                            <span class="font-semibold text-slate-600 dark:text-slate-300">Disco: <span class="px-1.5 py-0.5 rounded font-black ${bcDisk}">${estadoDiscoTexto}</span></span>
                         </div>
                     </div>`;
                 });
