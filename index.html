@@ -30,7 +30,6 @@
     </script>
 
     <script>
-        // Configuración de Tailwind para forzar colores corporativos exactos
         tailwind.config = {
             darkMode: 'class',
             theme: {
@@ -48,7 +47,6 @@
     </script>
     <style>
         body { background-color: #eeebe6; transition: background-color 0.3s, color 0.3s; }
-        /* Forzado de Modo Oscuro Oficial: Negro Puro, Rojo y Blanco */
         .dark body { background-color: #000000 !important; color: #ffffff !important; }
         
         .premium-card { background: white; border-radius: 8px; border: 1px solid #dbdad5; box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: all 0.3s; }
@@ -67,11 +65,11 @@
 </head>
 <body class="p-2 md:p-6 text-slate-800 dark:text-slate-100">
 
-    <div id="contenido-dashboard" class="max-w-7xl mx-auto space-y-4 md:space-y-6">
+    <div id="contenido-dashboard" class="max-w-7xl mx-auto space-y-4 md:space-y-6 bg-transparent">
         
         <div class="premium-card p-4 md:p-6 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex flex-col md:flex-row items-center gap-4 text-center md:text-left">
-                <img src="Logo_NegativoPerfil.png" alt="Recinto Protegido" class="h-16 w-auto object-contain rounded" onerror="this.src='./Logo_NegativoPerfil.png'">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEb0lEQVR4nO2dS2hcVRSGv9NMo9GmTUpbS6tEUUuLgoKID4pQitAsFCwWXLgQit9KXwVBwYVudOHChQsXLgRxpSgI7UORpkh9gI9S09g2bZqmSZM0M3OduZpLeIe5zST3nHvOnXv+D4bM3Dlz7v9yb86552wKBAKBQCAQCAQCcREHegHngS0S/VfXUuALw6+X9fM4MByg3w7gID6C9AL7gAnZbgf6A+SdB9bI9iswLdt/Abf6mEwPcFiyjUnWCg3wZWAH0Odn6gP0Ascl69Yw/S0Z30l87+P5XwH3S7ZhyV7R8N/SgV6C3w30S/YhM78f+DTAXF/G630F3As8B3QCvwEPmXl9wCHZfyHAZ16wDqArwG9Ww9w+mX8beEwZgE/Z53wX8BwwDLzF0rGvVbY/SvaLwInIeR3Asw3yA9gZOfcxM6/SAnVp7f8E/ALckwPfB7wA7GfG9NfAIynzdgK7aswbZ8bsk9h6XWf7GzW3Yf1mYmY+C+yT7D7gKDAp8/uAL63OicbXG6DfhK0Y/YV9X2V/7Yn5E8BDwGXgS4v7AnBNo1vC1v0K+6p5bV1vWb8vAtuAY8BxGfP3gMda266pXg3mCtsC+z9lYjS/R2P/lYzzf62XUuXm66G169m6Ufve069w/fXvBfAL8D2w0+IeB44D52N8+5jRzWvX01Xb8U6t3aixH03K/DFrX6N9WvsatV6vR229nB/X8wD+YmbXvnb9mPXPWeZ1L8ZgYVvMvOnm7asbWrsRzU9mveN+vWh8n7bWvN8j9rV6fWe9vunmUetWb6f/8wLwaR79SgZ90Z/7VdbXGqXf8wLwfR79mNf6wbyWqOdfre9v8v7M/N6/9VfWe6wP+u6vWe9wP/p91vffjO9D81vW+5rX+sD8lvXeN7/rD87n+f0347uX832V8f3A/Lp6V1nfB+Z3XfWqfX/p9zXf12y9R/P9D6ZkX6V6v/L7Ppvv8zDfd6pXrfm+U71qzfed6hVrvq/UesX6m9bW3zSve9TWW6Wp1mvWfL/T2vqb5nWv+p0Zk/mDls+R9XWv7Z78UuRzjHwO/883D9+Wl9eB6b1H7FukGg8S61q8GvXN9wV+97U40K/g9YgX8gGv9XWv6u5V8Lrf6pGv9z08I0WvI+8A3shY/4/4W03wO7E+rLp78v4f+tqH6e6fXveF3vdXfU+T7v/R6p6wZ+XwR2C7ZN4AtwF7gqfIisUv6bAOmgI/Z53wE2wO0n/M3SfZ6YIdkvwi8wMzreXwE6ZfP+eMyvxP4XFvX6/k8W9frS8A9wMeSPSbZj8D7wGvA62beK8D+mDEnZPy9WrfjFvaWjO9963UaeAr4SveFscwZkb3C6vX4Peb1qfI+N6/C/g7gtO6vWw7Lw/o+K/OfA9+Xz3BqfO9br1P96Fca+6DWhWwX+V7L973M+r40v+X7XmZ9H+X3bUet72XW91F+33Y8Yt8idmX8B9Gv6f06+hW3q6/vjE6W9X0ZfUvWpfe/w9P6X6lD/+L1g+6f+b0f/ZTX3gH79vU7wO/YV37v7tN5P7TvaN/vS7D/A9O7MAs9RofkAAAAAElFTkSuQmCC" alt="Recinto Protegido" class="h-16 w-auto object-contain rounded">
             </div>
             
             <div class="text-center">
@@ -262,7 +260,6 @@
                 return true;
             });
 
-            // Ordenación prioritaria por tiempo offline acumulado de mayor a menor
             filtrados.sort((a, b) => {
                 const statusA = a["Current Status"].toLowerCase();
                 const statusB = b["Current Status"].toLowerCase();
@@ -289,7 +286,6 @@
                 const badgeClass = isOnline ? 'status-online' : 'status-offline';
                 const statusHtml = isOnline ? 'ONLINE' : 'OFFLINE';
 
-                // Render Escritorio
                 const tr = document.createElement('tr');
                 tr.className = "hover:bg-slate-50 dark:hover:bg-slate-800/20 transition text-slate-700 dark:text-slate-200 border-b border-gray-200 dark:border-slate-800";
                 tr.innerHTML = `
@@ -300,7 +296,6 @@
                 `;
                 tbody.appendChild(tr);
 
-                // Render Celular Responsivo Inteligente (Card Layout)
                 const card = document.createElement('div');
                 card.className = "p-4 space-y-2 text-sm text-slate-700 dark:text-slate-300";
                 card.innerHTML = `
@@ -326,9 +321,9 @@
                 const btn = document.getElementById('btn-' + id);
                 if(btn) {
                     if(id === estado) {
-                        btn.className = "flex-1 px-5 py-2 rounded bg-slate-800 text-white transition dark:bg-slate-600";
+                        btn.className = "flex-1 px-4 py-2 rounded bg-slate-800 text-white transition dark:bg-slate-600";
                     } else {
-                        btn.className = "flex-1 px-5 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition";
+                        btn.className = "flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition";
                     }
                 }
             });
@@ -386,13 +381,12 @@
             });
         }
 
-        // Corregido: Nombre unificado sin espacios vacíos
         function exportarPDF() {
             const elemento = document.getElementById('contenido-dashboard');
             const hoy = new Date().toISOString().split('T')[0];
             
             const opciones = {
-                margin:       [8, 8, 8, 8], 
+                margin:       [10, 10, 10, 10], 
                 filename:     `Reporte_Monitoreo_${hoy}.pdf`,
                 image:        { type: 'jpeg', quality: 0.98 },
                 html2canvas:  { scale: 2, useCORS: true, logging: false }, 
