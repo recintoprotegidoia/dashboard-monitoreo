@@ -10,6 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     
     <script>
+        // Compuerta de seguridad
         (function() {
             const claveCorrecta = "RP2026"; 
             let acceso = sessionStorage.getItem("acceso_autorizado");
@@ -48,16 +49,12 @@
     <style>
         body { background-color: #eeebe6; transition: background-color 0.3s, color 0.3s; }
         .dark body { background-color: #000000 !important; color: #ffffff !important; }
-        
         .premium-card { background: white; border-radius: 8px; border: 1px solid #dbdad5; box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: all 0.3s; }
         .dark .premium-card { background: #111111 !important; border-color: #222222 !important; color: #ffffff !important; }
-        
         .status-online { background-color: #e2f5ec; color: #10b981; }
         .dark .status-online { background-color: rgba(16, 185, 129, 0.2) !important; color: #4ade80 !important; }
-        
         .status-offline { background-color: #fde8e8; color: #f05252; }
         .dark .status-offline { background-color: rgba(239, 68, 68, 0.2) !important; color: #f87171 !important; }
-        
         th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; color: #94a3b8; }
         .dark th { color: #94a3b8 !important; border-color: #222222 !important; }
         .dark td { border-color: #222222 !important; }
@@ -65,11 +62,11 @@
 </head>
 <body class="p-2 md:p-6 text-slate-800 dark:text-slate-100">
 
-    <div id="contenido-dashboard" class="max-w-7xl mx-auto space-y-4 md:space-y-6 bg-transparent">
+    <div id="imprimible" class="max-w-7xl mx-auto space-y-4 md:space-y-6">
         
         <div class="premium-card p-4 md:p-6 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex flex-col md:flex-row items-center gap-4 text-center md:text-left">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEb0lEQVR4nO2dS2hcVRSGv9NMo9GmTUpbS6tEUUuLgoKID4pQitAsFCwWXLgQit9KXwVBwYVudOHChQsXLgRxpSgI7UORpkh9gI9S09g2bZqmSZM0M3OduZpLeIe5zST3nHvOnXv+D4bM3Dlz7v9yb86552wKBAKBQCAQCAQCcREHegHngS0S/VfXUuALw6+X9fM4MByg3w7gID6C9AL7gAnZbgf6A+SdB9bI9iswLdt/Abf6mEwPcFiyjUnWCg3wZWAH0Odn6gP0Ascl69Yw/S0Z30l87+P5XwH3S7ZhyV7R8N/SgV6C3w30S/YhM78f+DTAXF/G630F3As8B3QCvwEPmXl9wCHZfyHAZ16wDqArwG9Ww9w+mX8beEwZgE/Z53wX8BwwDLzF0rGvVbY/SvaLwInIeR3Asw3yA9gZOfcxM6/SAnVp7f8E/ALckwPfB7wA7GfG9NfAIynzdgK7aswbZ8bsk9h6XWf7GzW3Yf1mYmY+C+yT7D7gKDAp8/uAL63OicbXG6DfhK0Y/YV9X2V/7Yn5E8BDwGXgS4v7AnBNo1vC1v0K+6p5bV1vWb8vAtuAY8BxGfP3gMda266pXg3mCtsC+z9lYjS/R2P/lYzzf62XUuXm66G169m6Ufve069w/fXvBfAL8D2w0+IeB44D52N8+5jRzWvX01Xb8U6t3aixH03K/DFrX6N9WvsatV6vR229nB/X8wD+YmbXvnb9mPXPWeZ1L8ZgYVvMvOnm7asbWrsRzU9mveN+vWh8n7bWvN8j9rV6fWe9vunmUetWb6f/8wLwaR79SgZ90Z/7VdbXGqXf8wLwfR79mNf6wbyWqOdfre9v8v7M/N6/9VfWe6wP+u6vWe9wP/p91vffjO9D81vW+5rX+sD8lvXeN7/rD87n+f0347uX832V8f3A/Lp6V1nfB+Z3XfWqfX/p9zXf12y9R/P9D6ZkX6V6v/L7Ppvv8zDfd6pXrfm+U71qzfed6hVrvq/UesX6m9bW3zSve9TWW6Wp1mvWfL/T2vqb5nWv+p0Zk/mDls+R9XWv7Z78UuRzjHwO/883D9+Wl9eB6b1H7FukGg8S61q8GvXN9wV+97U40K/g9YgX8gGv9XWv6u5V8Lrf6pGv9z08I0WvI+8A3shY/4/4W03wO7E+rLp78v4f+tqH6e6fXveF3vdXfU+T7v/R6p6wZ+XwR2C7ZN4AtwF7gqfIisUv6bAOmgI/Z53wE2wO0n/M3SfZ6YIdkvwi8wMzreXwE6ZfP+eMyvxP4XFvX6/k8W9frS8A9wMeSPSbZj8D7wGvA62beK8D+mDEnZPy9WrfjFvaWjO9963UaeAr4SveFscwZkb3C6vX4Peb1qfI+N6/C/g7gtO6vWw7Lw/o+K/OfA9+Xz3BqfO9br1P96Fca+6DWhWwX+V7L973M+r40v+X7XmZ9H+X3bUet72XW91F+33Y8Yt8idmX8B9Gv6f06+hW3q6/vjE6W9X0ZfUvWpfe/w9P6X6lD/+L1g+6f+b0f/ZTX3gH79vU7wO/YV37v7tN5P7TvaN/vS7D/A9O7MAs9RofkAAAAAElFTkSuQmCC" alt="Recinto Protegido" class="h-16 w-auto object-contain rounded">
+                <img src="https://raw.githubusercontent.com/recintoprotegidoia/dashboard-monitoreo/main/Logo_NegativoPerfil.png" alt="Recinto Protegido" class="h-16 w-auto object-contain rounded bg-black p-1">
             </div>
             
             <div class="text-center">
@@ -132,8 +129,8 @@
                 <button onclick="filtrarEstado('online')" id="btn-online" class="flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Online</button>
                 <button onclick="filtrarEstado('offline')" id="btn-offline" class="flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Offline</button>
                 
-                <button onclick="exportarPDF()" class="flex items-center justify-center gap-2 px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700 active:scale-95 transition dark:bg-red-700 dark:hover:bg-red-800 w-full sm:w-auto mt-1 sm:mt-0">
-                    <i class="fa-solid fa-file-pdf"></i> Bajar PDF
+                <button onclick="generarPDF()" class="flex items-center justify-center gap-2 px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700 active:scale-95 transition dark:bg-red-700 dark:hover:bg-red-800 w-full sm:w-auto mt-1 sm:mt-0">
+                    <i class="fa-solid fa-file-pdf"></i> Descargar PDF Oficial
                 </button>
             </div>
             <input type="text" id="buscador" class="w-full lg:max-w-xs px-4 py-2 text-sm bg-white dark:bg-slate-900 border border-gray-300 dark:border-slate-700 rounded-lg focus:outline-none focus:border-red-400 dark:focus:border-red-500 shadow-sm text-slate-700 dark:text-white" placeholder="🔍 Buscar cliente por nombre...">
@@ -141,7 +138,7 @@
 
         <div class="premium-card overflow-hidden">
             <div class="w-full">
-                <table class="w-full text-left border-collapse hidden md:table">
+                <table id="tabla-escritorio" class="w-full text-left border-collapse hidden md:table">
                     <thead>
                         <tr class="border-b border-gray-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-xs font-bold uppercase">
                             <th class="p-4">Cliente (Name)</th>
@@ -157,7 +154,7 @@
                     </tbody>
                 </table>
 
-                <div id="vista-movil" class="block md:hidden divide-y divide-gray-200 dark:divide-slate-800">
+                <div id="vista-movil" data-html2pdf-ignore="true" class="block md:hidden divide-y divide-gray-200 dark:divide-slate-800">
                     <p class="p-6 text-center text-gray-400 dark:text-slate-500">Cargando datos optimizados para celular...</p>
                 </div>
             </div>
@@ -273,8 +270,7 @@
             });
 
             if(filtrados.length === 0) {
-                const filaVacia = `<tr><td colspan="4" class="p-6 text-center text-gray-400 dark:text-slate-500">No hay registros que coincidan.</td></tr>`;
-                tbody.innerHTML = filaVacia;
+                tbody.innerHTML = `<tr><td colspan="4" class="p-6 text-center text-gray-400 dark:text-slate-500">No hay registros que coincidan.</td></tr>`;
                 divMovil.innerHTML = `<p class="p-6 text-center text-gray-400 dark:text-slate-500">No hay registros que coincidan.</p>`;
                 return;
             }
@@ -381,19 +377,32 @@
             });
         }
 
-        function exportarPDF() {
-            const elemento = document.getElementById('contenido-dashboard');
+        // LÓGICA DE EXPORTACIÓN PDF REVISADA Y BLINDADA
+        function generarPDF() {
+            // Fuerza a la tabla de escritorio a ser visible en el PDF (incluso desde celulares)
+            document.getElementById('tabla-escritorio').classList.remove('hidden');
+            document.getElementById('tabla-escritorio').classList.add('table');
+            
+            const elemento = document.getElementById('imprimible');
             const hoy = new Date().toISOString().split('T')[0];
             
             const opciones = {
-                margin:       [10, 10, 10, 10], 
-                filename:     `Reporte_Monitoreo_${hoy}.pdf`,
+                margin:       [5, 5, 5, 5], 
+                filename:     `Reporte_Dispositivos_${hoy}.pdf`,
                 image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2, useCORS: true, logging: false }, 
-                jsPDF:        { unit: 'mm', format: 'letter', orientation: 'portrait' } 
+                html2canvas:  { scale: 2, useCORS: true }, 
+                jsPDF:        { unit: 'mm', format: 'legal', orientation: 'portrait' },
+                pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] } // Esto soluciona las páginas en blanco
             };
 
-            html2pdf().set(opciones).from(elemento).save();
+            // Notifica al usuario
+            alert("Generando PDF oficial. Esto puede demorar unos segundos debido a la cantidad de datos.");
+
+            html2pdf().set(opciones).from(elemento).save().then(() => {
+                // Restablece las clases para los celulares
+                document.getElementById('tabla-escritorio').classList.remove('table');
+                document.getElementById('tabla-escritorio').classList.add('hidden', 'md:table');
+            });
         }
 
         if(btnTema) {
@@ -411,6 +420,8 @@
                 }, 350);
             });
         }
+
+        document.getElementById('buscador').addEventListener('input', renderizarTabla);
 
         document.addEventListener('DOMContentLoaded', () => {
             actualizarReloj();
