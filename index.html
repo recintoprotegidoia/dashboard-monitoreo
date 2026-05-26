@@ -354,16 +354,16 @@
                 document.getElementById('update-time').innerText = timeDSS;
                 
                 document.getElementById('cabecera-tabla').innerHTML = `
-                    <th class="p-4">Dispositivo</th>
-                    <th class="p-4">Red</th>
-                    <th class="p-4">Estado de Cámara/NVR</th>
-                    <th class="p-4">Disco</th>
+                    <th class="p-4">Clientes</th>
+                    <th class="p-4">Estado</th>
+                    <th class="p-4">Estado de Cámaras en Dispositivo</th>
+                    <th class="p-4">Estado Disco</th>
                 `;
 
-                document.getElementById('label-kpi-1').innerText = "DISPOSITIVOS ONLINE";
-                document.getElementById('label-kpi-2').innerText = "DISPOSITIVOS CAÍDOS";
-                document.getElementById('label-kpi-3').innerText = "TOTAL PROBLEMAS (ALERTA)";
-                document.getElementById('label-kpi-4').innerText = "TOTAL DISPOSITIVOS";
+                document.getElementById('label-kpi-1').innerText = "EQUIPOS ONLINE";
+                document.getElementById('label-kpi-2').innerText = "EQUIPOS OFFLINE";
+                document.getElementById('label-kpi-3').innerText = "DISPONIBILIDAD";
+                document.getElementById('label-kpi-4').innerText = "TOTAL EQUIPOS";
 
                 document.getElementById('filtros-hcp').classList.add('hidden');
                 document.getElementById('filtros-dss').classList.remove('hidden');
@@ -461,9 +461,11 @@
                     return !isOnline || checkProblemaDisco(d["estado_disco"]) || checkProblemaCanal(d["estado_canal"]);
                 }).length;
 
+                const disponibilidadDSS = total > 0 ? ((onlineDCount / total) * 100).toFixed(1) : 0;
+
                 document.getElementById('kpi-1-val').innerText = onlineDCount;
                 document.getElementById('kpi-offline-val').innerText = offlineDCount;
-                document.getElementById('kpi-3-val').innerText = totalProblemasGeneral; 
+                document.getElementById('kpi-3-val').innerText = disponibilidadDSS + '%';
                 document.getElementById('kpi-total-val').innerText = total;
 
                 let fData = dataDSS.filter(d => {
@@ -511,7 +513,7 @@
                             <span class="px-2 py-0.5 rounded text-[10px] font-black tracking-wide ${bcDev}">${conexionTexto}</span>
                         </div>
                         <div class="text-xs flex flex-col sm:flex-row gap-2 justify-between items-start sm:items-center pt-1 border-t border-gray-100 dark:border-slate-800">
-                            <span class="font-semibold text-slate-600 dark:text-slate-300">Estado de Cámara/NVR: <span class="px-1.5 py-0.5 rounded font-black ${bcChan}">${estadoCanalTexto}</span></span>
+                            <span class="font-semibold text-slate-600 dark:text-slate-300">Estado de Cámaras en Dispositivo: <span class="px-1.5 py-0.5 rounded font-black ${bcChan}">${estadoCanalTexto}</span></span>
                             <span class="font-semibold text-slate-600 dark:text-slate-300">Disco: <span class="px-1.5 py-0.5 rounded font-black ${bcDisk}">${estadoDiscoTexto}</span></span>
                         </div>
                     </div>`;
@@ -555,9 +557,9 @@
                 data: {
                     labels: ['Problemas DAHUA'],
                     datasets: [
-                        { label: 'Dispositivos Offline', data: [offline], backgroundColor: '#ef4444', barPercentage: 0.8 },
+                        { label: 'Equipos Offline', data: [offline], backgroundColor: '#ef4444', barPercentage: 0.8 },
                         { label: 'Problemas de Disco', data: [discosBad], backgroundColor: '#f97316', barPercentage: 0.8 },
-                        { label: 'Estado de Cámara/NVR', data: [chanBad], backgroundColor: '#eab308', barPercentage: 0.8 }
+                        { label: 'Estado de Cámaras en Dispositivo', data: [chanBad], backgroundColor: '#eab308', barPercentage: 0.8 }
                     ]
                 },
                 options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: dark ? '#ffffff' : '#1e293b' } } }, scales: { x: { grid: { color: dark ? '#222222' : '#e2e8f0' }, ticks: { color: dark ? '#94a3b8' : '#64748b' } }, y: { display: false } } }
