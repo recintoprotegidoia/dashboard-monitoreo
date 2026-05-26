@@ -294,22 +294,9 @@
             return Number.isFinite(numero) ? numero : null;
         }
 
-        function evaluarEstadoDiscoGrabacion(valor) {
-            const texto = String(valor ?? '').trim();
-            const numero = obtenerNumeroPorcentaje(texto);
-
-            // Según regla solicitada: si no contiene datos o es igual/mayor que 0, mostrar En Falla.
-            if (texto === '' || texto === '--' || texto.toLowerCase() === 'n/a' || numero === null || numero >= 0) {
-                return {
-                    texto: 'En Falla',
-                    clase: 'bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400'
-                };
-            }
-
-            return {
-                texto: 'Normal',
-                clase: 'status-online'
-            };
+        function formatearPorcentajeReal(numero) {
+            if (!Number.isFinite(numero)) return '';
+            return Number.isInteger(numero) ? String(numero) : String(Number(numero.toFixed(1)));
         }
 
         function evaluarEstadoGrabacion(valor) {
@@ -317,7 +304,35 @@
 
             if (numero !== null && numero >= 80 && numero <= 100) {
                 return {
-                    texto: '100% Normal',
+                    texto: `${formatearPorcentajeReal(numero)}% Normal`,
+                    normal: true,
+                    clase: 'status-online'
+                };
+            }
+
+            if (numero !== null && numero < 80) {
+                return {
+                    texto: `${formatearPorcentajeReal(numero)}% En Falla`,
+                    normal: false,
+                    clase: 'bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400'
+                };
+            }
+
+            return {
+                texto: 'En Falla',
+                normal: false,
+                clase: 'bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400'
+            };
+        }
+
+        function evaluarEstadoDiscoGrabacion(valorInterrupcion, valorIntegridad) {
+            const estadoGrabacion = evaluarEstadoGrabacion(valorIntegridad);
+
+            // Regla corregida: si la grabación está entre 80% y 100%, el disco se muestra Normal.
+            // Si la grabación no trae dato o está bajo 80%, el disco queda En Falla.
+            if (estadoGrabacion.normal) {
+                return {
+                    texto: 'Normal',
                     clase: 'status-online'
                 };
             }
@@ -513,8 +528,8 @@
                     });
 
                     fData.forEach(d => {
-                        const estadoDisco = evaluarEstadoDiscoGrabacion(d["Recording Interruption"]);
                         const estadoGrabacion = evaluarEstadoGrabacion(d["Recording Integrity Rate"]);
+                        const estadoDisco = evaluarEstadoDiscoGrabacion(d["Recording Interruption"], d["Recording Integrity Rate"]);
 
                         htmlTable += `<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/20 transition text-slate-700 dark:text-slate-200 border-b border-gray-200 dark:border-slate-800">
                             <td class="p-4 font-bold text-slate-900 dark:text-white">${d["Name"] || '--'}</td>
