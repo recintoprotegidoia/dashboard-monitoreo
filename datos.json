@@ -1,5 +1,5 @@
 {
-  "ultima_actualizacion": "30-05-2026, 11:57:12 a. m.",
+  "ultima_actualizacion": "01-06-2026, 2:20:57 p. m.",
   "registros": [
     {
       "Name": "C307-1 GESPANIA GRAL JOFRE 56",
@@ -11,19 +11,13 @@
       "Name": "C44-1 MOHICANO SANTA FILOMENA",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 04:19:23",
-      "Total Offline Duration": "00:02:30"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C47-1 MOHICANO SAN GERARDO",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 04:46:24",
-      "Total Offline Duration": "00:02:42"
-    },
-    {
-      "Name": "C97-2 AGRICOLA SAN TELMO PANELES",
-      "Current Status": "Offline",
-      "Latest Offline Time": "2025-10-06 09:16:12",
-      "Total Offline Duration": "24:00:00"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C101-2 CONVET CHILLAN",
@@ -70,14 +64,14 @@
     {
       "Name": "C239-1 DSC",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 22:26:00",
-      "Total Offline Duration": "00:03:17"
+      "Latest Offline Time": "2026-05-31 14:35:32",
+      "Total Offline Duration": "00:09:14"
     },
     {
       "Name": "C239-2 DSC",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-26 08:09:20",
-      "Total Offline Duration": "00:00:00"
+      "Latest Offline Time": "2026-05-31 14:32:31",
+      "Total Offline Duration": "00:12:18"
     },
     {
       "Name": "C52-2 CODEGUA QUINCHO",
@@ -93,9 +87,9 @@
     },
     {
       "Name": "C100-2 CASA STAGNARO",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-04-30 10:05:16",
-      "Total Offline Duration": "00:00:00"
+      "Current Status": "Offline",
+      "Latest Offline Time": "2026-05-31 11:07:10",
+      "Total Offline Duration": "12:52:50"
     },
     {
       "Name": "C106-1 TIMBERCRET",
@@ -149,13 +143,13 @@
       "Name": "C13-3 FILTROS MARTICORENA",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 15:12:39",
-      "Total Offline Duration": "14:45:38"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C13-4 FILTROS MARTICORENA",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 15:12:39",
-      "Total Offline Duration": "15:07:10"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C156-1 ICONICA IP",
@@ -184,8 +178,8 @@
     {
       "Name": "C64-1 CONDOMINIO AGUA DEL CARRIZAL",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-30 01:18:29",
-      "Total Offline Duration": "00:00:00"
+      "Latest Offline Time": "2026-05-31 02:19:13",
+      "Total Offline Duration": "00:59:54"
     },
     {
       "Name": "C101-1 CONVET CHILLAN",
@@ -256,8 +250,8 @@
     {
       "Name": "C254-1 PROTEKNICA QUILICURA IP",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-30 06:45:41",
-      "Total Offline Duration": "03:46:27"
+      "Latest Offline Time": "2026-06-01 13:14:54",
+      "Total Offline Duration": "03:39:04"
     },
     {
       "Name": "C248-1 OIL MALAL ARICA IP",
@@ -274,8 +268,8 @@
     {
       "Name": "C262-1 CAMPERT SOPT",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 10:16:53",
-      "Total Offline Duration": "00:04:07"
+      "Latest Offline Time": "2026-06-01 10:21:10",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C268-2 NOVOPLAST LAMPA TORRE 1",
@@ -376,7 +370,7 @@
     {
       "Name": "C278-2 GESPANIA MAIPU",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-27 07:10:16",
+      "Latest Offline Time": "2026-06-01 07:06:13",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -400,7 +394,7 @@
     {
       "Name": "C295-1 S4P ALONSO OVALLE 1545 CALL CENTER",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-22 14:04:24",
+      "Latest Offline Time": "2026-06-01 09:10:07",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -418,7 +412,7 @@
     {
       "Name": "C320-1 COMERCIAL TTC LT",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-04-17 01:30:40",
+      "Latest Offline Time": "2026-06-01 03:13:38",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -436,8 +430,8 @@
     {
       "Name": "C335-1 ENERSIDE LINARES",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-18 14:47:54",
-      "Total Offline Duration": "00:00:00"
+      "Latest Offline Time": "2026-05-31 01:06:33",
+      "Total Offline Duration": "11:28:27"
     },
     {
       "Name": "C345 CAM VOCEO 1",
@@ -453,15 +447,15 @@
     },
     {
       "Name": "C344 CAM VOCEO 2",
-      "Current Status": "Offline",
-      "Latest Offline Time": "2026-05-30 06:52:58",
-      "Total Offline Duration": "04:39:04"
+      "Current Status": "Online",
+      "Latest Offline Time": "2026-06-01 08:51:25",
+      "Total Offline Duration": "12:36:07"
     },
     {
       "Name": "C344 CAM VOCEO 1",
-      "Current Status": "Offline",
-      "Latest Offline Time": "2026-05-30 06:55:58",
-      "Total Offline Duration": "04:38:52"
+      "Current Status": "Online",
+      "Latest Offline Time": "2026-06-01 08:54:27",
+      "Total Offline Duration": "12:36:08"
     },
     {
       "Name": "C343-1 FERRET CONSTRUY",
@@ -514,8 +508,8 @@
     {
       "Name": "C378-1 AGRFRM SANT TERE",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-30 01:03:02",
-      "Total Offline Duration": "00:00:00"
+      "Latest Offline Time": "2026-05-31 15:05:53",
+      "Total Offline Duration": "00:16:06"
     },
     {
       "Name": "C380-1 FUNDO HIGUERA RG",
@@ -557,25 +551,25 @@
       "Name": "C13-1 FILTROS MARTICORENA",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 15:12:39",
-      "Total Offline Duration": "00:02:02"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C21-1 SAN ANDRES LAS ROSAS",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 12:15:00",
-      "Total Offline Duration": "00:01:42"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C21-2 SAN ANDRES LAS ROSAS",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-30 04:35:29",
-      "Total Offline Duration": "00:00:38"
+      "Latest Offline Time": "2026-05-30 08:38:37",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C21-3 SAN ANDRES LAS ROSAS",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 14:37:06",
-      "Total Offline Duration": "00:00:34"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C10-1 JUAN BAUTISTA DURAN",
@@ -593,24 +587,24 @@
       "Name": "C24-1 EDF PATIO MAYOR",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 10:28:46",
-      "Total Offline Duration": "00:04:44"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C38-1 MARMOTEC",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-21 15:12:49",
+      "Latest Offline Time": "2026-06-01 11:42:21",
       "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C14-1 KUPFER LOS ANGELES",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 02:34:55",
+      "Latest Offline Time": "2026-05-31 02:02:43",
       "Total Offline Duration": "00:00:58"
     },
     {
       "Name": "C14-2 KUPFER LOS ANGELES",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-27 07:34:15",
+      "Latest Offline Time": "2026-05-30 11:31:12",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -622,7 +616,7 @@
     {
       "Name": "C019-1 KUPFER CASTRO",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-28 18:24:46",
+      "Latest Offline Time": "2026-06-01 10:04:17",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -634,13 +628,13 @@
     {
       "Name": "C019-2 KUPFER CASTRO",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-28 08:40:51",
+      "Latest Offline Time": "2026-06-01 10:00:00",
       "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C019-3 KUPFER CASTRO",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-28 15:43:50",
+      "Latest Offline Time": "2026-06-01 08:43:50",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -677,7 +671,7 @@
       "Name": "C039-1 KUPFER RANCAGUA",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 14:53:04",
-      "Total Offline Duration": "00:14:45"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C039-2 KUPFER RANCAGUA",
@@ -701,19 +695,19 @@
       "Name": "C41-1 KUPFER SANTA ROSA",
       "Current Status": "Offline",
       "Latest Offline Time": "2026-05-30 04:21:01",
-      "Total Offline Duration": "23:57:51"
+      "Total Offline Duration": "24:00:00"
     },
     {
       "Name": "C41-2 KUPFER SANTA ROSA",
       "Current Status": "Offline",
       "Latest Offline Time": "2026-05-30 04:21:01",
-      "Total Offline Duration": "23:57:51"
+      "Total Offline Duration": "24:00:00"
     },
     {
       "Name": "C41-3 KUPFER SANTA ROSA",
       "Current Status": "Offline",
       "Latest Offline Time": "2026-05-30 04:21:01",
-      "Total Offline Duration": "23:57:51"
+      "Total Offline Duration": "24:00:00"
     },
     {
       "Name": "C62-1 KUPFER COQUIMBO",
@@ -724,20 +718,20 @@
     {
       "Name": "C37-1 RIGA",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 07:29:35",
-      "Total Offline Duration": "00:03:01"
+      "Latest Offline Time": "2026-06-01 11:37:14",
+      "Total Offline Duration": "00:03:52"
     },
     {
       "Name": "C37-2 RIGA",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 07:29:36",
-      "Total Offline Duration": "00:03:11"
+      "Latest Offline Time": "2026-06-01 07:20:42",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C37-3 RIGA",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 07:29:36",
-      "Total Offline Duration": "00:03:23"
+      "Latest Offline Time": "2026-06-01 07:20:42",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C95-1 KUPFER COPIAPO",
@@ -749,7 +743,7 @@
       "Name": "C95-2 KUPFER COPIAPO",
       "Current Status": "Offline",
       "Latest Offline Time": "2026-05-29 07:36:11",
-      "Total Offline Duration": "16:24:46"
+      "Total Offline Duration": "24:00:00"
     },
     {
       "Name": "C95-4 KUPFER COPIAPO",
@@ -766,7 +760,7 @@
     {
       "Name": "C89-2 KUPFER ANTOFAGASTA",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-15 12:58:40",
+      "Latest Offline Time": "2026-05-30 13:51:11",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -778,43 +772,43 @@
     {
       "Name": "C89-4 KUPFER ANTOFAGASTA",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-27 09:10:14",
+      "Latest Offline Time": "2026-05-30 13:51:12",
       "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C91-1 KUPFER CALAMA",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 11:38:51",
-      "Total Offline Duration": "00:52:30"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C91-2 KUPFER CALAMA",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 11:38:51",
-      "Total Offline Duration": "00:54:21"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C91-3 KUPFER CALAMA",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 11:38:51",
-      "Total Offline Duration": "00:53:48"
+      "Latest Offline Time": "2026-06-01 09:29:49",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C91-4 KUPFER CALAMA",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 11:38:51",
-      "Total Offline Duration": "00:51:27"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C91-5 KUPFER CALAMA",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 11:38:51",
-      "Total Offline Duration": "00:52:48"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C90-1 KUPFER IQUIQUE",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-15 13:51:03",
+      "Latest Offline Time": "2026-06-01 11:54:43",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -832,8 +826,8 @@
     {
       "Name": "C55-4 KUPFER VALDIVIA",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-04-09 22:41:31",
-      "Total Offline Duration": "00:00:00"
+      "Latest Offline Time": "2026-05-31 02:05:17",
+      "Total Offline Duration": "00:01:35"
     },
     {
       "Name": "C55-5 KUPFER VALDIVIA",
@@ -844,20 +838,20 @@
     {
       "Name": "C45-1 KUPFER PUERTO MONTT",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-27 03:19:46",
+      "Latest Offline Time": "2026-06-01 04:25:17",
       "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C45-2 KUPFER PUERTO MONTT",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-30 04:55:55",
+      "Latest Offline Time": "2026-05-30 08:41:10",
       "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C45-3 KUPFER PUERTO MONTT",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 01:29:00",
-      "Total Offline Duration": "00:01:07"
+      "Latest Offline Time": "2026-05-30 14:18:25",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C45-4 KUPFER PUERTO MONTT",
@@ -868,14 +862,14 @@
     {
       "Name": "C45-5 KUPFER PUERTO MONTT",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-27 07:53:17",
+      "Latest Offline Time": "2026-05-30 16:59:08",
       "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C262-2 CAMPER SPOT",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 10:21:05",
-      "Total Offline Duration": "00:00:20"
+      "Latest Offline Time": "2026-06-01 11:46:43",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C94-1 KUPFER PUNTA ARENAS",
@@ -928,7 +922,7 @@
     {
       "Name": "C51-1 KUPFER CONCEPCION",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-28 05:15:00",
+      "Latest Offline Time": "2026-05-30 17:36:14",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -946,13 +940,13 @@
     {
       "Name": "C51-5 KUPFER CONCEPCION",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-23 09:00:35",
+      "Latest Offline Time": "2026-05-30 17:41:51",
       "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C51-2 KUPFER CONCEPCION",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-26 10:12:01",
+      "Latest Offline Time": "2026-05-30 12:15:33",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -1000,8 +994,8 @@
     {
       "Name": "C45-6 KUPFER PUERTO MONTT",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 10:09:06",
-      "Total Offline Duration": "00:00:23"
+      "Latest Offline Time": "2026-06-01 10:29:10",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C45-7 KUPFER PUERTO MONTT",
@@ -1013,19 +1007,19 @@
       "Name": "C51-6 KUPFER CONCEPCION NVR",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 02:32:03",
-      "Total Offline Duration": "00:00:26"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C89-1 KUPFER ANTOFAGASTA",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-28 17:23:46",
+      "Latest Offline Time": "2026-06-01 10:00:00",
       "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C26-1 JARDIN DUENDECITOS IP",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-05-16 08:42:15",
-      "Total Offline Duration": "00:00:00"
+      "Current Status": "Offline",
+      "Latest Offline Time": "2026-05-30 09:22:34",
+      "Total Offline Duration": "24:00:00"
     },
     {
       "Name": "C374-1 LABORATORIO PUERTO MONTT IP",
@@ -1073,7 +1067,7 @@
       "Name": "C250-1 VETERQUIMICA CERRILOS",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 00:24:49",
-      "Total Offline Duration": "00:06:54"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C57-3 LINCOLN BARNECHEA",
@@ -1085,7 +1079,7 @@
       "Name": "C173-1 VETERQUIMICA PTO. MONTT",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 00:24:49",
-      "Total Offline Duration": "00:06:57"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C57-4 LINCOLN BARNECHEA",
@@ -1097,7 +1091,7 @@
       "Name": "C172-1 VETERQUIMICA OSORNO IP",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 00:24:49",
-      "Total Offline Duration": "00:02:05"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C57-5 LINCOLN BARNECHEA",
@@ -1156,14 +1150,14 @@
     {
       "Name": "C433-1 DELTAA STA PAMEL",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-22 12:09:49",
-      "Total Offline Duration": "00:00:00"
+      "Latest Offline Time": "2026-06-01 08:12:50",
+      "Total Offline Duration": "09:22:14"
     },
     {
       "Name": "C60-1 KUPFER VIÑA DEL MAR IP",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-04-30 07:31:38",
-      "Total Offline Duration": "00:00:00"
+      "Latest Offline Time": "2026-05-31 16:24:19",
+      "Total Offline Duration": "01:24:41"
     },
     {
       "Name": "C268-3 NOVOPLAST LAMPA TORRE 2",
@@ -1198,7 +1192,7 @@
     {
       "Name": "C461-1 CONSTRUCTORA AVELLANEDA - LAGUNA NORTE",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-22 15:53:13",
+      "Latest Offline Time": "2026-05-30 07:56:33",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -1216,8 +1210,8 @@
     {
       "Name": "C480-2 CONSTRUCTORA I7 ANTOFAGASTA",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 19:55:08",
-      "Total Offline Duration": "04:04:52"
+      "Latest Offline Time": "2026-05-30 17:45:34",
+      "Total Offline Duration": "24:00:00"
     },
     {
       "Name": "C480-3 CONSTRUCTORA I7 ANTOFAGASTA",
@@ -1288,7 +1282,7 @@
     {
       "Name": "C02-1 CASA DON NICOLAS",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-19 20:08:06",
+      "Latest Offline Time": "2026-06-01 13:29:39",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -1319,7 +1313,7 @@
       "Name": "C530-1 COMERCIAL HECTOR CARRASCO Y CIA IP",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-26 13:06:53",
-      "Total Offline Duration": "18:22:28"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C538-1 CONVENIO RAGA - ATF CUPULRAYEN",
@@ -1366,8 +1360,8 @@
     {
       "Name": "C569-1 CONVENIO RAGA - SANTA ELENA",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-27 19:18:20",
-      "Total Offline Duration": "00:00:00"
+      "Latest Offline Time": "2026-05-31 11:46:23",
+      "Total Offline Duration": "05:26:31"
     },
     {
       "Name": "C571-1 ORION POWER - PLANTA LOS MAITENES",
@@ -1378,13 +1372,13 @@
     {
       "Name": "C574-1 MITTA ALHUE",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 07:05:19",
-      "Total Offline Duration": "00:09:22"
+      "Latest Offline Time": "2026-05-31 16:33:40",
+      "Total Offline Duration": "00:00:08"
     },
     {
       "Name": "C575-1 CONSTRUCTORA FV LA",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-03-17 14:51:59",
+      "Latest Offline Time": "2026-06-01 04:13:47",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -1420,7 +1414,7 @@
     {
       "Name": "C599-1 COVENIO RAGA ATF FRESIAS",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-02 23:12:39",
+      "Latest Offline Time": "2026-05-30 23:28:00",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -1444,7 +1438,7 @@
     {
       "Name": "C603-1 CONDOMINIO NICANOR PLAZA 2475",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-22 20:40:15",
+      "Latest Offline Time": "2026-06-01 03:13:47",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -1468,8 +1462,8 @@
     {
       "Name": "C607-1 CONSTRUCTORA CARRAN LOS ANDES",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 15:53:29",
-      "Total Offline Duration": "00:35:02"
+      "Latest Offline Time": "2026-06-01 11:20:06",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C533-1 APLIK TRADE MARKETING SPA",
@@ -1516,7 +1510,7 @@
     {
       "Name": "C48-1 MOHICANO URRUTIA",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-23 04:07:08",
+      "Latest Offline Time": "2026-06-01 04:33:34",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -1601,7 +1595,7 @@
       "Name": "CA 0093 SPORTLIFE PURISIMA - ANTONIA LOPEZ BELLO 100",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 16:41:50",
-      "Total Offline Duration": "00:06:16"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "CA 0094 SPORTLIFE VITACURA - AV VITACURA 2640",
@@ -1697,7 +1691,7 @@
       "Name": "C628-1 CONVENIO RAGA - ATF PAQUE",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 10:30:16",
-      "Total Offline Duration": "04:35:02"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "CA 0096 SPORTLIFE MALL EDUARDO FREI - PUNTA ARENAS",
@@ -1780,7 +1774,7 @@
     {
       "Name": "C49-3 LINCOLN PORTERIA EL VALLE",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-25 16:56:46",
+      "Latest Offline Time": "2026-06-01 08:29:29",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -1817,13 +1811,13 @@
       "Name": "C517-1 LA CRUZ INMOBILIARIA Y CONSTRUCTORA SA",
       "Current Status": "Offline",
       "Latest Offline Time": "2026-05-29 11:06:52",
-      "Total Offline Duration": "12:53:08"
+      "Total Offline Duration": "24:00:00"
     },
     {
       "Name": "C517-2 LA CRUZ INMOBILIARIA Y CONSTRUCTORA SA",
       "Current Status": "Offline",
       "Latest Offline Time": "2026-05-29 12:03:46",
-      "Total Offline Duration": "11:56:14"
+      "Total Offline Duration": "24:00:00"
     },
     {
       "Name": "C630-1 CONVENIO RAGA ATF POTRERO GRANDE",
@@ -1840,7 +1834,7 @@
     {
       "Name": "C285-1 FUNDO EL RETIRO",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-18 12:08:04",
+      "Latest Offline Time": "2026-06-01 06:33:02",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -1852,14 +1846,14 @@
     {
       "Name": "C633-1 SOCIEDAD CARSA - REST BARILOCHE",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-27 03:20:28",
-      "Total Offline Duration": "00:00:00"
+      "Latest Offline Time": "2026-05-31 13:59:08",
+      "Total Offline Duration": "00:01:09"
     },
     {
       "Name": "C607-2 CONSTRUCTORA CARRAN LOS ANDES 2",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 18:09:02",
-      "Total Offline Duration": "16:57:49"
+      "Current Status": "Offline",
+      "Latest Offline Time": "2026-06-01 12:17:02",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C634-1 CONVENIO RAGA - ATF SAN GERARDO",
@@ -1953,8 +1947,8 @@
     },
     {
       "Name": "C647-1 CONSTRUCTORA OVAL VINA DEL MAR",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-05-24 10:52:08",
+      "Current Status": "Offline",
+      "Latest Offline Time": "2026-06-01 13:08:38",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -1997,7 +1991,7 @@
       "Name": "C13-2 FILTROS MARTICORENA",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 15:12:39",
-      "Total Offline Duration": "14:58:31"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C369-2 TERMINAL FRUTI",
@@ -2008,7 +2002,7 @@
     {
       "Name": "C488-1 DELTA ACTIVOS - PMGD CEFALU - SAN PEDRO",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-16 16:04:26",
+      "Latest Offline Time": "2026-06-01 08:51:31",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -2020,13 +2014,13 @@
     {
       "Name": "C650 KAM PLUS ANTOFAGASTA",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-13 15:09:50",
+      "Latest Offline Time": "2026-06-01 03:16:58",
       "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C136 FUL NEUMATI CONC",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-22 20:43:12",
+      "Latest Offline Time": "2026-06-01 03:10:49",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -2044,8 +2038,8 @@
     {
       "Name": "C54-1 KUPFER TEMUCO",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-03-10 17:13:59",
-      "Total Offline Duration": "00:00:00"
+      "Latest Offline Time": "2026-05-31 16:36:27",
+      "Total Offline Duration": "00:00:37"
     },
     {
       "Name": "CA 0091-2 SPORTLIFE LOS TRAPENSES - LO BARNECHEA",
@@ -2055,21 +2049,21 @@
     },
     {
       "Name": "C555 GILLAUME - SAN JOSE",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-04-13 23:16:31",
+      "Current Status": "Offline",
+      "Latest Offline Time": "2026-06-01 11:40:35",
       "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C660 AVELLANOS SAN CLEMENTE LTDA BODEGA PETROLEO",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-30 04:01:08",
-      "Total Offline Duration": "05:59:22"
+      "Latest Offline Time": "2026-06-01 02:10:19",
+      "Total Offline Duration": "04:59:07"
     },
     {
       "Name": "C408 COMRCIALIZ SANDR",
-      "Current Status": "Offline",
+      "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 15:38:08",
-      "Total Offline Duration": "19:50:26"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C276-1 RIO GRANDE",
@@ -2093,12 +2087,12 @@
       "Name": "C438 COND AVELLANEDA LDQ",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 20:14:40",
-      "Total Offline Duration": "00:00:58"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C436 MAESTRANZA - HIJUELAS",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-28 02:08:54",
+      "Latest Offline Time": "2026-06-01 05:29:41",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -2110,14 +2104,14 @@
     {
       "Name": "C480-1 CONSTRUCTORA I7 ANTOFAG",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 19:52:10",
-      "Total Offline Duration": "04:07:50"
+      "Latest Offline Time": "2026-05-30 17:42:29",
+      "Total Offline Duration": "24:00:00"
     },
     {
       "Name": "C658 AVELLANOS SAN CLEMENTE LTDA ESTACION DE RIEGO 2",
       "Current Status": "Offline",
-      "Latest Offline Time": "2026-05-30 04:34:21",
-      "Total Offline Duration": "11:13:19"
+      "Latest Offline Time": "2026-05-31 01:00:35",
+      "Total Offline Duration": "22:59:25"
     },
     {
       "Name": "C659 AVELLANOS SAN CLEMENTE LTDA BODEGA AGROQUIMICOS",
@@ -2153,7 +2147,7 @@
       "Name": "C668 RISING SUN HUERTO EL MOLINO",
       "Current Status": "Offline",
       "Latest Offline Time": "2026-05-29 07:47:34",
-      "Total Offline Duration": "16:12:26"
+      "Total Offline Duration": "24:00:00"
     },
     {
       "Name": "C669 RISING SUN SAN RAFAEL TENO",
@@ -2212,13 +2206,13 @@
     {
       "Name": "C695-1 EBCO ENERGIA - DON PEDRO 1",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-27 04:51:13",
+      "Latest Offline Time": "2026-06-01 10:34:18",
       "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C695 EBCO ENERGIA - DON PEDRO 2",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-27 04:51:14",
+      "Latest Offline Time": "2026-06-01 10:34:19",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -2243,7 +2237,7 @@
       "Name": "C691 EBCO ENERGÍA - SANTA LUCIA",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 06:23:07",
-      "Total Offline Duration": "09:31:33"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C606-7 CONVENIO RAGA - UCUQUER",
@@ -2260,7 +2254,7 @@
     {
       "Name": "C576 CONVENIO RAGA - ATF CRUZ DE PIEDRA",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-03-22 12:42:04",
+      "Latest Offline Time": "2026-06-01 08:25:02",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -2284,7 +2278,7 @@
     {
       "Name": "C704 DIMAPLAC PANAMERICANA 1",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-25 10:06:46",
+      "Latest Offline Time": "2026-06-01 10:07:05",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -2326,13 +2320,13 @@
     {
       "Name": "C551-1 BRAUX ENERGY - PMGD TABOLANGO",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-21 00:19:33",
+      "Latest Offline Time": "2026-06-01 04:44:27",
       "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C551-2 BRAUX ENERGY - PMGD TOBALONGO",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-21 00:19:33",
+      "Latest Offline Time": "2026-06-01 04:44:27",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -2357,7 +2351,7 @@
       "Name": "C526 CONSTRUCTORA NOVAL OSORNO",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 04:07:15",
-      "Total Offline Duration": "00:06:38"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C329 HIDRAGUA",
@@ -2375,18 +2369,18 @@
       "Name": "C556 GUILLAUME - LA PALMA",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 11:27:40",
-      "Total Offline Duration": "03:43:36"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C454-1 CONSTRUCTORA AVELLANEDA COLINA",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-24 10:06:51",
-      "Total Offline Duration": "10:15:56"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C87-1 INMOVET QUILLOT",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-22 20:40:19",
+      "Latest Offline Time": "2026-06-01 03:07:49",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -2416,8 +2410,8 @@
     {
       "Name": "C715 CONVENIO RAGA - AGROFARMING LA QUESERIA",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-22 17:47:54",
-      "Total Offline Duration": "00:00:00"
+      "Latest Offline Time": "2026-06-01 07:42:35",
+      "Total Offline Duration": "00:08:58"
     },
     {
       "Name": "C703 GDR STRIP CENTER GRAN AVENIDA",
@@ -2500,14 +2494,14 @@
     {
       "Name": "C718 EBCO ENERGÍA - PMGD MALINKE",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-25 10:55:05",
+      "Latest Offline Time": "2026-06-01 10:07:06",
       "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C454-2 CONSTRUCTORA AVELLANEDA COLINA",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-24 10:06:52",
-      "Total Offline Duration": "10:15:49"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C113 SEDUCETE MAN ONL",
@@ -2518,19 +2512,19 @@
     {
       "Name": "C330-1 ICOFEL",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-04 20:03:43",
+      "Latest Offline Time": "2026-06-01 03:16:58",
       "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C277 ORION POWER - PLANTA MAIMALICAN",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-28 01:05:10",
+      "Latest Offline Time": "2026-06-01 01:00:32",
       "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C278-1 GESPANIA MAIPU",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-27 14:52:33",
+      "Latest Offline Time": "2026-06-01 07:03:14",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -2542,7 +2536,7 @@
     {
       "Name": "C278-4 GESPANIA MAIPU",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-27 14:52:39",
+      "Latest Offline Time": "2026-06-01 07:06:26",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -2554,13 +2548,13 @@
     {
       "Name": "C724-1 PEDIDOS YA LA FLORIDA",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-12 09:28:31",
+      "Latest Offline Time": "2026-06-01 03:07:50",
       "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C318 CECINAS VENEZIA",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-25 15:39:34",
+      "Latest Offline Time": "2026-06-01 03:07:51",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -2572,7 +2566,7 @@
     {
       "Name": "C728-1 PEDIDOS YA MAIPU",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-27 08:34:58",
+      "Latest Offline Time": "2026-06-01 03:07:52",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -2584,7 +2578,7 @@
     {
       "Name": "C562 GDR STREET CENTER ÑUÑOA II",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-04-17 01:31:00",
+      "Latest Offline Time": "2026-06-01 03:13:48",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -2619,8 +2613,8 @@
     },
     {
       "Name": "C731 EBCO ENERGÍA - PMGD PERALILLO",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-03-18 13:56:26",
+      "Current Status": "Offline",
+      "Latest Offline Time": "2026-06-01 13:56:36",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -2632,8 +2626,8 @@
     {
       "Name": "C448-1 A3 INV Y RENTA SPA T",
       "Current Status": "Offline",
-      "Latest Offline Time": "2026-05-29 11:52:05",
-      "Total Offline Duration": "12:07:55"
+      "Latest Offline Time": "2026-05-30 19:19:06",
+      "Total Offline Duration": "24:00:00"
     },
     {
       "Name": "C365 ARIDOS LORENA LEON",
@@ -2649,9 +2643,9 @@
     },
     {
       "Name": "C729 CONSTRUCTORA GRANDES CUMBRES",
-      "Current Status": "Offline",
-      "Latest Offline Time": "2026-05-29 15:44:35",
-      "Total Offline Duration": "08:15:25"
+      "Current Status": "Online",
+      "Latest Offline Time": "2026-06-01 09:46:21",
+      "Total Offline Duration": "24:00:00"
     },
     {
       "Name": "C590 CONSTRUCTORA OVAL CARTAGENA",
@@ -2686,14 +2680,14 @@
     {
       "Name": "C738-1 IMATESA",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-22 19:36:48",
+      "Latest Offline Time": "2026-05-30 10:06:31",
       "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C737-1 CONSTRUCTORA BAQUEDANO SUR LTDA",
-      "Current Status": "Offline",
-      "Latest Offline Time": "2026-05-29 20:27:06",
-      "Total Offline Duration": "12:47:40"
+      "Current Status": "Online",
+      "Latest Offline Time": "2026-06-01 10:12:51",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C307-2 GESPANIA GENERAL JOFRE 56",
@@ -2757,9 +2751,9 @@
     },
     {
       "Name": "C607-3 CONSTRUCTORA CARRAN LOS ANDES",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 15:32:24",
-      "Total Offline Duration": "00:21:55"
+      "Current Status": "Offline",
+      "Latest Offline Time": "2026-06-01 11:20:07",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C298-1 CASA SR. JOSE MORA",
@@ -2770,7 +2764,7 @@
     {
       "Name": "C284-1 CASA JOCE KAREN",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-22 20:40:26",
+      "Latest Offline Time": "2026-06-01 03:13:48",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -2794,7 +2788,7 @@
     {
       "Name": "C554 GILLAUME - UVA BLANCA",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-26 01:41:39",
+      "Latest Offline Time": "2026-06-01 10:02:29",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -2824,7 +2818,7 @@
     {
       "Name": "C741-1 PEDIDOS YA QUILPUE",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-25 15:39:35",
+      "Latest Offline Time": "2026-06-01 03:07:52",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -2902,20 +2896,20 @@
     {
       "Name": "C157-1 CASA SR ALI",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-28 01:53:48",
+      "Latest Offline Time": "2026-06-01 05:50:48",
       "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C732-1 CONVENIO RAGA - MONTOLIN PACKING",
-      "Current Status": "Offline",
-      "Latest Offline Time": "2026-05-30 06:19:39",
-      "Total Offline Duration": "03:22:43"
+      "Current Status": "Online",
+      "Latest Offline Time": "2026-05-30 08:02:26",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C732-2 CONVENIO RAGA - MONTOLIN PACKING",
-      "Current Status": "Offline",
-      "Latest Offline Time": "2026-05-30 06:19:39",
-      "Total Offline Duration": "03:22:33"
+      "Current Status": "Online",
+      "Latest Offline Time": "2026-05-30 08:02:26",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C733-1 CONVENIO RAGA - MONTOLIN CAMPO",
@@ -2944,7 +2938,7 @@
     {
       "Name": "C754 EBCO ENERGÍA - PMGD PARAGUAY",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-08 13:28:30",
+      "Latest Offline Time": "2026-06-01 00:12:08",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -2968,8 +2962,8 @@
     {
       "Name": "C755-1 PTZ RISING SUN PROYECTOS B&B COQUIMBO",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-04-30 17:10:51",
-      "Total Offline Duration": "00:00:00"
+      "Latest Offline Time": "2026-05-31 17:09:23",
+      "Total Offline Duration": "00:00:19"
     },
     {
       "Name": "C755-1 DVR RISING SUN PROYECTOS BB COQUIMBO",
@@ -2987,12 +2981,12 @@
       "Name": "C713 CONSTRUCTORA ISIETE PUDAHUEL",
       "Current Status": "Offline",
       "Latest Offline Time": "2026-05-29 13:34:42",
-      "Total Offline Duration": "23:35:18"
+      "Total Offline Duration": "24:00:00"
     },
     {
       "Name": "C531-1 CONVENIO RAGA - AGROFARMING ALTAVISTA",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-05 22:52:42",
+      "Latest Offline Time": "2026-06-01 11:10:52",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -3011,7 +3005,7 @@
       "Name": "C758-2 AGRICOLA SAN CLEMENTE FUNDO EL ALAZAN",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-28 23:05:08",
-      "Total Offline Duration": "01:00:10"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C758-1 AGRICOLA SAN CLEMENTE FUNDO EL ALAZAN",
@@ -3022,26 +3016,26 @@
     {
       "Name": "C307-3 GESPANIA GRAL JOFRE 56",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-25 14:32:37",
+      "Latest Offline Time": "2026-06-01 08:03:15",
       "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C765-1 COMERCIAL TTC QUINTA NORMAL (GQ3790134)",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-05-25 12:11:46",
+      "Current Status": "Offline",
+      "Latest Offline Time": "2026-06-01 09:40:18",
       "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C760-1 CONSTRUCTORA ISIETE REÑACA (GD4736256)",
       "Current Status": "Offline",
-      "Latest Offline Time": "2026-05-29 08:05:52",
-      "Total Offline Duration": "23:51:21"
+      "Latest Offline Time": "2026-06-01 13:17:44",
+      "Total Offline Duration": "23:51:18"
     },
     {
       "Name": "C761 ORION POWER - PLANTA SAN JUAN",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 00:20:31",
-      "Total Offline Duration": "00:54:57"
+      "Current Status": "Offline",
+      "Latest Offline Time": "2026-06-01 13:02:31",
+      "Total Offline Duration": "04:07:18"
     },
     {
       "Name": "C764 POCURO TEM VISTA GOLF (GM9750766)",
@@ -3059,19 +3053,13 @@
       "Name": "C41-3 KUPFER SANTA ROSA 3 (E17338283)",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 12:15:46",
-      "Total Offline Duration": "00:00:23"
-    },
-    {
-      "Name": "C763-1 UNISPAN SPA (GQ4734634)",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 11:51:12",
-      "Total Offline Duration": "00:00:36"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C97-2 AGRICOLA SAN TELMO PFV (F49180430)",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 16:48:06",
-      "Total Offline Duration": "00:00:14"
+      "Total Offline Duration": "00:00:00"
     }
   ],
   "device_online_offline_log": [
@@ -3088,24 +3076,16 @@
       "Address": "mohicano2.dyndns.biz",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 04:19:23",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "00:02:30"
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C47-1 MOHICANO SAN GERARDO",
       "Address": "sangerardo.homelinux.com",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 04:46:24",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "00:02:42"
-    },
-    {
-      "Name": "C97-2 AGRICOLA SAN TELMO PANELES",
-      "Address": "170.239.188.154",
-      "Current Status": "Offline",
-      "Latest Offline Time": "2025-10-06 09:16:12",
       "Total Offline Times": "0",
-      "Total Offline Duration": "24:00:00"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C101-2 CONVET CHILLAN",
@@ -3167,17 +3147,17 @@
       "Name": "C239-1 DSC",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 22:26:00",
+      "Latest Offline Time": "2026-05-31 14:35:32",
       "Total Offline Times": "1",
-      "Total Offline Duration": "00:03:17"
+      "Total Offline Duration": "00:09:14"
     },
     {
       "Name": "C239-2 DSC",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-26 08:09:20",
-      "Total Offline Times": "0",
-      "Total Offline Duration": "00:00:00"
+      "Latest Offline Time": "2026-05-31 14:32:31",
+      "Total Offline Times": "1",
+      "Total Offline Duration": "00:12:18"
     },
     {
       "Name": "C52-2 CODEGUA QUINCHO",
@@ -3198,10 +3178,10 @@
     {
       "Name": "C100-2 CASA STAGNARO",
       "Address": "--",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-04-30 10:05:16",
-      "Total Offline Times": "0",
-      "Total Offline Duration": "00:00:00"
+      "Current Status": "Offline",
+      "Latest Offline Time": "2026-05-31 11:07:10",
+      "Total Offline Times": "1",
+      "Total Offline Duration": "12:52:50"
     },
     {
       "Name": "C106-1 TIMBERCRET",
@@ -3272,16 +3252,16 @@
       "Address": "filtrosmarticorena.dyndns.biz",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 15:12:39",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "14:45:38"
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C13-4 FILTROS MARTICORENA",
       "Address": "filtrosmarticorena.dyndns.biz",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 15:12:39",
-      "Total Offline Times": "2",
-      "Total Offline Duration": "15:07:10"
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C156-1 ICONICA IP",
@@ -3319,9 +3299,9 @@
       "Name": "C64-1 CONDOMINIO AGUA DEL CARRIZAL",
       "Address": "192.168.2.3",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-30 01:18:29",
-      "Total Offline Times": "0",
-      "Total Offline Duration": "00:00:00"
+      "Latest Offline Time": "2026-05-31 02:19:13",
+      "Total Offline Times": "1",
+      "Total Offline Duration": "00:59:54"
     },
     {
       "Name": "C101-1 CONVET CHILLAN",
@@ -3415,9 +3395,9 @@
       "Name": "C254-1 PROTEKNICA QUILICURA IP",
       "Address": "181.212.152.107",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-30 06:45:41",
-      "Total Offline Times": "32",
-      "Total Offline Duration": "03:46:27"
+      "Latest Offline Time": "2026-06-01 13:14:54",
+      "Total Offline Times": "24",
+      "Total Offline Duration": "03:39:04"
     },
     {
       "Name": "C248-1 OIL MALAL ARICA IP",
@@ -3439,9 +3419,9 @@
       "Name": "C262-1 CAMPERT SOPT",
       "Address": "selfbox2rp.dyndns.org",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 10:16:53",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "00:04:07"
+      "Latest Offline Time": "2026-06-01 10:21:10",
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C268-2 NOVOPLAST LAMPA TORRE 1",
@@ -3575,7 +3555,7 @@
       "Name": "C278-2 GESPANIA MAIPU",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-27 07:10:16",
+      "Latest Offline Time": "2026-06-01 07:06:13",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -3607,7 +3587,7 @@
       "Name": "C295-1 S4P ALONSO OVALLE 1545 CALL CENTER",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-22 14:04:24",
+      "Latest Offline Time": "2026-06-01 09:10:07",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -3631,7 +3611,7 @@
       "Name": "C320-1 COMERCIAL TTC LT",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-04-17 01:30:40",
+      "Latest Offline Time": "2026-06-01 03:13:38",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -3655,9 +3635,9 @@
       "Name": "C335-1 ENERSIDE LINARES",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-18 14:47:54",
-      "Total Offline Times": "0",
-      "Total Offline Duration": "00:00:00"
+      "Latest Offline Time": "2026-05-31 01:06:33",
+      "Total Offline Times": "1",
+      "Total Offline Duration": "11:28:27"
     },
     {
       "Name": "C345 CAM VOCEO 1",
@@ -3678,18 +3658,18 @@
     {
       "Name": "C344 CAM VOCEO 2",
       "Address": "--",
-      "Current Status": "Offline",
-      "Latest Offline Time": "2026-05-30 06:52:58",
-      "Total Offline Times": "9",
-      "Total Offline Duration": "04:39:04"
+      "Current Status": "Online",
+      "Latest Offline Time": "2026-06-01 08:51:25",
+      "Total Offline Times": "10",
+      "Total Offline Duration": "12:36:07"
     },
     {
       "Name": "C344 CAM VOCEO 1",
       "Address": "--",
-      "Current Status": "Offline",
-      "Latest Offline Time": "2026-05-30 06:55:58",
-      "Total Offline Times": "9",
-      "Total Offline Duration": "04:38:52"
+      "Current Status": "Online",
+      "Latest Offline Time": "2026-06-01 08:54:27",
+      "Total Offline Times": "10",
+      "Total Offline Duration": "12:36:08"
     },
     {
       "Name": "C343-1 FERRET CONSTRUY",
@@ -3759,9 +3739,9 @@
       "Name": "C378-1 AGRFRM SANT TERE",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-30 01:03:02",
-      "Total Offline Times": "0",
-      "Total Offline Duration": "00:00:00"
+      "Latest Offline Time": "2026-05-31 15:05:53",
+      "Total Offline Times": "4",
+      "Total Offline Duration": "00:16:06"
     },
     {
       "Name": "C380-1 FUNDO HIGUERA RG",
@@ -3816,32 +3796,32 @@
       "Address": "152.231.87.178",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 15:12:39",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "00:02:02"
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C21-1 SAN ANDRES LAS ROSAS",
       "Address": "190.100.22.178",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 12:15:00",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "00:01:42"
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C21-2 SAN ANDRES LAS ROSAS",
       "Address": "190.100.22.178",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-30 04:35:29",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "00:00:38"
+      "Latest Offline Time": "2026-05-30 08:38:37",
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C21-3 SAN ANDRES LAS ROSAS",
       "Address": "190.100.22.178",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 14:37:06",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "00:00:34"
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C10-1 JUAN BAUTISTA DURAN",
@@ -3864,14 +3844,14 @@
       "Address": "patiomayor.dyndns-ip.com",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 10:28:46",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "00:04:44"
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C38-1 MARMOTEC",
       "Address": "marmotec.dyndns.biz",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-21 15:12:49",
+      "Latest Offline Time": "2026-06-01 11:42:21",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -3879,7 +3859,7 @@
       "Name": "C14-1 KUPFER LOS ANGELES",
       "Address": "rprotegido.kupfer.cl",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 02:34:55",
+      "Latest Offline Time": "2026-05-31 02:02:43",
       "Total Offline Times": "1",
       "Total Offline Duration": "00:00:58"
     },
@@ -3887,7 +3867,7 @@
       "Name": "C14-2 KUPFER LOS ANGELES",
       "Address": "rprotegido.kupfer.cl",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-27 07:34:15",
+      "Latest Offline Time": "2026-05-30 11:31:12",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -3903,7 +3883,7 @@
       "Name": "C019-1 KUPFER CASTRO",
       "Address": "rprotegido.kupfer.cl",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-28 18:24:46",
+      "Latest Offline Time": "2026-06-01 10:04:17",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -3919,7 +3899,7 @@
       "Name": "C019-2 KUPFER CASTRO",
       "Address": "rprotegido.kupfer.cl",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-28 08:40:51",
+      "Latest Offline Time": "2026-06-01 10:00:00",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -3927,7 +3907,7 @@
       "Name": "C019-3 KUPFER CASTRO",
       "Address": "rprotegido.kupfer.cl",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-28 15:43:50",
+      "Latest Offline Time": "2026-06-01 08:43:50",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -3976,8 +3956,8 @@
       "Address": "rprotegido.kupfer.cl",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 14:53:04",
-      "Total Offline Times": "13",
-      "Total Offline Duration": "00:14:45"
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C039-2 KUPFER RANCAGUA",
@@ -4008,24 +3988,24 @@
       "Address": "rprotegido.kupfer.cl",
       "Current Status": "Offline",
       "Latest Offline Time": "2026-05-30 04:21:01",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "23:57:51"
+      "Total Offline Times": "0",
+      "Total Offline Duration": "24:00:00"
     },
     {
       "Name": "C41-2 KUPFER SANTA ROSA",
       "Address": "rprotegido.kupfer.cl",
       "Current Status": "Offline",
       "Latest Offline Time": "2026-05-30 04:21:01",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "23:57:51"
+      "Total Offline Times": "0",
+      "Total Offline Duration": "24:00:00"
     },
     {
       "Name": "C41-3 KUPFER SANTA ROSA",
       "Address": "rprotegido.kupfer.cl",
       "Current Status": "Offline",
       "Latest Offline Time": "2026-05-30 04:21:01",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "23:57:51"
+      "Total Offline Times": "0",
+      "Total Offline Duration": "24:00:00"
     },
     {
       "Name": "C62-1 KUPFER COQUIMBO",
@@ -4039,25 +4019,25 @@
       "Name": "C37-1 RIGA",
       "Address": "riga.dyndns.biz",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 07:29:35",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "00:03:01"
+      "Latest Offline Time": "2026-06-01 11:37:14",
+      "Total Offline Times": "5",
+      "Total Offline Duration": "00:03:52"
     },
     {
       "Name": "C37-2 RIGA",
       "Address": "riga.dyndns.biz",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 07:29:36",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "00:03:11"
+      "Latest Offline Time": "2026-06-01 07:20:42",
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C37-3 RIGA",
       "Address": "riga.dyndns.biz",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 07:29:36",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "00:03:23"
+      "Latest Offline Time": "2026-06-01 07:20:42",
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C95-1 KUPFER COPIAPO",
@@ -4072,8 +4052,8 @@
       "Address": "rprotegido.kupfer.cl",
       "Current Status": "Offline",
       "Latest Offline Time": "2026-05-29 07:36:11",
-      "Total Offline Times": "2",
-      "Total Offline Duration": "16:24:46"
+      "Total Offline Times": "0",
+      "Total Offline Duration": "24:00:00"
     },
     {
       "Name": "C95-4 KUPFER COPIAPO",
@@ -4095,7 +4075,7 @@
       "Name": "C89-2 KUPFER ANTOFAGASTA",
       "Address": "rprotegido.kupfer.cl",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-15 12:58:40",
+      "Latest Offline Time": "2026-05-30 13:51:11",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -4111,7 +4091,7 @@
       "Name": "C89-4 KUPFER ANTOFAGASTA",
       "Address": "rprotegido.kupfer.cl",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-27 09:10:14",
+      "Latest Offline Time": "2026-05-30 13:51:12",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -4120,46 +4100,46 @@
       "Address": "rprotegido.kupfer.cl",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 11:38:51",
-      "Total Offline Times": "5",
-      "Total Offline Duration": "00:52:30"
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C91-2 KUPFER CALAMA",
       "Address": "rprotegido.kupfer.cl",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 11:38:51",
-      "Total Offline Times": "3",
-      "Total Offline Duration": "00:54:21"
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C91-3 KUPFER CALAMA",
       "Address": "rprotegido.kupfer.cl",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 11:38:51",
-      "Total Offline Times": "3",
-      "Total Offline Duration": "00:53:48"
+      "Latest Offline Time": "2026-06-01 09:29:49",
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C91-4 KUPFER CALAMA",
       "Address": "rprotegido.kupfer.cl",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 11:38:51",
-      "Total Offline Times": "3",
-      "Total Offline Duration": "00:51:27"
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C91-5 KUPFER CALAMA",
       "Address": "rprotegido.kupfer.cl",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 11:38:51",
-      "Total Offline Times": "4",
-      "Total Offline Duration": "00:52:48"
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C90-1 KUPFER IQUIQUE",
       "Address": "rprotegido.kupfer.cl",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-15 13:51:03",
+      "Latest Offline Time": "2026-06-01 11:54:43",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -4183,9 +4163,9 @@
       "Name": "C55-4 KUPFER VALDIVIA",
       "Address": "rprotegido.kupfer.cl",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-04-09 22:41:31",
-      "Total Offline Times": "0",
-      "Total Offline Duration": "00:00:00"
+      "Latest Offline Time": "2026-05-31 02:05:17",
+      "Total Offline Times": "1",
+      "Total Offline Duration": "00:01:35"
     },
     {
       "Name": "C55-5 KUPFER VALDIVIA",
@@ -4199,7 +4179,7 @@
       "Name": "C45-1 KUPFER PUERTO MONTT",
       "Address": "rprotegido.kupfer.cl",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-27 03:19:46",
+      "Latest Offline Time": "2026-06-01 04:25:17",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -4207,7 +4187,7 @@
       "Name": "C45-2 KUPFER PUERTO MONTT",
       "Address": "rprotegido.kupfer.cl",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-30 04:55:55",
+      "Latest Offline Time": "2026-05-30 08:41:10",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -4215,9 +4195,9 @@
       "Name": "C45-3 KUPFER PUERTO MONTT",
       "Address": "rprotegido.kupfer.cl",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 01:29:00",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "00:01:07"
+      "Latest Offline Time": "2026-05-30 14:18:25",
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C45-4 KUPFER PUERTO MONTT",
@@ -4231,7 +4211,7 @@
       "Name": "C45-5 KUPFER PUERTO MONTT",
       "Address": "rprotegido.kupfer.cl",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-27 07:53:17",
+      "Latest Offline Time": "2026-05-30 16:59:08",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -4239,9 +4219,9 @@
       "Name": "C262-2 CAMPER SPOT",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 10:21:05",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "00:00:20"
+      "Latest Offline Time": "2026-06-01 11:46:43",
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C94-1 KUPFER PUNTA ARENAS",
@@ -4311,7 +4291,7 @@
       "Name": "C51-1 KUPFER CONCEPCION",
       "Address": "rprotegido.kupfer.cl",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-28 05:15:00",
+      "Latest Offline Time": "2026-05-30 17:36:14",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -4335,7 +4315,7 @@
       "Name": "C51-5 KUPFER CONCEPCION",
       "Address": "rprotegido.kupfer.cl",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-23 09:00:35",
+      "Latest Offline Time": "2026-05-30 17:41:51",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -4343,7 +4323,7 @@
       "Name": "C51-2 KUPFER CONCEPCION",
       "Address": "rprotegido.kupfer.cl",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-26 10:12:01",
+      "Latest Offline Time": "2026-05-30 12:15:33",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -4407,9 +4387,9 @@
       "Name": "C45-6 KUPFER PUERTO MONTT",
       "Address": "rprotegido.kupfer.cl",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 10:09:06",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "00:00:23"
+      "Latest Offline Time": "2026-06-01 10:29:10",
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C45-7 KUPFER PUERTO MONTT",
@@ -4424,24 +4404,24 @@
       "Address": "rprotegido.kupfer.cl",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 02:32:03",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "00:00:26"
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C89-1 KUPFER ANTOFAGASTA",
       "Address": "rprotegido.kupfer.cl",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-28 17:23:46",
+      "Latest Offline Time": "2026-06-01 10:00:00",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C26-1 JARDIN DUENDECITOS IP",
       "Address": "200.120.19.193",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-05-16 08:42:15",
+      "Current Status": "Offline",
+      "Latest Offline Time": "2026-05-30 09:22:34",
       "Total Offline Times": "0",
-      "Total Offline Duration": "00:00:00"
+      "Total Offline Duration": "24:00:00"
     },
     {
       "Name": "C374-1 LABORATORIO PUERTO MONTT IP",
@@ -4504,8 +4484,8 @@
       "Address": "190.96.91.12",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 00:24:49",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "00:06:54"
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C57-3 LINCOLN BARNECHEA",
@@ -4520,8 +4500,8 @@
       "Address": "190.96.91.12",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 00:24:49",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "00:06:57"
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C57-4 LINCOLN BARNECHEA",
@@ -4536,8 +4516,8 @@
       "Address": "190.96.91.12",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 00:24:49",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "00:02:05"
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C57-5 LINCOLN BARNECHEA",
@@ -4615,17 +4595,17 @@
       "Name": "C433-1 DELTAA STA PAMEL",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-22 12:09:49",
-      "Total Offline Times": "0",
-      "Total Offline Duration": "00:00:00"
+      "Latest Offline Time": "2026-06-01 08:12:50",
+      "Total Offline Times": "1",
+      "Total Offline Duration": "09:22:14"
     },
     {
       "Name": "C60-1 KUPFER VIÑA DEL MAR IP",
       "Address": "rprotegido.kupfer.cl",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-04-30 07:31:38",
-      "Total Offline Times": "0",
-      "Total Offline Duration": "00:00:00"
+      "Latest Offline Time": "2026-05-31 16:24:19",
+      "Total Offline Times": "1",
+      "Total Offline Duration": "01:24:41"
     },
     {
       "Name": "C268-3 NOVOPLAST LAMPA TORRE 2",
@@ -4671,7 +4651,7 @@
       "Name": "C461-1 CONSTRUCTORA AVELLANEDA - LAGUNA NORTE",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-22 15:53:13",
+      "Latest Offline Time": "2026-05-30 07:56:33",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -4695,9 +4675,9 @@
       "Name": "C480-2 CONSTRUCTORA I7 ANTOFAGASTA",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 19:55:08",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "04:04:52"
+      "Latest Offline Time": "2026-05-30 17:45:34",
+      "Total Offline Times": "0",
+      "Total Offline Duration": "24:00:00"
     },
     {
       "Name": "C480-3 CONSTRUCTORA I7 ANTOFAGASTA",
@@ -4791,7 +4771,7 @@
       "Name": "C02-1 CASA DON NICOLAS",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-19 20:08:06",
+      "Latest Offline Time": "2026-06-01 13:29:39",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -4833,7 +4813,7 @@
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-26 13:06:53",
       "Total Offline Times": "0",
-      "Total Offline Duration": "18:22:28"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C538-1 CONVENIO RAGA - ATF CUPULRAYEN",
@@ -4895,9 +4875,9 @@
       "Name": "C569-1 CONVENIO RAGA - SANTA ELENA",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-27 19:18:20",
-      "Total Offline Times": "0",
-      "Total Offline Duration": "00:00:00"
+      "Latest Offline Time": "2026-05-31 11:46:23",
+      "Total Offline Times": "1",
+      "Total Offline Duration": "05:26:31"
     },
     {
       "Name": "C571-1 ORION POWER - PLANTA LOS MAITENES",
@@ -4911,15 +4891,15 @@
       "Name": "C574-1 MITTA ALHUE",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 07:05:19",
-      "Total Offline Times": "2",
-      "Total Offline Duration": "00:09:22"
+      "Latest Offline Time": "2026-05-31 16:33:40",
+      "Total Offline Times": "1",
+      "Total Offline Duration": "00:00:08"
     },
     {
       "Name": "C575-1 CONSTRUCTORA FV LA",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-03-17 14:51:59",
+      "Latest Offline Time": "2026-06-01 04:13:47",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -4967,7 +4947,7 @@
       "Name": "C599-1 COVENIO RAGA ATF FRESIAS",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-02 23:12:39",
+      "Latest Offline Time": "2026-05-30 23:28:00",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -4999,7 +4979,7 @@
       "Name": "C603-1 CONDOMINIO NICANOR PLAZA 2475",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-22 20:40:15",
+      "Latest Offline Time": "2026-06-01 03:13:47",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -5031,9 +5011,9 @@
       "Name": "C607-1 CONSTRUCTORA CARRAN LOS ANDES",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 15:53:29",
-      "Total Offline Times": "4",
-      "Total Offline Duration": "00:35:02"
+      "Latest Offline Time": "2026-06-01 11:20:06",
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C533-1 APLIK TRADE MARKETING SPA",
@@ -5095,7 +5075,7 @@
       "Name": "C48-1 MOHICANO URRUTIA",
       "Address": "mohicano5.dyndns.org",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-23 04:07:08",
+      "Latest Offline Time": "2026-06-01 04:33:34",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -5208,8 +5188,8 @@
       "Address": "--",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 16:41:50",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "00:06:16"
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "CA 0094 SPORTLIFE VITACURA - AV VITACURA 2640",
@@ -5336,8 +5316,8 @@
       "Address": "--",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 10:30:16",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "04:35:02"
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "CA 0096 SPORTLIFE MALL EDUARDO FREI - PUNTA ARENAS",
@@ -5447,7 +5427,7 @@
       "Name": "C49-3 LINCOLN PORTERIA EL VALLE",
       "Address": "190.196.110.202",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-25 16:56:46",
+      "Latest Offline Time": "2026-06-01 08:29:29",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -5496,16 +5476,16 @@
       "Address": "--",
       "Current Status": "Offline",
       "Latest Offline Time": "2026-05-29 11:06:52",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "12:53:08"
+      "Total Offline Times": "0",
+      "Total Offline Duration": "24:00:00"
     },
     {
       "Name": "C517-2 LA CRUZ INMOBILIARIA Y CONSTRUCTORA SA",
       "Address": "--",
       "Current Status": "Offline",
       "Latest Offline Time": "2026-05-29 12:03:46",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "11:56:14"
+      "Total Offline Times": "0",
+      "Total Offline Duration": "24:00:00"
     },
     {
       "Name": "C630-1 CONVENIO RAGA ATF POTRERO GRANDE",
@@ -5527,7 +5507,7 @@
       "Name": "C285-1 FUNDO EL RETIRO",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-18 12:08:04",
+      "Latest Offline Time": "2026-06-01 06:33:02",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -5543,17 +5523,17 @@
       "Name": "C633-1 SOCIEDAD CARSA - REST BARILOCHE",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-27 03:20:28",
-      "Total Offline Times": "0",
-      "Total Offline Duration": "00:00:00"
+      "Latest Offline Time": "2026-05-31 13:59:08",
+      "Total Offline Times": "1",
+      "Total Offline Duration": "00:01:09"
     },
     {
       "Name": "C607-2 CONSTRUCTORA CARRAN LOS ANDES 2",
       "Address": "--",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 18:09:02",
-      "Total Offline Times": "3",
-      "Total Offline Duration": "16:57:49"
+      "Current Status": "Offline",
+      "Latest Offline Time": "2026-06-01 12:17:02",
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C634-1 CONVENIO RAGA - ATF SAN GERARDO",
@@ -5678,8 +5658,8 @@
     {
       "Name": "C647-1 CONSTRUCTORA OVAL VINA DEL MAR",
       "Address": "--",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-05-24 10:52:08",
+      "Current Status": "Offline",
+      "Latest Offline Time": "2026-06-01 13:08:38",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -5736,8 +5716,8 @@
       "Address": "filtrosmarticorena.dyndns.biz",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 15:12:39",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "14:58:31"
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C369-2 TERMINAL FRUTI",
@@ -5751,7 +5731,7 @@
       "Name": "C488-1 DELTA ACTIVOS - PMGD CEFALU - SAN PEDRO",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-16 16:04:26",
+      "Latest Offline Time": "2026-06-01 08:51:31",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -5767,7 +5747,7 @@
       "Name": "C650 KAM PLUS ANTOFAGASTA",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-13 15:09:50",
+      "Latest Offline Time": "2026-06-01 03:16:58",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -5775,7 +5755,7 @@
       "Name": "C136 FUL NEUMATI CONC",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-22 20:43:12",
+      "Latest Offline Time": "2026-06-01 03:10:49",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -5799,9 +5779,9 @@
       "Name": "C54-1 KUPFER TEMUCO",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-03-10 17:13:59",
-      "Total Offline Times": "0",
-      "Total Offline Duration": "00:00:00"
+      "Latest Offline Time": "2026-05-31 16:36:27",
+      "Total Offline Times": "2",
+      "Total Offline Duration": "00:00:37"
     },
     {
       "Name": "CA 0091-2 SPORTLIFE LOS TRAPENSES - LO BARNECHEA",
@@ -5814,8 +5794,8 @@
     {
       "Name": "C555 GILLAUME - SAN JOSE",
       "Address": "--",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-04-13 23:16:31",
+      "Current Status": "Offline",
+      "Latest Offline Time": "2026-06-01 11:40:35",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -5823,17 +5803,17 @@
       "Name": "C660 AVELLANOS SAN CLEMENTE LTDA BODEGA PETROLEO",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-30 04:01:08",
-      "Total Offline Times": "0",
-      "Total Offline Duration": "05:59:22"
+      "Latest Offline Time": "2026-06-01 02:10:19",
+      "Total Offline Times": "1",
+      "Total Offline Duration": "04:59:07"
     },
     {
       "Name": "C408 COMRCIALIZ SANDR",
       "Address": "--",
-      "Current Status": "Offline",
+      "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 15:38:08",
-      "Total Offline Times": "2",
-      "Total Offline Duration": "19:50:26"
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C276-1 RIO GRANDE",
@@ -5864,14 +5844,14 @@
       "Address": "--",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 20:14:40",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "00:00:58"
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C436 MAESTRANZA - HIJUELAS",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-28 02:08:54",
+      "Latest Offline Time": "2026-06-01 05:29:41",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -5887,17 +5867,17 @@
       "Name": "C480-1 CONSTRUCTORA I7 ANTOFAG",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 19:52:10",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "04:07:50"
+      "Latest Offline Time": "2026-05-30 17:42:29",
+      "Total Offline Times": "0",
+      "Total Offline Duration": "24:00:00"
     },
     {
       "Name": "C658 AVELLANOS SAN CLEMENTE LTDA ESTACION DE RIEGO 2",
       "Address": "--",
       "Current Status": "Offline",
-      "Latest Offline Time": "2026-05-30 04:34:21",
+      "Latest Offline Time": "2026-05-31 01:00:35",
       "Total Offline Times": "1",
-      "Total Offline Duration": "11:13:19"
+      "Total Offline Duration": "22:59:25"
     },
     {
       "Name": "C659 AVELLANOS SAN CLEMENTE LTDA BODEGA AGROQUIMICOS",
@@ -5944,8 +5924,8 @@
       "Address": "--",
       "Current Status": "Offline",
       "Latest Offline Time": "2026-05-29 07:47:34",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "16:12:26"
+      "Total Offline Times": "0",
+      "Total Offline Duration": "24:00:00"
     },
     {
       "Name": "C669 RISING SUN SAN RAFAEL TENO",
@@ -6023,7 +6003,7 @@
       "Name": "C695-1 EBCO ENERGIA - DON PEDRO 1",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-27 04:51:13",
+      "Latest Offline Time": "2026-06-01 10:34:18",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -6031,7 +6011,7 @@
       "Name": "C695 EBCO ENERGIA - DON PEDRO 2",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-27 04:51:14",
+      "Latest Offline Time": "2026-06-01 10:34:19",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -6064,8 +6044,8 @@
       "Address": "--",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 06:23:07",
-      "Total Offline Times": "2",
-      "Total Offline Duration": "09:31:33"
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C606-7 CONVENIO RAGA - UCUQUER",
@@ -6087,7 +6067,7 @@
       "Name": "C576 CONVENIO RAGA - ATF CRUZ DE PIEDRA",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-03-22 12:42:04",
+      "Latest Offline Time": "2026-06-01 08:25:02",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -6119,7 +6099,7 @@
       "Name": "C704 DIMAPLAC PANAMERICANA 1",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-25 10:06:46",
+      "Latest Offline Time": "2026-06-01 10:07:05",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -6175,7 +6155,7 @@
       "Name": "C551-1 BRAUX ENERGY - PMGD TABOLANGO",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-21 00:19:33",
+      "Latest Offline Time": "2026-06-01 04:44:27",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -6183,7 +6163,7 @@
       "Name": "C551-2 BRAUX ENERGY - PMGD TOBALONGO",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-21 00:19:33",
+      "Latest Offline Time": "2026-06-01 04:44:27",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -6216,8 +6196,8 @@
       "Address": "--",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 04:07:15",
-      "Total Offline Times": "2",
-      "Total Offline Duration": "00:06:38"
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C329 HIDRAGUA",
@@ -6240,8 +6220,8 @@
       "Address": "--",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 11:27:40",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "03:43:36"
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C454-1 CONSTRUCTORA AVELLANEDA COLINA",
@@ -6249,13 +6229,13 @@
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-24 10:06:51",
       "Total Offline Times": "0",
-      "Total Offline Duration": "10:15:56"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C87-1 INMOVET QUILLOT",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-22 20:40:19",
+      "Latest Offline Time": "2026-06-01 03:07:49",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -6295,9 +6275,9 @@
       "Name": "C715 CONVENIO RAGA - AGROFARMING LA QUESERIA",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-22 17:47:54",
-      "Total Offline Times": "0",
-      "Total Offline Duration": "00:00:00"
+      "Latest Offline Time": "2026-06-01 07:42:35",
+      "Total Offline Times": "3",
+      "Total Offline Duration": "00:08:58"
     },
     {
       "Name": "C703 GDR STRIP CENTER GRAN AVENIDA",
@@ -6407,7 +6387,7 @@
       "Name": "C718 EBCO ENERGÍA - PMGD MALINKE",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-25 10:55:05",
+      "Latest Offline Time": "2026-06-01 10:07:06",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -6417,7 +6397,7 @@
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-24 10:06:52",
       "Total Offline Times": "0",
-      "Total Offline Duration": "10:15:49"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C113 SEDUCETE MAN ONL",
@@ -6431,7 +6411,7 @@
       "Name": "C330-1 ICOFEL",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-04 20:03:43",
+      "Latest Offline Time": "2026-06-01 03:16:58",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -6439,7 +6419,7 @@
       "Name": "C277 ORION POWER - PLANTA MAIMALICAN",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-28 01:05:10",
+      "Latest Offline Time": "2026-06-01 01:00:32",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -6447,7 +6427,7 @@
       "Name": "C278-1 GESPANIA MAIPU",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-27 14:52:33",
+      "Latest Offline Time": "2026-06-01 07:03:14",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -6463,7 +6443,7 @@
       "Name": "C278-4 GESPANIA MAIPU",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-27 14:52:39",
+      "Latest Offline Time": "2026-06-01 07:06:26",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -6479,7 +6459,7 @@
       "Name": "C724-1 PEDIDOS YA LA FLORIDA",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-12 09:28:31",
+      "Latest Offline Time": "2026-06-01 03:07:50",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -6487,7 +6467,7 @@
       "Name": "C318 CECINAS VENEZIA",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-25 15:39:34",
+      "Latest Offline Time": "2026-06-01 03:07:51",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -6503,7 +6483,7 @@
       "Name": "C728-1 PEDIDOS YA MAIPU",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-27 08:34:58",
+      "Latest Offline Time": "2026-06-01 03:07:52",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -6519,7 +6499,7 @@
       "Name": "C562 GDR STREET CENTER ÑUÑOA II",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-04-17 01:31:00",
+      "Latest Offline Time": "2026-06-01 03:13:48",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -6566,8 +6546,8 @@
     {
       "Name": "C731 EBCO ENERGÍA - PMGD PERALILLO",
       "Address": "--",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-03-18 13:56:26",
+      "Current Status": "Offline",
+      "Latest Offline Time": "2026-06-01 13:56:36",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -6583,9 +6563,9 @@
       "Name": "C448-1 A3 INV Y RENTA SPA T",
       "Address": "--",
       "Current Status": "Offline",
-      "Latest Offline Time": "2026-05-29 11:52:05",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "12:07:55"
+      "Latest Offline Time": "2026-05-30 19:19:06",
+      "Total Offline Times": "0",
+      "Total Offline Duration": "24:00:00"
     },
     {
       "Name": "C365 ARIDOS LORENA LEON",
@@ -6606,10 +6586,10 @@
     {
       "Name": "C729 CONSTRUCTORA GRANDES CUMBRES",
       "Address": "--",
-      "Current Status": "Offline",
-      "Latest Offline Time": "2026-05-29 15:44:35",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "08:15:25"
+      "Current Status": "Online",
+      "Latest Offline Time": "2026-06-01 09:46:21",
+      "Total Offline Times": "0",
+      "Total Offline Duration": "24:00:00"
     },
     {
       "Name": "C590 CONSTRUCTORA OVAL CARTAGENA",
@@ -6655,17 +6635,17 @@
       "Name": "C738-1 IMATESA",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-22 19:36:48",
+      "Latest Offline Time": "2026-05-30 10:06:31",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C737-1 CONSTRUCTORA BAQUEDANO SUR LTDA",
       "Address": "--",
-      "Current Status": "Offline",
-      "Latest Offline Time": "2026-05-29 20:27:06",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "12:47:40"
+      "Current Status": "Online",
+      "Latest Offline Time": "2026-06-01 10:12:51",
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C307-2 GESPANIA GENERAL JOFRE 56",
@@ -6750,10 +6730,10 @@
     {
       "Name": "C607-3 CONSTRUCTORA CARRAN LOS ANDES",
       "Address": "--",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 15:32:24",
-      "Total Offline Times": "2",
-      "Total Offline Duration": "00:21:55"
+      "Current Status": "Offline",
+      "Latest Offline Time": "2026-06-01 11:20:07",
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C298-1 CASA SR. JOSE MORA",
@@ -6767,7 +6747,7 @@
       "Name": "C284-1 CASA JOCE KAREN",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-22 20:40:26",
+      "Latest Offline Time": "2026-06-01 03:13:48",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -6799,7 +6779,7 @@
       "Name": "C554 GILLAUME - UVA BLANCA",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-26 01:41:39",
+      "Latest Offline Time": "2026-06-01 10:02:29",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -6839,7 +6819,7 @@
       "Name": "C741-1 PEDIDOS YA QUILPUE",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-25 15:39:35",
+      "Latest Offline Time": "2026-06-01 03:07:52",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -6943,25 +6923,25 @@
       "Name": "C157-1 CASA SR ALI",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-28 01:53:48",
+      "Latest Offline Time": "2026-06-01 05:50:48",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C732-1 CONVENIO RAGA - MONTOLIN PACKING",
       "Address": "--",
-      "Current Status": "Offline",
-      "Latest Offline Time": "2026-05-30 06:19:39",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "03:22:43"
+      "Current Status": "Online",
+      "Latest Offline Time": "2026-05-30 08:02:26",
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C732-2 CONVENIO RAGA - MONTOLIN PACKING",
       "Address": "--",
-      "Current Status": "Offline",
-      "Latest Offline Time": "2026-05-30 06:19:39",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "03:22:33"
+      "Current Status": "Online",
+      "Latest Offline Time": "2026-05-30 08:02:26",
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C733-1 CONVENIO RAGA - MONTOLIN CAMPO",
@@ -6999,7 +6979,7 @@
       "Name": "C754 EBCO ENERGÍA - PMGD PARAGUAY",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-08 13:28:30",
+      "Latest Offline Time": "2026-06-01 00:12:08",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -7031,9 +7011,9 @@
       "Name": "C755-1 PTZ RISING SUN PROYECTOS B&B COQUIMBO",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-04-30 17:10:51",
-      "Total Offline Times": "0",
-      "Total Offline Duration": "00:00:00"
+      "Latest Offline Time": "2026-05-31 17:09:23",
+      "Total Offline Times": "1",
+      "Total Offline Duration": "00:00:19"
     },
     {
       "Name": "C755-1 DVR RISING SUN PROYECTOS BB COQUIMBO",
@@ -7056,14 +7036,14 @@
       "Address": "--",
       "Current Status": "Offline",
       "Latest Offline Time": "2026-05-29 13:34:42",
-      "Total Offline Times": "3",
-      "Total Offline Duration": "23:35:18"
+      "Total Offline Times": "0",
+      "Total Offline Duration": "24:00:00"
     },
     {
       "Name": "C531-1 CONVENIO RAGA - AGROFARMING ALTAVISTA",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-05 22:52:42",
+      "Latest Offline Time": "2026-06-01 11:10:52",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -7089,7 +7069,7 @@
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-28 23:05:08",
       "Total Offline Times": "0",
-      "Total Offline Duration": "01:00:10"
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C758-1 AGRICOLA SAN CLEMENTE FUNDO EL ALAZAN",
@@ -7103,15 +7083,15 @@
       "Name": "C307-3 GESPANIA GRAL JOFRE 56",
       "Address": "--",
       "Current Status": "Online",
-      "Latest Offline Time": "2026-05-25 14:32:37",
+      "Latest Offline Time": "2026-06-01 08:03:15",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C765-1 COMERCIAL TTC QUINTA NORMAL (GQ3790134)",
       "Address": "--",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-05-25 12:11:46",
+      "Current Status": "Offline",
+      "Latest Offline Time": "2026-06-01 09:40:18",
       "Total Offline Times": "0",
       "Total Offline Duration": "00:00:00"
     },
@@ -7119,17 +7099,17 @@
       "Name": "C760-1 CONSTRUCTORA ISIETE REÑACA (GD4736256)",
       "Address": "--",
       "Current Status": "Offline",
-      "Latest Offline Time": "2026-05-29 08:05:52",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "23:51:21"
+      "Latest Offline Time": "2026-06-01 13:17:44",
+      "Total Offline Times": "2",
+      "Total Offline Duration": "23:51:18"
     },
     {
       "Name": "C761 ORION POWER - PLANTA SAN JUAN",
       "Address": "--",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 00:20:31",
+      "Current Status": "Offline",
+      "Latest Offline Time": "2026-06-01 13:02:31",
       "Total Offline Times": "1",
-      "Total Offline Duration": "00:54:57"
+      "Total Offline Duration": "04:07:18"
     },
     {
       "Name": "C764 POCURO TEM VISTA GOLF (GM9750766)",
@@ -7152,24 +7132,16 @@
       "Address": "--",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 12:15:46",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "00:00:23"
-    },
-    {
-      "Name": "C763-1 UNISPAN SPA (GQ4734634)",
-      "Address": "--",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-05-29 11:51:12",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "00:00:36"
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C97-2 AGRICOLA SAN TELMO PFV (F49180430)",
       "Address": "--",
       "Current Status": "Online",
       "Latest Offline Time": "2026-05-29 16:48:06",
-      "Total Offline Times": "1",
-      "Total Offline Duration": "00:00:14"
+      "Total Offline Times": "0",
+      "Total Offline Duration": "00:00:00"
     }
   ],
   "resource_online_offline_log": [
