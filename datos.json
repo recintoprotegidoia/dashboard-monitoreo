@@ -1,5 +1,5 @@
 {
-  "ultima_actualizacion": "01-06-2026, 2:24:33 p. m.",
+  "ultima_actualizacion": "01-06-2026, 2:35:35 p. m.",
   "registros": [
     {
       "Name": "C307-1 GESPANIA GRAL JOFRE 56",
@@ -37469,19 +37469,6 @@
     }
   ],
   "resource_recording_log": [
-    {
-      "Name": "Video Integrity Rate: Scheduled Recording (Total Duration - Exception Duration) / Total Duration × 100%",
-      "Address": "--",
-      "Area": "--",
-      "Storage Type": "--",
-      "Video Start Time": "--",
-      "Recording End Time": "--",
-      "Video Retention Days": "--",
-      "Total Length": "--",
-      "Total Abnormal Length": "--",
-      "Recording Interruption": "--",
-      "Recording Integrity Rate": "--"
-    },
     {
       "Name": "guarderia",
       "Address": "--",
