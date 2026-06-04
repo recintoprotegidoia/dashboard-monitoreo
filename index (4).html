@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Monitoreo - Recinto Protegido</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script>
+        (function() {
+            const claveCorrecta = "RP2026"; 
+            let acceso = sessionStorage.getItem("acceso_autorizado");
+            
+            while (acceso !== "true") {
+                let intento = prompt("🔒 Acceso Restringido. Ingrese la contraseña de Recinto Protegido:");
+                if (intento === claveCorrecta) {
+                    sessionStorage.setItem("acceso_autorizado", "true");
+                    acceso = "true";
+                } else if (intento === null) {
+                    window.location.href = "https://www.google.com";
+                    break;
+                } else {
+                    alert("❌ Contraseña incorrecta. Intente nuevamente.");
+                }
+            }
+        })();
+    </script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        empresa: { negro: '#000000', rojo: '#ef4444', blanco: '#ffffff' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #eeebe6; transition: background-color 0.3s, color 0.3s; }
+        .dark body { background-color: #000000 !important; color: #ffffff !important; }
+        .premium-card { background: white; border-radius: 8px; border: 1px solid #dbdad5; box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: all 0.3s; }
+        .dark .premium-card { background: #111111 !important; border-color: #222222 !important; color: #ffffff !important; }
+        .status-online { background-color: #e2f5ec; color: #10b981; }
+        .dark .status-online { background-color: rgba(16, 185, 129, 0.2) !important; color: #4ade80 !important; }
+        .status-offline { background-color: #fde8e8; color: #f05252; }
+        .dark .status-offline { background-color: rgba(239, 68, 68, 0.2) !important; color: #f87171 !important; }
+        th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; color: #94a3b8; }
+        .dark th { color: #94a3b8 !important; border-color: #222222 !important; }
+        .dark td { border-color: #222222 !important; }
+
+        .brand-logo-box {
+            background: #0a060b;
+            border: 1px solid rgba(255,255,255,0.10);
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .brand-logo-img {
+            display: block;
+            width: 9rem;
+            height: auto;
+            object-fit: contain;
+        }
+        @media (min-width: 768px) {
+            .brand-logo-img { width: 11rem; }
+        }
+        @media (min-width: 1024px) {
+            .brand-logo-img { width: 13rem; }
+        }
+
+        /* REGLAS PARA PDF PERFECTO NATIVO */
+        @media print {
+            body { background-color: white !important; color: black !important; padding: 0 !important; margin: 0 !important;}
+            .no-print, #buscador, .controles-filtros, #btn-tema, #tabs-navegacion { display: none !important; }
+            .premium-card { border: none !important; box-shadow: none !important; padding: 0 !important; margin-bottom: 20px !important; }
+            table { page-break-after: auto; width: 100% !important; }
+            tr { page-break-inside: avoid; page-break-after: auto; }
+            td, th { padding: 8px !important; font-size: 11px !important; border-bottom: 1px solid #ddd !important; color: black !important; }
+            thead { display: table-header-group; }
+            tfoot { display: table-footer-group; }
+            #vista-movil { display: none !important; }
+            #tabla-escritorio { display: table !important; }
+            .overflow-x-auto, .overflow-hidden { overflow: visible !important; }
+        }
+    </style>
+</head>
+<body class="p-2 md:p-6 text-slate-800 dark:text-slate-100">
+
+    <div id="contenido-dashboard" class="max-w-7xl mx-auto space-y-4 md:space-y-6 bg-transparent">
+        
+        <div class="premium-card p-4 md:p-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="brand-logo-box p-3 rounded-xl flex items-center justify-center shadow-md">
+                <img 
+                    src="./assets/logo-recinto-protegido.png" 
+                    alt="Recinto Protegido" 
+                    class="brand-logo-img"
+                    decoding="async"
+                    fetchpriority="high"
+                    onerror="this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');"
+                >
+                <div class="logo-fallback hidden text-center leading-none">
+                    <div class="text-white text-xl md:text-2xl font-black tracking-tight">RECINTO</div>
+                    <div class="text-red-500 text-xl md:text-2xl font-black tracking-tight">PROTEGIDO</div>
+                    <div class="text-white text-[9px] md:text-[10px] font-bold tracking-[0.35em] mt-1">24 HORAS</div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <p class="text-[10px] md:text-xs uppercase tracking-widest text-gray-400 font-bold dark:text-slate-400">Reporte de Disponibilidad - Servicio 24/7</p>
+                <h1 id="titulo-modulo" class="text-xl md:text-2xl font-black tracking-tight text-slate-900 dark:text-white">ESTADO DISPOSITIVOS HCP - HIKVISION</h1>
+                <p class="text-xs text-gray-500 mt-1 dark:text-slate-400">Cliente: <span class="font-bold text-slate-700 dark:text-slate-200">CMO - CRA</span> · Monitoreado por: <span class="font-bold text-red-500">Recinto Protegido</span></p>
+            </div>
+            
+            <div class="flex items-center gap-4 justify-between w-full md:w-auto">
+                <div class="text-left md:text-right text-xs text-slate-500 space-y-1 dark:text-slate-400">
+                    <div><i class="fa-solid fa-clock text-red-500"></i> Reloj Chile: <span id="reloj-vivo" class="font-mono font-bold text-slate-800 dark:text-white">00:00:00</span></div>
+                    <div class="text-[10px] text-gray-400">Última sincro: <span id="update-time" class="inline-block px-2 py-0.5 rounded bg-slate-100 text-slate-900 font-black dark:bg-slate-800 dark:text-white border border-slate-300 dark:border-slate-700">--</span></div>
+                </div>
+                <button id="btn-tema" class="p-2.5 rounded-full border border-gray-300 hover:bg-gray-100 dark:border-slate-700 dark:hover:bg-slate-800 transition bg-white dark:bg-black">
+                    <i id="icono-tema" class="fa-solid fa-moon text-slate-600 dark:text-slate-300"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="tabs-navegacion" class="flex flex-col sm:flex-row gap-2 border-b border-gray-300 dark:border-slate-700 pb-2">
+            <button id="tab-hcp" onclick="cambiarTab('HCP')" class="flex-1 px-4 py-3 font-black text-sm md:text-base border-b-4 border-red-600 text-slate-900 dark:text-white transition bg-white dark:bg-slate-900 rounded-t-lg shadow-sm">
+                <i class="fa-solid fa-server text-gray-400 mr-2"></i> ESTADO DISPOSITIVOS HCP - HIKVISION
+            </button>
+            <button id="tab-dss" onclick="cambiarTab('DSS')" class="flex-1 px-4 py-3 font-black text-sm md:text-base border-b-4 border-transparent text-gray-500 hover:text-slate-800 dark:hover:text-slate-200 transition bg-gray-50 dark:bg-slate-950 rounded-t-lg shadow-sm">
+                <i class="fa-solid fa-server text-gray-400 mr-2"></i> ESTADO DISPOSITIVOS DSS - DAHUA
+            </button>
+        </div>
+
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+            <div class="premium-card p-4 md:p-6 text-center space-y-1 md:space-y-2">
+                <p id="label-kpi-1" class="text-[10px] md:text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">EQUIPOS ONLINE</p>
+                <div class="text-2xl md:text-4xl font-black text-emerald-500 dark:text-emerald-400" id="kpi-1-val">-</div>
+            </div>
+            <div class="premium-card p-4 md:p-6 text-center space-y-1 md:space-y-2 border-t-4 border-red-500 dark:border-red-500">
+                <p id="label-kpi-2" class="text-[10px] md:text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">EQUIPOS OFFLINE</p>
+                <div class="text-2xl md:text-4xl font-black text-red-500" id="kpi-offline-val">-</div>
+            </div>
+            <div class="premium-card p-4 md:p-6 text-center space-y-1 md:space-y-2">
+                <p id="label-kpi-3" class="text-[10px] md:text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">DISPONIBILIDAD</p>
+                <div class="text-2xl md:text-4xl font-black text-slate-800 dark:text-white" id="kpi-3-val">- %</div>
+            </div>
+            <div class="premium-card p-4 md:p-6 text-center space-y-1 md:space-y-2">
+                <p id="label-kpi-4" class="text-[10px] md:text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">TOTAL EQUIPOS</p>
+                <div class="text-2xl md:text-4xl font-black text-sky-500" id="kpi-total-val">-</div>
+            </div>
+        </div>
+
+        <div id="kpis-hcp-camaras" class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+            <div class="premium-card p-4 md:p-6 text-center space-y-1 md:space-y-2">
+                <p class="text-[10px] md:text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">CÁMARAS ONLINE</p>
+                <div class="text-2xl md:text-4xl font-black text-emerald-500 dark:text-emerald-400" id="kpi-cam-online-val">-</div>
+            </div>
+            <div class="premium-card p-4 md:p-6 text-center space-y-1 md:space-y-2 border-t-4 border-red-500 dark:border-red-500">
+                <p class="text-[10px] md:text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">CÁMARAS OFFLINE</p>
+                <div class="text-2xl md:text-4xl font-black text-red-500" id="kpi-cam-offline-val">-</div>
+            </div>
+            <div class="premium-card p-4 md:p-6 text-center space-y-1 md:space-y-2">
+                <p class="text-[10px] md:text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">TOTAL CÁMARAS</p>
+                <div class="text-2xl md:text-4xl font-black text-sky-500" id="kpi-cam-total-val">-</div>
+            </div>
+            <div class="premium-card p-4 md:p-6 text-center space-y-1 md:space-y-2">
+                <p class="text-[10px] md:text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">DISPONIBILIDAD CÁMARAS</p>
+                <div class="text-2xl md:text-4xl font-black text-slate-800 dark:text-white" id="kpi-cam-disponibilidad-val">- %</div>
+            </div>
+        </div>
+
+        <div class="premium-card p-4 md:p-6 no-print">
+            <h3 class="text-xs md:text-sm font-bold text-slate-700 dark:text-slate-300 mb-3 uppercase tracking-wider">
+                <i class="fa-solid fa-chart-pie text-slate-400 mr-1"></i> Balance de Infraestructura
+            </h3>
+            <div class="h-24 md:h-28 w-full">
+                <canvas id="graficoComparativo"></canvas>
+            </div>
+        </div>
+
+        <div class="controles-filtros flex flex-col lg:flex-row gap-3 justify-between items-center">
+            
+            <div id="filtros-hcp" class="flex flex-wrap bg-white dark:bg-slate-900 p-1 rounded-lg border border-gray-300 dark:border-slate-700 gap-1 text-xs font-bold w-full lg:w-auto shadow-sm">
+                <button onclick="filtrarEstadoHCP('todos')" id="btn-hcp-todos" class="flex-1 px-4 py-2 rounded bg-slate-800 text-white transition dark:bg-slate-600">Dispositivos</button>
+                <button onclick="filtrarEstadoHCP('online')" id="btn-hcp-online" class="flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Online</button>
+                <button onclick="filtrarEstadoHCP('offline')" id="btn-hcp-offline" class="flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Offline</button>
+                <button onclick="filtrarEstadoHCP('recursos')" id="btn-hcp-recursos" class="flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Estado de Cámara</button>
+                <button onclick="filtrarEstadoHCP('grabaciones')" id="btn-hcp-grabaciones" class="flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Estado de Grabaciones</button>
+            </div>
+
+            <div id="filtros-dss" class="flex flex-wrap bg-white dark:bg-slate-900 p-1 rounded-lg border border-gray-300 dark:border-slate-700 gap-1 text-xs font-bold w-full lg:w-auto shadow-sm hidden">
+                <button onclick="filtrarEstadoDSS('todos')" id="btn-dss-todos" class="flex-1 px-4 py-2 rounded bg-slate-800 text-white transition dark:bg-slate-600">Dispositivos</button>
+                <button onclick="filtrarEstadoDSS('online')" id="btn-dss-online" class="flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Online</button>
+                <button onclick="filtrarEstadoDSS('offline')" id="btn-dss-offline" class="flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Offline</button>
+                <button onclick="filtrarEstadoDSS('discos')" id="btn-dss-discos" class="flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Estado de Disco</button>
+                <button onclick="filtrarEstadoDSS('canales')" id="btn-dss-canales" class="flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Estado de Cámara/NVR</button>
+            </div>
+
+            <div class="flex gap-2 w-full lg:w-auto">
+                <input type="text" id="buscador" class="w-full lg:max-w-xs px-4 py-2 text-sm bg-white dark:bg-slate-900 border border-gray-300 dark:border-slate-700 rounded-lg focus:outline-none focus:border-red-400 dark:focus:border-red-500 shadow-sm text-slate-700 dark:text-white" placeholder="🔍 Buscar dispositivo...">
+                <button onclick="window.print()" class="flex items-center justify-center gap-2 px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700 active:scale-95 transition dark:bg-red-700 dark:hover:bg-red-800 whitespace-nowrap">
+                    <i class="fa-solid fa-file-pdf"></i> PDF
+                </button>
+            </div>
+        </div>
+
+        <div class="premium-card overflow-hidden">
+            <div class="w-full overflow-x-auto">
+                <table id="tabla-escritorio" class="w-full text-left border-collapse hidden md:table">
+                    <thead>
+                        <tr id="cabecera-tabla" class="border-b border-gray-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-xs font-bold uppercase">
+                            </tr>
+                    </thead>
+                    <tbody id="tabla-datos" class="divide-y divide-gray-200 dark:divide-slate-700 font-medium text-sm">
+                        <tr><td colspan="5" class="p-8 text-center text-gray-400 dark:text-slate-500"><i class="fa-solid fa-spinner fa-spin"></i> Sincronizando repositorios...</td></tr>
+                    </tbody>
+                </table>
+
+                <div id="vista-movil" class="block md:hidden divide-y divide-gray-200 dark:divide-slate-800">
+                    <p class="p-6 text-center text-gray-400 dark:text-slate-500"><i class="fa-solid fa-spinner fa-spin"></i> Cargando...</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let tabActual = 'HCP'; 
+        let dataHCP = [];
+        let dataHCPDevice = [];
+        let dataHCPResource = [];
+        let dataHCPRecording = [];
+        let dataDSS = [];
+        let resumenDSS = {};
+        let canalesDSS = [];
+        let discosDSS = [];
+        let timeHCP = '--';
+        let timeDSS = '--';
+        let filtroHCP = 'todos';
+        let filtroDSS = 'todos'; 
+        let chartInstancia = null;
+
+        function actualizarReloj() {
+            const ahora = new Date();
+            const elReloj = document.getElementById('reloj-vivo');
+            if (elReloj) {
+                const horaChile = new Intl.DateTimeFormat('es-CL', {
+                    timeZone: 'America/Santiago',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: false
+                }).format(ahora);
+                elReloj.innerText = `${horaChile} America/Santiago`;
+            }
+        }
+        setInterval(actualizarReloj, 1000);
+
+
+        function formatearFechaSincroChile(valor) {
+            if (!valor || valor === '--') return '--';
+            const texto = String(valor).trim();
+            const match = texto.match(/(\d{1,2})-(\d{1,2})-(\d{4}),?\s*(\d{1,2}):(\d{2})(?::(\d{2}))?\s*(a\.?\s*m\.?|p\.?\s*m\.?)?/i);
+            if (match) {
+                let [, dd, mm, yyyy, hh, min, sec, meridiano] = match;
+                let hora = parseInt(hh, 10);
+                const mer = (meridiano || '').toLowerCase().replace(/\s/g, '');
+                if (mer.includes('p') && hora < 12) hora += 12;
+                if (mer.includes('a') && hora === 12) hora = 0;
+                return `${dd.padStart(2, '0')}-${mm.padStart(2, '0')}-${yyyy} ${String(hora).padStart(2, '0')}:${min}:${(sec || '00').padStart(2, '0')} America/Santiago`;
+            }
+            const fecha = new Date(texto);
+            if (!Number.isNaN(fecha.getTime())) {
+                const partes = new Intl.DateTimeFormat('es-CL', {
+                    timeZone: 'America/Santiago',
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: false
+                }).formatToParts(fecha).reduce((acc, p) => {
+                    acc[p.type] = p.value;
+                    return acc;
+                }, {});
+                return `${partes.day}-${partes.month}-${partes.year} ${partes.hour}:${partes.minute}:${partes.second} America/Santiago`;
+            }
+            return `${texto} America/Santiago`;
+        }
+
+        function actualizarTextoSincro(valor) {
+            const el = document.getElementById('update-time');
+            if (el) el.innerText = formatearFechaSincroChile(valor);
+        }
+
+        function actualizarKpisCamarasHCP() {
+            const totalCamaras = dataHCPResource.length;
+            const camarasOnline = dataHCPResource.filter(d => String(d["Current Status"] || '').toLowerCase().includes('online')).length;
+            const camarasOffline = Math.max(totalCamaras - camarasOnline, 0);
+            const disponibilidadCamaras = totalCamaras > 0 ? ((camarasOnline / totalCamaras) * 100).toFixed(1) : '0.0';
+
+            const onlineEl = document.getElementById('kpi-cam-online-val');
+            const offlineEl = document.getElementById('kpi-cam-offline-val');
+            const totalEl = document.getElementById('kpi-cam-total-val');
+            const dispEl = document.getElementById('kpi-cam-disponibilidad-val');
+
+            if (onlineEl) onlineEl.innerText = camarasOnline;
+            if (offlineEl) offlineEl.innerText = camarasOffline;
+            if (totalEl) totalEl.innerText = totalCamaras;
+            if (dispEl) dispEl.innerText = `${disponibilidadCamaras}%`;
+        }
+
+        const btnTema = document.getElementById('btn-tema');
+        const iconoTema = document.getElementById('icono-tema');
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            if(iconoTema) iconoTema.className = "fa-solid fa-sun text-white";
+        }
+
+        btnTema.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                iconoTema.className = "fa-solid fa-moon text-slate-600";
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                iconoTema.className = "fa-solid fa-sun text-white";
+            }
+            setTimeout(() => renderizarTablaYGrafico(), 350);
+        });
+
+        // REGLAS DAHUA
+        function checkProblemaCanal(status) {
+            if(!status) return false;
+            let s = status.toLowerCase();
+            if(s.includes('abnormal') || s.includes('offline')) return true;
+            if(s.includes('/')) {
+                let p = s.split('/');
+                if(p.length === 2 && parseInt(p[0]) < parseInt(p[1])) return true;
+            }
+            return false;
+        }
+        function checkProblemaDisco(status) {
+            if(!status) return false;
+            let s = String(status).toLowerCase().trim();
+            if(s === '' || s === '-' || s === '--' || s === 'n/a') return false;
+            return s !== 'normal' && s !== 'online';
+        }
+        function duracionASegundos(str) {
+            if (!str || str === "0" || str === "00:00:00" || str.includes('--')) return 0;
+            const p = str.split(':');
+            if (p.length !== 3) return 0;
+            return (parseInt(p[0]) * 3600) + (parseInt(p[1]) * 60) + parseInt(p[2]);
+        }
+
+        function formatearEstadoDSS(valor) {
+            if (valor === null || valor === undefined || valor === '') return 'OK';
+            return String(valor)
+                .replace(/abnormal/gi, 'En falla')
+                .replace(/\bnormal\b/gi, 'Normal')
+                .replace(/\boffline\b/gi, 'Offline')
+                .replace(/\bonline\b/gi, 'Online');
+        }
+
+
+        function obtenerNumeroPorcentaje(valor) {
+            if (valor === null || valor === undefined) return null;
+            const texto = String(valor).trim().replace('%', '').replace(',', '.');
+            if (texto === '' || texto === '--' || texto.toLowerCase() === 'n/a') return null;
+            const numero = Number(texto);
+            return Number.isFinite(numero) ? numero : null;
+        }
+
+        function formatearPorcentajeReal(numero) {
+            if (!Number.isFinite(numero)) return '';
+            return Number.isInteger(numero) ? String(numero) : String(Number(numero.toFixed(1)));
+        }
+
+        function evaluarEstadoGrabacion(valor) {
+            const numero = obtenerNumeroPorcentaje(valor);
+            const claseFalla = 'status-offline';
+
+            // Regla solicitada:
+            // 1% a 100% = Normal, respetando el porcentaje real del archivo.
+            // 0% o sin información = En Falla en rojo.
+            if (numero !== null && numero > 0 && numero <= 100) {
+                return {
+                    texto: `${formatearPorcentajeReal(numero)}% Normal`,
+                    normal: true,
+                    clase: 'status-online',
+                    porcentaje: numero
+                };
+            }
+
+            if (numero !== null && numero <= 0) {
+                return {
+                    texto: `${formatearPorcentajeReal(numero)}% En Falla`,
+                    normal: false,
+                    clase: claseFalla,
+                    porcentaje: numero
+                };
+            }
+
+            return {
+                texto: 'Sin datos - En Falla',
+                normal: false,
+                clase: claseFalla,
+                porcentaje: null
+            };
+        }
+
+        function evaluarEstadoDiscoGrabacion(valorInterrupcion, valorIntegridad) {
+            const estadoGrabacion = evaluarEstadoGrabacion(valorIntegridad);
+
+            // Si existe grabación entre 1% y 100%, el disco queda Normal.
+            // Si la grabación es 0% o no trae datos, el disco queda En Falla.
+            if (estadoGrabacion.normal) {
+                return {
+                    texto: 'Normal',
+                    clase: 'status-online'
+                };
+            }
+
+            return {
+                texto: 'En Falla',
+                clase: 'status-offline'
+            };
+        }
+
+        // CARGA INTELIGENTE DESDE REPOSITORIOS
+        async function cargarTodo() {
+            try {
+                // Hikvision
+                const resHCP = await fetch('./datos.json?v=' + Date.now(), { cache: 'no-store' }).catch(()=>null);
+                if(resHCP && resHCP.ok) {
+                    const jsonHCP = await resHCP.json();
+                    dataHCPDevice = jsonHCP.device_online_offline_log || jsonHCP.registros || [];
+                    dataHCPResource = jsonHCP.resource_online_offline_log || [];
+                    dataHCPRecording = jsonHCP.resource_recording_log || [];
+                    dataHCP = jsonHCP.registros || dataHCPDevice || [];
+                    timeHCP = jsonHCP.ultima_actualizacion || '--';
+                }
+                
+                // Dahua
+                const resDSS = await fetch('./datos_dss_dahua.json?v=' + Date.now(), { cache: 'no-store' }).catch(()=>null);
+                if(resDSS && resDSS.ok) {
+                    const jsonDSS = await resDSS.json();
+                    dataDSS = jsonDSS.dispositivos || jsonDSS.Dispositivos || jsonDSS.registros || [];
+                    canalesDSS = jsonDSS.canales || [];
+                    discosDSS = jsonDSS.discos || [];
+                    resumenDSS = jsonDSS.resumen || {};
+                    timeDSS = jsonDSS.ultima_actualizacion || '--';
+                    console.log('[DSS DAHUA] cargado:', {
+                        dispositivos: dataDSS.length,
+                        canales: canalesDSS.length,
+                        discos: discosDSS.length,
+                        resumen: resumenDSS
+                    });
+                } else {
+                    console.error('No se pudo cargar datos_dss_dahua.json', resDSS && resDSS.status);
+                }
+
+                cambiarTab(tabActual || 'HCP');
+            } catch(e) {
+                console.error("Error global de sincronización:", e);
+            }
+        }
+
+        function cambiarTab(tab) {
+            tabActual = tab;
+            document.getElementById('buscador').value = '';
+
+            const btnHCP = document.getElementById('tab-hcp');
+            const btnDSS = document.getElementById('tab-dss');
+
+            if(tab === 'HCP') {
+                btnHCP.className = "flex-1 px-4 py-3 font-black text-sm md:text-base border-b-4 border-red-600 text-slate-900 dark:text-white transition bg-white dark:bg-slate-900 rounded-t-lg shadow-sm";
+                btnDSS.className = "flex-1 px-4 py-3 font-black text-sm md:text-base border-b-4 border-transparent text-gray-500 hover:text-slate-800 dark:hover:text-slate-200 transition bg-gray-50 dark:bg-slate-950 rounded-t-lg shadow-sm opacity-70";
+                
+                document.getElementById('titulo-modulo').innerText = "ESTADO DISPOSITIVOS HCP - HIKVISION";
+                actualizarTextoSincro(timeHCP);
+                
+                document.getElementById('cabecera-tabla').innerHTML = `
+                    <th class="p-4">Cliente</th>
+                    <th class="p-4">Estado</th>
+                    <th class="p-4">Última Desconexión</th>
+                    <th class="p-4">Tiempo Total Fuera de Línea</th>
+                `;
+
+                document.getElementById('label-kpi-1').innerText = "EQUIPOS ONLINE";
+                document.getElementById('label-kpi-2').innerText = "EQUIPOS OFFLINE";
+                document.getElementById('label-kpi-3').innerText = "DISPONIBILIDAD";
+                document.getElementById('label-kpi-4').innerText = "TOTAL EQUIPOS";
+
+                document.getElementById('filtros-hcp').classList.remove('hidden');
+                document.getElementById('filtros-dss').classList.add('hidden');
+                document.getElementById('kpis-hcp-camaras').classList.remove('hidden');
+                
+                filtrarEstadoHCP(filtroHCP);
+            } else {
+                btnDSS.className = "flex-1 px-4 py-3 font-black text-sm md:text-base border-b-4 border-red-600 text-slate-900 dark:text-white transition bg-white dark:bg-slate-900 rounded-t-lg shadow-sm";
+                btnHCP.className = "flex-1 px-4 py-3 font-black text-sm md:text-base border-b-4 border-transparent text-gray-500 hover:text-slate-800 dark:hover:text-slate-200 transition bg-gray-50 dark:bg-slate-950 rounded-t-lg shadow-sm opacity-70";
+                
+                document.getElementById('titulo-modulo').innerText = "ESTADO DISPOSITIVOS DSS - DAHUA";
+                actualizarTextoSincro(timeDSS);
+                
+                document.getElementById('cabecera-tabla').innerHTML = `
+                    <th class="p-4">Clientes</th>
+                    <th class="p-4">Estado</th>
+                    <th class="p-4">Estado de Cámaras en Dispositivo</th>
+                    <th class="p-4">Estado Disco</th>
+                `;
+
+                document.getElementById('label-kpi-1').innerText = "EQUIPOS ONLINE";
+                document.getElementById('label-kpi-2').innerText = "EQUIPOS OFFLINE";
+                document.getElementById('label-kpi-3').innerText = "DISPONIBILIDAD";
+                document.getElementById('label-kpi-4').innerText = "TOTAL EQUIPOS";
+
+                document.getElementById('filtros-hcp').classList.add('hidden');
+                document.getElementById('filtros-dss').classList.remove('hidden');
+                document.getElementById('kpis-hcp-camaras').classList.add('hidden');
+                
+                filtrarEstadoDSS(filtroDSS);
+            }
+        }
+
+        function filtrarEstadoHCP(estado) {
+            filtroHCP = estado;
+            ['todos', 'online', 'offline', 'recursos', 'grabaciones'].forEach(id => {
+                const b = document.getElementById('btn-hcp-' + id);
+                b.className = id === estado ? "flex-1 px-4 py-2 rounded bg-slate-800 text-white transition dark:bg-slate-600" : "flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition";
+            });
+            renderizarTablaYGrafico();
+        }
+
+        function filtrarEstadoDSS(estado) {
+            filtroDSS = estado;
+            ['todos', 'online', 'offline', 'discos', 'canales'].forEach(id => {
+                const b = document.getElementById('btn-dss-' + id);
+                if(b) b.className = id === estado ? "flex-1 px-4 py-2 rounded bg-slate-800 text-white transition dark:bg-slate-600" : "flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition";
+            });
+            renderizarTablaYGrafico();
+        }
+
+        function renderizarTablaYGrafico() {
+            const tbody = document.getElementById('tabla-datos');
+            const divMovil = document.getElementById('vista-movil');
+            const term = document.getElementById('buscador').value.toLowerCase().trim();
+            
+            let htmlTable = '';
+            let htmlMovil = '';
+
+            if (tabActual === 'HCP') {
+                const dispositivos = dataHCPDevice.length ? dataHCPDevice : dataHCP;
+                const total = dispositivos.length;
+                const onlineCount = dispositivos.filter(d => String(d["Current Status"] || "").toLowerCase().includes('online')).length;
+                const offlineCount = total - onlineCount;
+                const pct = total > 0 ? ((onlineCount / total) * 100).toFixed(1) : 0;
+
+                document.getElementById('kpi-1-val').innerText = onlineCount;
+                document.getElementById('kpi-offline-val').innerText = offlineCount;
+                document.getElementById('kpi-3-val').innerText = pct + '%';
+                document.getElementById('kpi-total-val').innerText = total;
+                actualizarKpisCamarasHCP();
+
+                if (filtroHCP === 'recursos') {
+                    document.getElementById('cabecera-tabla').innerHTML = `
+                        <th class="p-4">Recurso / Cámara</th>
+                        <th class="p-4">Cliente / Área</th>
+                        <th class="p-4">Estado</th>
+                        <th class="p-4">Tiempo Total Fuera de Línea</th>
+                    `;
+
+                    let fData = dataHCPResource.filter(d => {
+                        const texto = `${d["Name"] || ''} ${d["Area"] || ''} ${d["Current Status"] || ''}`.toLowerCase();
+                        return term === '' || texto.includes(term);
+                    }).sort((a, b) => {
+                        const aOnline = String(a["Current Status"] || '').toLowerCase().includes('online');
+                        const bOnline = String(b["Current Status"] || '').toLowerCase().includes('online');
+                        return aOnline - bOnline;
+                    });
+
+                    fData.forEach(d => {
+                        const isO = String(d["Current Status"] || "").toLowerCase().includes('online');
+                        const bc = isO ? 'status-online' : 'status-offline';
+                        const sh = isO ? 'ONLINE' : 'OFFLINE';
+                        htmlTable += `<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/20 transition text-slate-700 dark:text-slate-200 border-b border-gray-200 dark:border-slate-800">
+                            <td class="p-4 font-bold text-slate-900 dark:text-white">${d["Name"] || '--'}</td>
+                            <td class="p-4 text-xs text-slate-500 dark:text-slate-400">${d["Area"] || '--'}</td>
+                            <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bc}">${sh}</span></td>
+                            <td class="p-4 font-mono text-xs font-bold text-slate-900 dark:text-white">${d["Total Offline Duration"] || '--'}</td>
+                        </tr>`;
+                        htmlMovil += `<div class="p-4 space-y-2 text-sm text-slate-700 dark:text-slate-300">
+                            <div class="flex justify-between items-start gap-2"><span class="font-bold text-slate-900 dark:text-white text-base">${d["Name"] || '--'}</span><span class="px-2 py-0.5 rounded text-[10px] font-black tracking-wide ${bc}">${sh}</span></div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400">Cliente / Área: ${d["Area"] || '--'}</div>
+                            <div class="text-xs font-semibold">Duración Offline: <span class="font-mono">${d["Total Offline Duration"] || '--'}</span></div>
+                        </div>`;
+                    });
+
+                } else if (filtroHCP === 'grabaciones') {
+                    document.getElementById('cabecera-tabla').innerHTML = `
+                        <th class="p-4">Recurso / Cámara</th>
+                        <th class="p-4">Cliente / Área</th>
+                        <th class="p-4">ESTADO DISCO</th>
+                        <th class="p-4">ESTADO DE GRABACIÓN</th>
+                    `;
+
+                    let fData = dataHCPRecording.filter(d => {
+                        const texto = `${d["Name"] || ''} ${d["Area"] || ''} ${d["Recording Integrity Rate"] || ''}`.toLowerCase();
+                        return term === '' || texto.includes(term);
+                    }).sort((a, b) => {
+                        const ai = parseFloat(String(a["Recording Integrity Rate"] || '0').replace('%','')) || 0;
+                        const bi = parseFloat(String(b["Recording Integrity Rate"] || '0').replace('%','')) || 0;
+                        return ai - bi;
+                    });
+
+                    fData.forEach(d => {
+                        const estadoGrabacion = evaluarEstadoGrabacion(d["Recording Integrity Rate"]);
+                        const estadoDisco = evaluarEstadoDiscoGrabacion(d["Recording Interruption"], d["Recording Integrity Rate"]);
+
+                        htmlTable += `<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/20 transition text-slate-700 dark:text-slate-200 border-b border-gray-200 dark:border-slate-800">
+                            <td class="p-4 font-bold text-slate-900 dark:text-white">${d["Name"] || '--'}</td>
+                            <td class="p-4 text-xs text-slate-500 dark:text-slate-400">${d["Area"] || '--'}</td>
+                            <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${estadoDisco.clase}">${estadoDisco.texto}</span></td>
+                            <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${estadoGrabacion.clase}">${estadoGrabacion.texto}</span></td>
+                        </tr>`;
+                        htmlMovil += `<div class="p-4 space-y-2 text-sm text-slate-700 dark:text-slate-300">
+                            <div class="font-bold text-slate-900 dark:text-white text-base">${d["Name"] || '--'}</div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400">Cliente / Área: ${d["Area"] || '--'}</div>
+                            <div class="text-xs flex flex-col sm:flex-row gap-2 justify-between border-t border-gray-100 dark:border-slate-800 pt-1">
+                                <span>ESTADO DISCO: <span class="px-1.5 py-0.5 rounded font-black ${estadoDisco.clase}">${estadoDisco.texto}</span></span>
+                                <span>ESTADO DE GRABACIÓN: <span class="px-1.5 py-0.5 rounded font-black ${estadoGrabacion.clase}">${estadoGrabacion.texto}</span></span>
+                            </div>
+                        </div>`;
+                    });
+
+                } else {
+                    document.getElementById('cabecera-tabla').innerHTML = `
+                        <th class="p-4">Cliente</th>
+                        <th class="p-4">Estado</th>
+                        <th class="p-4">Última Desconexión</th>
+                        <th class="p-4">Tiempo Total Fuera de Línea</th>
+                    `;
+
+                    let fData = dispositivos.filter(d => {
+                        const st = String(d["Current Status"] || '').toLowerCase();
+                        const isO = st.includes('online') || st.includes('línea');
+                        const name = String(d["Name"] || '').toLowerCase();
+                        if (filtroHCP === 'online' && !isO) return false;
+                        if (filtroHCP === 'offline' && isO) return false;
+                        if (term !== '' && !name.includes(term)) return false;
+                        return true;
+                    }).sort((a, b) => {
+                        const oA = String(a["Current Status"] || '').toLowerCase().includes('online');
+                        const oB = String(b["Current Status"] || '').toLowerCase().includes('online');
+                        if (!oA && !oB) return duracionASegundos(b["Total Offline Duration"]) - duracionASegundos(a["Total Offline Duration"]);
+                        return oA - oB;
+                    });
+
+                    fData.forEach(d => {
+                        const isO = String(d["Current Status"] || '').toLowerCase().includes('online');
+                        const bc = isO ? 'status-online' : 'status-offline';
+                        const sh = isO ? 'ONLINE' : 'OFFLINE';
+                        htmlTable += `<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/20 transition text-slate-700 dark:text-slate-200 border-b border-gray-200 dark:border-slate-800">
+                            <td class="p-4 font-bold text-slate-900 dark:text-white">${d["Name"] || '--'}</td>
+                            <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bc}">${sh}</span></td>
+                            <td class="p-4 font-mono text-xs text-slate-500 dark:text-slate-400">${d["Latest Offline Time"] || '--'}</td>
+                            <td class="p-4 font-mono text-xs font-bold text-slate-900 dark:text-white">${d["Total Offline Duration"] || '--'}</td>
+                        </tr>`;
+                        htmlMovil += `<div class="p-4 space-y-2 text-sm text-slate-700 dark:text-slate-300">
+                            <div class="flex justify-between items-start gap-2"><span class="font-bold text-slate-900 dark:text-white text-base">${d["Name"] || '--'}</span><span class="px-2 py-0.5 rounded text-[10px] font-black tracking-wide ${bc}">${sh}</span></div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400">Offline desde: ${d["Latest Offline Time"] || '--'}</div>
+                            <div class="text-xs flex justify-between items-center pt-1 border-t border-gray-100 dark:border-slate-800"><span class="font-semibold text-slate-600 dark:text-slate-300">Duración Offline:</span><span class="font-mono font-bold text-slate-900 dark:text-white">${d["Total Offline Duration"] || '--'}</span></div>
+                        </div>`;
+                    });
+                }
+
+                const grabacionesEnFalla = dataHCPRecording.filter(d => !evaluarEstadoGrabacion(d["Recording Integrity Rate"]).normal).length;
+                renderizarGraficoHCP(onlineCount, offlineCount, grabacionesEnFalla);
+
+            } else {
+                let total = resumenDSS.dispositivos?.total ?? dataDSS.length;
+                let onlineDCount = resumenDSS.dispositivos?.online ?? dataDSS.filter(d => String(d["conexion"] || "").toLowerCase() === "online").length;
+                let offlineDCount = resumenDSS.dispositivos?.offline ?? Math.max(total - onlineDCount, 0);
+                let abnormalDiskCount = resumenDSS.discos?.abnormal ?? dataDSS.filter(d => checkProblemaDisco(d["estado_disco"])).length;
+                let abnormalChanCount = resumenDSS.canales?.abnormal ?? dataDSS.filter(d => checkProblemaCanal(d["estado_canal"])).length;
+                let totalProblemasGeneral = resumenDSS.general?.total_problemas ?? dataDSS.filter(d => {
+                    const isOnline = String(d["conexion"] || "").toLowerCase() === "online";
+                    return !isOnline || checkProblemaDisco(d["estado_disco"]) || checkProblemaCanal(d["estado_canal"]);
+                }).length;
+
+                const disponibilidadDSS = total > 0 ? ((onlineDCount / total) * 100).toFixed(1) : 0;
+
+                document.getElementById('kpi-1-val').innerText = onlineDCount;
+                document.getElementById('kpi-offline-val').innerText = offlineDCount;
+                document.getElementById('kpi-3-val').innerText = disponibilidadDSS + '%';
+                document.getElementById('kpi-total-val').innerText = total;
+
+                let fData = dataDSS.filter(d => {
+                    let isO = String(d['conexion'] || '').toLowerCase() === 'online';
+                    let badDisk = checkProblemaDisco(d["estado_disco"]);
+                    let badChan = checkProblemaCanal(d["estado_canal"]);
+                    let isProblem = !isO || badDisk || badChan;
+
+                    if (filtroDSS === 'online' && !isO) return false;
+                    if (filtroDSS === 'offline' && isO) return false;
+                    if (filtroDSS === 'discos' && !badDisk) return false;
+                    if (filtroDSS === 'canales' && !badChan) return false;
+                    
+                    if (term !== '' && !(d['nombre'] || '').toLowerCase().includes(term)) return false;
+                    return true;
+                }).sort((a, b) => {
+                    const aOnline = String(a['conexion'] || '').toLowerCase() === 'online';
+                    const bOnline = String(b['conexion'] || '').toLowerCase() === 'online';
+                    const aProblem = !aOnline || checkProblemaDisco(a["estado_disco"]) || checkProblemaCanal(a["estado_canal"]);
+                    const bProblem = !bOnline || checkProblemaDisco(b["estado_disco"]) || checkProblemaCanal(b["estado_canal"]);
+
+                    if (aProblem !== bProblem) return aProblem ? -1 : 1;
+                    if (aOnline !== bOnline) return aOnline ? 1 : -1;
+
+                    return String(a['nombre'] || '').localeCompare(String(b['nombre'] || ''), 'es');
+                });
+
+                fData.forEach(d => {
+                    const isO = String(d["conexion"] || "").toLowerCase() === "online";
+                    const badDisk = checkProblemaDisco(d["estado_disco"]);
+                    const badChan = checkProblemaCanal(d["estado_canal"]);
+
+                    const bcDev = isO ? 'status-online' : 'status-offline';
+                    const bcDisk = badDisk ? 'status-offline' : 'status-online';
+                    const bcChan = badChan ? 'bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400' : 'status-online';
+
+                    const conexionTexto = formatearEstadoDSS(d["conexion"] || '--');
+                    const estadoCanalTexto = formatearEstadoDSS(d["estado_canal"] || 'OK');
+                    const estadoDiscoTexto = formatearEstadoDSS(d["estado_disco"] || 'OK');
+
+                    htmlTable += `<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/20 transition text-slate-700 dark:text-slate-200 border-b border-gray-200 dark:border-slate-800">
+                        <td class="p-4 font-bold text-slate-900 dark:text-white">${d["nombre"] || '--'}</td>
+                        <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bcDev}">${conexionTexto}</span></td>
+                        <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bcChan}">${estadoCanalTexto}</span></td>
+                        <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bcDisk}">${estadoDiscoTexto}</span></td>
+                    </tr>`;
+
+                    htmlMovil += `<div class="p-4 space-y-2 text-sm text-slate-700 dark:text-slate-300">
+                        <div class="flex justify-between items-start gap-2">
+                            <span class="font-bold text-slate-900 dark:text-white text-base">${d["nombre"] || '--'}</span>
+                            <span class="px-2 py-0.5 rounded text-[10px] font-black tracking-wide ${bcDev}">${conexionTexto}</span>
+                        </div>
+                        <div class="text-xs flex flex-col sm:flex-row gap-2 justify-between items-start sm:items-center pt-1 border-t border-gray-100 dark:border-slate-800">
+                            <span class="font-semibold text-slate-600 dark:text-slate-300">Estado de Cámaras en Dispositivo: <span class="px-1.5 py-0.5 rounded font-black ${bcChan}">${estadoCanalTexto}</span></span>
+                            <span class="font-semibold text-slate-600 dark:text-slate-300">Disco: <span class="px-1.5 py-0.5 rounded font-black ${bcDisk}">${estadoDiscoTexto}</span></span>
+                        </div>
+                    </div>`;
+                });
+
+                renderizarGraficoDSS(offlineDCount, abnormalDiskCount, abnormalChanCount);
+            }
+
+            if(htmlTable === '') {
+                htmlTable = `<tr><td colspan="5" class="p-6 text-center text-gray-400 dark:text-slate-500">No hay registros que coincidan o toda la red está estable.</td></tr>`;
+                htmlMovil = `<p class="p-6 text-center text-gray-400 dark:text-slate-500">No hay registros.</p>`;
+            }
+
+            tbody.innerHTML = htmlTable;
+            divMovil.innerHTML = htmlMovil;
+        }
+
+        function renderizarGraficoHCP(online, offline, grabacionesEnFalla = 0) {
+            const ctx = document.getElementById('graficoComparativo').getContext('2d');
+            if (chartInstancia) chartInstancia.destroy();
+            const dark = document.documentElement.classList.contains('dark');
+            chartInstancia = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['HCP HIKVISION'],
+                    datasets: [
+                        { label: 'Online', data: [online], backgroundColor: '#10b981', barPercentage: 0.55 },
+                        { label: 'Offline', data: [offline], backgroundColor: '#ef4444', barPercentage: 0.55 },
+                        { label: 'Estado de Grabación En Falla', data: [grabacionesEnFalla], backgroundColor: '#eab308', barPercentage: 0.55 }
+                    ]
+                },
+                options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: dark ? '#ffffff' : '#1e293b' } } }, scales: { x: { grid: { color: dark ? '#222222' : '#e2e8f0' }, ticks: { color: dark ? '#94a3b8' : '#64748b' } }, y: { display: false } } }
+            });
+        }
+
+        function renderizarGraficoDSS(offline, discosBad, chanBad) {
+            const ctx = document.getElementById('graficoComparativo').getContext('2d');
+            if (chartInstancia) chartInstancia.destroy();
+            const dark = document.documentElement.classList.contains('dark');
+            chartInstancia = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Problemas DAHUA'],
+                    datasets: [
+                        { label: 'Equipos Offline', data: [offline], backgroundColor: '#ef4444', barPercentage: 0.8 },
+                        { label: 'Problemas de Disco', data: [discosBad], backgroundColor: '#f97316', barPercentage: 0.8 },
+                        { label: 'Estado de Cámaras en Dispositivo', data: [chanBad], backgroundColor: '#eab308', barPercentage: 0.8 }
+                    ]
+                },
+                options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: dark ? '#ffffff' : '#1e293b' } } }, scales: { x: { grid: { color: dark ? '#222222' : '#e2e8f0' }, ticks: { color: dark ? '#94a3b8' : '#64748b' } }, y: { display: false } } }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            actualizarReloj();
+            cargarTodo();
+
+            const buscador = document.getElementById('buscador');
+            if (buscador) {
+                buscador.addEventListener('input', renderizarTablaYGrafico);
+            }
+
+            setInterval(cargarTodo, 60000);
+        });
+    </script>
+</body>
+</html>
