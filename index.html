@@ -260,7 +260,6 @@
         }
         setInterval(actualizarReloj, 1000);
 
-
         function formatearFechaSincroChile(valor) {
             if (!valor || valor === '--') return '--';
             const texto = String(valor).trim();
@@ -368,71 +367,6 @@
                 .replace(/\bonline\b/gi, 'Online');
         }
 
-
-        function obtenerNumeroPorcentaje(valor) {
-            if (valor === null || valor === undefined) return null;
-            const texto = String(valor).trim().replace('%', '').replace(',', '.');
-            if (texto === '' || texto === '--' || texto.toLowerCase() === 'n/a') return null;
-            const numero = Number(texto);
-            return Number.isFinite(numero) ? numero : null;
-        }
-
-        function formatearPorcentajeReal(numero) {
-            if (!Number.isFinite(numero)) return '';
-            return Number.isInteger(numero) ? String(numero) : String(Number(numero.toFixed(1)));
-        }
-
-        function evaluarEstadoGrabacion(valor) {
-            const numero = obtenerNumeroPorcentaje(valor);
-            const claseFalla = 'status-offline';
-
-            // Regla solicitada:
-            // 1% a 100% = Normal, respetando el porcentaje real del archivo.
-            // 0% o sin información = En Falla en rojo.
-            if (numero !== null && numero > 0 && numero <= 100) {
-                return {
-                    texto: `${formatearPorcentajeReal(numero)}% Normal`,
-                    normal: true,
-                    clase: 'status-online',
-                    porcentaje: numero
-                };
-            }
-
-            if (numero !== null && numero <= 0) {
-                return {
-                    texto: `${formatearPorcentajeReal(numero)}% En Falla`,
-                    normal: false,
-                    clase: claseFalla,
-                    porcentaje: numero
-                };
-            }
-
-            return {
-                texto: 'Sin datos - En Falla',
-                normal: false,
-                clase: claseFalla,
-                porcentaje: null
-            };
-        }
-
-        function evaluarEstadoDiscoGrabacion(valorInterrupcion, valorIntegridad) {
-            const estadoGrabacion = evaluarEstadoGrabacion(valorIntegridad);
-
-            // Si existe grabación entre 1% y 100%, el disco queda Normal.
-            // Si la grabación es 0% o no trae datos, el disco queda En Falla.
-            if (estadoGrabacion.normal) {
-                return {
-                    texto: 'Normal',
-                    clase: 'status-online'
-                };
-            }
-
-            return {
-                texto: 'En Falla',
-                clase: 'status-offline'
-            };
-        }
-
         // CARGA INTELIGENTE DESDE REPOSITORIOS
         async function cargarTodo() {
             try {
@@ -456,14 +390,6 @@
                     discosDSS = jsonDSS.discos || [];
                     resumenDSS = jsonDSS.resumen || {};
                     timeDSS = jsonDSS.ultima_actualizacion || '--';
-                    console.log('[DSS DAHUA] cargado:', {
-                        dispositivos: dataDSS.length,
-                        canales: canalesDSS.length,
-                        discos: discosDSS.length,
-                        resumen: resumenDSS
-                    });
-                } else {
-                    console.error('No se pudo cargar datos_dss_dahua.json', resDSS && resDSS.status);
                 }
 
                 cambiarTab(tabActual || 'HCP');
@@ -604,6 +530,7 @@
                     });
 
                 } else if (filtroHCP === 'grabaciones') {
+                    // SECCIÓN CORREGIDA: Usa directamente los textos del JSON procesado por n8n
                     document.getElementById('cabecera-tabla').innerHTML = `
                         <th class="p-4">Recurso / Cámara</th>
                         <th class="p-4">Cliente / Área</th>
@@ -612,30 +539,33 @@
                     `;
 
                     let fData = dataHCPRecording.filter(d => {
-                        const texto = `${d["Name"] || ''} ${d["Area"] || ''} ${d["Recording Integrity Rate"] || ''}`.toLowerCase();
+                        const texto = `${d["Name"] || ''} ${d["Area"] || ''} ${d["Storage Type"] || ''} ${d["Recording Status"] || ''}`.toLowerCase();
                         return term === '' || texto.includes(term);
                     }).sort((a, b) => {
-                        const ai = parseFloat(String(a["Recording Integrity Rate"] || '0').replace('%','')) || 0;
-                        const bi = parseFloat(String(b["Recording Integrity Rate"] || '0').replace('%','')) || 0;
-                        return ai - bi;
+                        return String(a["Recording Status"] || '').localeCompare(String(b["Recording Status"] || ''));
                     });
 
                     fData.forEach(d => {
-                        const estadoGrabacion = evaluarEstadoGrabacion(d["Recording Integrity Rate"]);
-                        const estadoDisco = evaluarEstadoDiscoGrabacion(d["Recording Interruption"], d["Recording Integrity Rate"]);
+                        // Rescatamos las variables limpias desde n8n
+                        const estadoDiscoTexto = d["Storage Type"] || '--';
+                        const estadoGrabacionTexto = d["Recording Status"] || '--';
+                        
+                        // Determinamos el color usando palabras clave
+                        const claseDisco = estadoDiscoTexto === 'Normal' ? 'status-online' : 'status-offline';
+                        const claseGrabacion = estadoGrabacionTexto.includes('Operativo') ? 'status-online' : 'status-offline';
 
                         htmlTable += `<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/20 transition text-slate-700 dark:text-slate-200 border-b border-gray-200 dark:border-slate-800">
                             <td class="p-4 font-bold text-slate-900 dark:text-white">${d["Name"] || '--'}</td>
                             <td class="p-4 text-xs text-slate-500 dark:text-slate-400">${d["Area"] || '--'}</td>
-                            <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${estadoDisco.clase}">${estadoDisco.texto}</span></td>
-                            <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${estadoGrabacion.clase}">${estadoGrabacion.texto}</span></td>
+                            <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${claseDisco}">${estadoDiscoTexto}</span></td>
+                            <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${claseGrabacion}">${estadoGrabacionTexto}</span></td>
                         </tr>`;
                         htmlMovil += `<div class="p-4 space-y-2 text-sm text-slate-700 dark:text-slate-300">
                             <div class="font-bold text-slate-900 dark:text-white text-base">${d["Name"] || '--'}</div>
                             <div class="text-xs text-slate-500 dark:text-slate-400">Cliente / Área: ${d["Area"] || '--'}</div>
                             <div class="text-xs flex flex-col sm:flex-row gap-2 justify-between border-t border-gray-100 dark:border-slate-800 pt-1">
-                                <span>ESTADO DISCO: <span class="px-1.5 py-0.5 rounded font-black ${estadoDisco.clase}">${estadoDisco.texto}</span></span>
-                                <span>ESTADO DE GRABACIÓN: <span class="px-1.5 py-0.5 rounded font-black ${estadoGrabacion.clase}">${estadoGrabacion.texto}</span></span>
+                                <span>ESTADO DISCO: <span class="px-1.5 py-0.5 rounded font-black ${claseDisco}">${estadoDiscoTexto}</span></span>
+                                <span>ESTADO DE GRABACIÓN: <span class="px-1.5 py-0.5 rounded font-black ${claseGrabacion}">${estadoGrabacionTexto}</span></span>
                             </div>
                         </div>`;
                     });
@@ -681,7 +611,7 @@
                     });
                 }
 
-                const grabacionesEnFalla = dataHCPRecording.filter(d => !evaluarEstadoGrabacion(d["Recording Integrity Rate"]).normal).length;
+                const grabacionesEnFalla = dataHCPRecording.filter(d => String(d["Recording Status"]).toLowerCase().includes('falla')).length;
                 renderizarGraficoHCP(onlineCount, offlineCount, grabacionesEnFalla);
 
             } else {
@@ -690,10 +620,6 @@
                 let offlineDCount = resumenDSS.dispositivos?.offline ?? Math.max(total - onlineDCount, 0);
                 let abnormalDiskCount = resumenDSS.discos?.abnormal ?? dataDSS.filter(d => checkProblemaDisco(d["estado_disco"])).length;
                 let abnormalChanCount = resumenDSS.canales?.abnormal ?? dataDSS.filter(d => checkProblemaCanal(d["estado_canal"])).length;
-                let totalProblemasGeneral = resumenDSS.general?.total_problemas ?? dataDSS.filter(d => {
-                    const isOnline = String(d["conexion"] || "").toLowerCase() === "online";
-                    return !isOnline || checkProblemaDisco(d["estado_disco"]) || checkProblemaCanal(d["estado_canal"]);
-                }).length;
 
                 const disponibilidadDSS = total > 0 ? ((onlineDCount / total) * 100).toFixed(1) : 0;
 
@@ -706,7 +632,6 @@
                     let isO = String(d['conexion'] || '').toLowerCase() === 'online';
                     let badDisk = checkProblemaDisco(d["estado_disco"]);
                     let badChan = checkProblemaCanal(d["estado_canal"]);
-                    let isProblem = !isO || badDisk || badChan;
 
                     if (filtroDSS === 'online' && !isO) return false;
                     if (filtroDSS === 'offline' && isO) return false;
