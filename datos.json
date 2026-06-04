@@ -1,7 +1,23 @@
 {
-  "ultima_actualizacion": "04-06-2026, 02:27:04 p. m.",
-  "registros": [],
-  "device_online_offline_log": [],
+  "ultima_actualizacion": "04-06-2026, 02:44:11 p. m.",
+  "registros": [
+    {
+      "ultima_actualizacion": "04-06-2026, 02:27:04 p. m.",
+      "registros": [],
+      "device_online_offline_log": [],
+      "resource_online_offline_log": [],
+      "resource_recording_log": []
+    }
+  ],
+  "device_online_offline_log": [
+    {
+      "ultima_actualizacion": "04-06-2026, 02:27:04 p. m.",
+      "registros": [],
+      "device_online_offline_log": [],
+      "resource_online_offline_log": [],
+      "resource_recording_log": []
+    }
+  ],
   "resource_online_offline_log": [],
   "resource_recording_log": []
 }
