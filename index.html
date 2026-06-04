@@ -436,8 +436,8 @@
         // CARGA INTELIGENTE DESDE REPOSITORIOS
         async function cargarTodo() {
             try {
-                // Hikvision
-                const resHCP = await fetch('./datos.json?v=' + Date.now(), { cache: 'no-store' }).catch(()=>null);
+                // Hikvision - lectura directa desde RAW GitHub para evitar cache de GitHub Pages
+                const resHCP = await fetch('https://raw.githubusercontent.com/recintoprotegidoia/dashboard-monitoreo/main/datos.json?v=' + Date.now(), { cache: 'no-store' }).catch(()=>null);
                 if(resHCP && resHCP.ok) {
                     const jsonHCP = await resHCP.json();
                     dataHCPDevice = jsonHCP.device_online_offline_log || jsonHCP.registros || [];
@@ -445,10 +445,11 @@
                     dataHCPRecording = jsonHCP.resource_recording_log || [];
                     dataHCP = jsonHCP.registros || dataHCPDevice || [];
                     timeHCP = jsonHCP.ultima_actualizacion || '--';
+                    console.log('[HCP HIKVISION] cargado desde RAW:', { dispositivos: dataHCPDevice.length, recursos: dataHCPResource.length, grabaciones: dataHCPRecording.length, ultima_actualizacion: timeHCP });
                 }
                 
-                // Dahua
-                const resDSS = await fetch('./datos_dss_dahua.json?v=' + Date.now(), { cache: 'no-store' }).catch(()=>null);
+                // Dahua - lectura directa desde RAW GitHub para evitar cache de GitHub Pages
+                const resDSS = await fetch('https://raw.githubusercontent.com/recintoprotegidoia/dashboard-monitoreo/main/datos_dss_dahua.json?v=' + Date.now(), { cache: 'no-store' }).catch(()=>null);
                 if(resDSS && resDSS.ok) {
                     const jsonDSS = await resDSS.json();
                     dataDSS = jsonDSS.dispositivos || jsonDSS.Dispositivos || jsonDSS.registros || [];
