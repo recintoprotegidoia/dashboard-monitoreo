@@ -12,7 +12,6 @@
         (function() {
             const claveCorrecta = "RP2026"; 
             let acceso = sessionStorage.getItem("acceso_autorizado");
-            
             while (acceso !== "true") {
                 let intento = prompt("🔒 Acceso Restringido. Ingrese la contraseña de Recinto Protegido:");
                 if (intento === claveCorrecta) {
@@ -31,13 +30,7 @@
     <script>
         tailwind.config = {
             darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        empresa: { negro: '#000000', rojo: '#ef4444', blanco: '#ffffff' }
-                    }
-                }
-            }
+            theme: { extend: { colors: { empresa: { negro: '#000000', rojo: '#ef4444', blanco: '#ffffff' } } } }
         }
     </script>
     <style>
@@ -52,27 +45,10 @@
         th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; color: #94a3b8; }
         .dark th { color: #94a3b8 !important; border-color: #222222 !important; }
         .dark td { border-color: #222222 !important; }
-
-        .brand-logo-box {
-            background: #0a060b;
-            border: 1px solid rgba(255,255,255,0.10);
-            -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
-        }
-        .brand-logo-img {
-            display: block;
-            width: 9rem;
-            height: auto;
-            object-fit: contain;
-        }
-        @media (min-width: 768px) {
-            .brand-logo-img { width: 11rem; }
-        }
-        @media (min-width: 1024px) {
-            .brand-logo-img { width: 13rem; }
-        }
-
-        /* REGLAS PARA PDF PERFECTO NATIVO */
+        .brand-logo-box { background: #0a060b; border: 1px solid rgba(255,255,255,0.10); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .brand-logo-img { display: block; width: 9rem; height: auto; object-fit: contain; }
+        @media (min-width: 768px) { .brand-logo-img { width: 11rem; } }
+        @media (min-width: 1024px) { .brand-logo-img { width: 13rem; } }
         @media print {
             body { background-color: white !important; color: black !important; padding: 0 !important; margin: 0 !important;}
             .no-print, #buscador, .controles-filtros, #btn-tema, #tabs-navegacion { display: none !important; }
@@ -80,10 +56,8 @@
             table { page-break-after: auto; width: 100% !important; }
             tr { page-break-inside: avoid; page-break-after: auto; }
             td, th { padding: 8px !important; font-size: 11px !important; border-bottom: 1px solid #ddd !important; color: black !important; }
-            thead { display: table-header-group; }
-            tfoot { display: table-footer-group; }
-            #vista-movil { display: none !important; }
-            #tabla-escritorio { display: table !important; }
+            thead { display: table-header-group; } tfoot { display: table-footer-group; }
+            #vista-movil { display: none !important; } #tabla-escritorio { display: table !important; }
             .overflow-x-auto, .overflow-hidden { overflow: visible !important; }
         }
     </style>
@@ -94,14 +68,7 @@
         
         <div class="premium-card p-4 md:p-6 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="brand-logo-box p-3 rounded-xl flex items-center justify-center shadow-md">
-                <img 
-                    src="./assets/logo-recinto-protegido.png" 
-                    alt="Recinto Protegido" 
-                    class="brand-logo-img"
-                    decoding="async"
-                    fetchpriority="high"
-                    onerror="this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');"
-                >
+                <img src="./assets/logo-recinto-protegido.png" alt="Recinto Protegido" class="brand-logo-img" decoding="async" fetchpriority="high" onerror="this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
                 <div class="logo-fallback hidden text-center leading-none">
                     <div class="text-white text-xl md:text-2xl font-black tracking-tight">RECINTO</div>
                     <div class="text-red-500 text-xl md:text-2xl font-black tracking-tight">PROTEGIDO</div>
@@ -177,13 +144,12 @@
             <h3 class="text-xs md:text-sm font-bold text-slate-700 dark:text-slate-300 mb-3 uppercase tracking-wider">
                 <i class="fa-solid fa-chart-pie text-slate-400 mr-1"></i> Balance de Infraestructura
             </h3>
-            <div class="h-24 md:h-28 w-full">
+            <div class="h-32 md:h-36 w-full">
                 <canvas id="graficoComparativo"></canvas>
             </div>
         </div>
 
         <div class="controles-filtros flex flex-col lg:flex-row gap-3 justify-between items-center">
-            
             <div id="filtros-hcp" class="flex flex-wrap bg-white dark:bg-slate-900 p-1 rounded-lg border border-gray-300 dark:border-slate-700 gap-1 text-xs font-bold w-full lg:w-auto shadow-sm">
                 <button onclick="filtrarEstadoHCP('todos')" id="btn-hcp-todos" class="flex-1 px-4 py-2 rounded bg-slate-800 text-white transition dark:bg-slate-600">Dispositivos</button>
                 <button onclick="filtrarEstadoHCP('online')" id="btn-hcp-online" class="flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition">Online</button>
@@ -201,25 +167,19 @@
             </div>
 
             <div class="flex gap-2 w-full lg:w-auto">
-                <input type="text" id="buscador" class="w-full lg:max-w-xs px-4 py-2 text-sm bg-white dark:bg-slate-900 border border-gray-300 dark:border-slate-700 rounded-lg focus:outline-none focus:border-red-400 dark:focus:border-red-500 shadow-sm text-slate-700 dark:text-white" placeholder="🔍 Buscar dispositivo...">
-                <button onclick="window.print()" class="flex items-center justify-center gap-2 px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700 active:scale-95 transition dark:bg-red-700 dark:hover:bg-red-800 whitespace-nowrap">
-                    <i class="fa-solid fa-file-pdf"></i> PDF
-                </button>
+                <input type="text" id="buscador" class="w-full lg:max-w-xs px-4 py-2 text-sm bg-white dark:bg-slate-900 border border-gray-300 dark:border-slate-700 rounded-lg focus:outline-none focus:border-red-400 dark:focus:border-red-500 shadow-sm text-slate-700 dark:text-white" placeholder="🔍 Buscar...">
+                <button onclick="window.print()" class="flex items-center justify-center gap-2 px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700 transition dark:bg-red-700 dark:hover:bg-red-800 whitespace-nowrap"><i class="fa-solid fa-file-pdf"></i> PDF</button>
             </div>
         </div>
 
         <div class="premium-card overflow-hidden">
             <div class="w-full overflow-x-auto">
                 <table id="tabla-escritorio" class="w-full text-left border-collapse hidden md:table">
-                    <thead>
-                        <tr id="cabecera-tabla" class="border-b border-gray-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-xs font-bold uppercase">
-                            </tr>
-                    </thead>
+                    <thead><tr id="cabecera-tabla" class="border-b border-gray-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-xs font-bold uppercase"></tr></thead>
                     <tbody id="tabla-datos" class="divide-y divide-gray-200 dark:divide-slate-700 font-medium text-sm">
-                        <tr><td colspan="5" class="p-8 text-center text-gray-400 dark:text-slate-500"><i class="fa-solid fa-spinner fa-spin"></i> Sincronizando repositorios...</td></tr>
+                        <tr><td colspan="5" class="p-8 text-center text-gray-400 dark:text-slate-500"><i class="fa-solid fa-spinner fa-spin"></i> Sincronizando...</td></tr>
                     </tbody>
                 </table>
-
                 <div id="vista-movil" class="block md:hidden divide-y divide-gray-200 dark:divide-slate-800">
                     <p class="p-6 text-center text-gray-400 dark:text-slate-500"><i class="fa-solid fa-spinner fa-spin"></i> Cargando...</p>
                 </div>
@@ -230,18 +190,10 @@
 
     <script>
         let tabActual = 'HCP'; 
-        let dataHCP = [];
-        let dataHCPDevice = [];
-        let dataHCPResource = [];
-        let dataHCPRecording = [];
-        let dataDSS = [];
-        let resumenDSS = {};
-        let canalesDSS = [];
-        let discosDSS = [];
-        let timeHCP = '--';
-        let timeDSS = '--';
-        let filtroHCP = 'todos';
-        let filtroDSS = 'todos'; 
+        let dataHCPDevice = [], dataHCPResource = [], dataHCPRecording = [], dataHCP = [];
+        let dataDSS = [], resumenDSS = {}, canalesDSS = [], discosDSS = [];
+        let timeHCP = '--', timeDSS = '--';
+        let filtroHCP = 'todos', filtroDSS = 'todos'; 
         let chartInstancia = null;
 
         function actualizarReloj() {
@@ -249,11 +201,7 @@
             const elReloj = document.getElementById('reloj-vivo');
             if (elReloj) {
                 const horaChile = new Intl.DateTimeFormat('es-CL', {
-                    timeZone: 'America/Santiago',
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    second: '2-digit',
-                    hour12: false
+                    timeZone: 'America/Santiago', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
                 }).format(ahora);
                 elReloj.innerText = `${horaChile} America/Santiago`;
             }
@@ -272,46 +220,7 @@
                 if (mer.includes('a') && hora === 12) hora = 0;
                 return `${dd.padStart(2, '0')}-${mm.padStart(2, '0')}-${yyyy} ${String(hora).padStart(2, '0')}:${min}:${(sec || '00').padStart(2, '0')} America/Santiago`;
             }
-            const fecha = new Date(texto);
-            if (!Number.isNaN(fecha.getTime())) {
-                const partes = new Intl.DateTimeFormat('es-CL', {
-                    timeZone: 'America/Santiago',
-                    year: 'numeric',
-                    month: '2-digit',
-                    day: '2-digit',
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    second: '2-digit',
-                    hour12: false
-                }).formatToParts(fecha).reduce((acc, p) => {
-                    acc[p.type] = p.value;
-                    return acc;
-                }, {});
-                return `${partes.day}-${partes.month}-${partes.year} ${partes.hour}:${partes.minute}:${partes.second} America/Santiago`;
-            }
             return `${texto} America/Santiago`;
-        }
-
-        function actualizarTextoSincro(valor) {
-            const el = document.getElementById('update-time');
-            if (el) el.innerText = formatearFechaSincroChile(valor);
-        }
-
-        function actualizarKpisCamarasHCP() {
-            const totalCamaras = dataHCPResource.length;
-            const camarasOnline = dataHCPResource.filter(d => String(d["Current Status"] || '').toLowerCase().includes('online')).length;
-            const camarasOffline = Math.max(totalCamaras - camarasOnline, 0);
-            const disponibilidadCamaras = totalCamaras > 0 ? ((camarasOnline / totalCamaras) * 100).toFixed(1) : '0.0';
-
-            const onlineEl = document.getElementById('kpi-cam-online-val');
-            const offlineEl = document.getElementById('kpi-cam-offline-val');
-            const totalEl = document.getElementById('kpi-cam-total-val');
-            const dispEl = document.getElementById('kpi-cam-disponibilidad-val');
-
-            if (onlineEl) onlineEl.innerText = camarasOnline;
-            if (offlineEl) offlineEl.innerText = camarasOffline;
-            if (totalEl) totalEl.innerText = totalCamaras;
-            if (dispEl) dispEl.innerText = `${disponibilidadCamaras}%`;
         }
 
         const btnTema = document.getElementById('btn-tema');
@@ -323,26 +232,19 @@
 
         btnTema.addEventListener('click', () => {
             if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark');
-                localStorage.setItem('theme', 'light');
-                iconoTema.className = "fa-solid fa-moon text-slate-600";
+                document.documentElement.classList.remove('dark'); localStorage.setItem('theme', 'light'); iconoTema.className = "fa-solid fa-moon text-slate-600";
             } else {
-                document.documentElement.classList.add('dark');
-                localStorage.setItem('theme', 'dark');
-                iconoTema.className = "fa-solid fa-sun text-white";
+                document.documentElement.classList.add('dark'); localStorage.setItem('theme', 'dark'); iconoTema.className = "fa-solid fa-sun text-white";
             }
             setTimeout(() => renderizarTablaYGrafico(), 350);
         });
 
-        // REGLAS DAHUA
+        // REGLAS DSS DAHUA
         function checkProblemaCanal(status) {
             if(!status) return false;
             let s = status.toLowerCase();
             if(s.includes('abnormal') || s.includes('offline')) return true;
-            if(s.includes('/')) {
-                let p = s.split('/');
-                if(p.length === 2 && parseInt(p[0]) < parseInt(p[1])) return true;
-            }
+            if(s.includes('/')) { let p = s.split('/'); if(p.length === 2 && parseInt(p[0]) < parseInt(p[1])) return true; }
             return false;
         }
         function checkProblemaDisco(status) {
@@ -353,24 +255,17 @@
         }
         function duracionASegundos(str) {
             if (!str || str === "0" || str === "00:00:00" || str.includes('--')) return 0;
-            const p = str.split(':');
-            if (p.length !== 3) return 0;
+            const p = str.split(':'); if (p.length !== 3) return 0;
             return (parseInt(p[0]) * 3600) + (parseInt(p[1]) * 60) + parseInt(p[2]);
         }
-
         function formatearEstadoDSS(valor) {
-            if (valor === null || valor === undefined || valor === '') return 'OK';
-            return String(valor)
-                .replace(/abnormal/gi, 'En falla')
-                .replace(/\bnormal\b/gi, 'Normal')
-                .replace(/\boffline\b/gi, 'Offline')
-                .replace(/\bonline\b/gi, 'Online');
+            if (!valor) return 'OK';
+            return String(valor).replace(/abnormal/gi, 'En falla').replace(/\bnormal\b/gi, 'Normal').replace(/\boffline\b/gi, 'Offline').replace(/\bonline\b/gi, 'Online');
         }
 
-        // CARGA INTELIGENTE DESDE REPOSITORIOS
+        // CARGA DE DATOS
         async function cargarTodo() {
             try {
-                // Hikvision
                 const resHCP = await fetch('./datos.json?v=' + Date.now(), { cache: 'no-store' }).catch(()=>null);
                 if(resHCP && resHCP.ok) {
                     const jsonHCP = await resHCP.json();
@@ -380,78 +275,39 @@
                     dataHCP = jsonHCP.registros || dataHCPDevice || [];
                     timeHCP = jsonHCP.ultima_actualizacion || '--';
                 }
-                
-                // Dahua
                 const resDSS = await fetch('./datos_dss_dahua.json?v=' + Date.now(), { cache: 'no-store' }).catch(()=>null);
                 if(resDSS && resDSS.ok) {
                     const jsonDSS = await resDSS.json();
                     dataDSS = jsonDSS.dispositivos || jsonDSS.Dispositivos || jsonDSS.registros || [];
-                    canalesDSS = jsonDSS.canales || [];
-                    discosDSS = jsonDSS.discos || [];
-                    resumenDSS = jsonDSS.resumen || {};
-                    timeDSS = jsonDSS.ultima_actualizacion || '--';
+                    canalesDSS = jsonDSS.canales || []; discosDSS = jsonDSS.discos || []; resumenDSS = jsonDSS.resumen || {}; timeDSS = jsonDSS.ultima_actualizacion || '--';
                 }
-
                 cambiarTab(tabActual || 'HCP');
-            } catch(e) {
-                console.error("Error global de sincronización:", e);
-            }
+            } catch(e) {}
         }
 
         function cambiarTab(tab) {
-            tabActual = tab;
-            document.getElementById('buscador').value = '';
-
-            const btnHCP = document.getElementById('tab-hcp');
-            const btnDSS = document.getElementById('tab-dss');
+            tabActual = tab; document.getElementById('buscador').value = '';
+            const btnHCP = document.getElementById('tab-hcp'); const btnDSS = document.getElementById('tab-dss');
 
             if(tab === 'HCP') {
                 btnHCP.className = "flex-1 px-4 py-3 font-black text-sm md:text-base border-b-4 border-red-600 text-slate-900 dark:text-white transition bg-white dark:bg-slate-900 rounded-t-lg shadow-sm";
                 btnDSS.className = "flex-1 px-4 py-3 font-black text-sm md:text-base border-b-4 border-transparent text-gray-500 hover:text-slate-800 dark:hover:text-slate-200 transition bg-gray-50 dark:bg-slate-950 rounded-t-lg shadow-sm opacity-70";
                 
                 document.getElementById('titulo-modulo').innerText = "ESTADO DISPOSITIVOS HCP - HIKVISION";
-                actualizarTextoSincro(timeHCP);
-                
-                document.getElementById('cabecera-tabla').innerHTML = `
-                    <th class="p-4">Cliente</th>
-                    <th class="p-4">Estado</th>
-                    <th class="p-4">Última Desconexión</th>
-                    <th class="p-4">Tiempo Total Fuera de Línea</th>
-                `;
+                const elSync = document.getElementById('update-time'); if(elSync) elSync.innerText = formatearFechaSincroChile(timeHCP);
 
-                document.getElementById('label-kpi-1').innerText = "EQUIPOS ONLINE";
-                document.getElementById('label-kpi-2').innerText = "EQUIPOS OFFLINE";
-                document.getElementById('label-kpi-3').innerText = "DISPONIBILIDAD";
-                document.getElementById('label-kpi-4').innerText = "TOTAL EQUIPOS";
-
-                document.getElementById('filtros-hcp').classList.remove('hidden');
-                document.getElementById('filtros-dss').classList.add('hidden');
+                document.getElementById('filtros-hcp').classList.remove('hidden'); document.getElementById('filtros-dss').classList.add('hidden');
                 document.getElementById('kpis-hcp-camaras').classList.remove('hidden');
-                
                 filtrarEstadoHCP(filtroHCP);
             } else {
                 btnDSS.className = "flex-1 px-4 py-3 font-black text-sm md:text-base border-b-4 border-red-600 text-slate-900 dark:text-white transition bg-white dark:bg-slate-900 rounded-t-lg shadow-sm";
                 btnHCP.className = "flex-1 px-4 py-3 font-black text-sm md:text-base border-b-4 border-transparent text-gray-500 hover:text-slate-800 dark:hover:text-slate-200 transition bg-gray-50 dark:bg-slate-950 rounded-t-lg shadow-sm opacity-70";
                 
                 document.getElementById('titulo-modulo').innerText = "ESTADO DISPOSITIVOS DSS - DAHUA";
-                actualizarTextoSincro(timeDSS);
-                
-                document.getElementById('cabecera-tabla').innerHTML = `
-                    <th class="p-4">Clientes</th>
-                    <th class="p-4">Estado</th>
-                    <th class="p-4">Estado de Cámaras en Dispositivo</th>
-                    <th class="p-4">Estado Disco</th>
-                `;
+                const elSync = document.getElementById('update-time'); if(elSync) elSync.innerText = formatearFechaSincroChile(timeDSS);
 
-                document.getElementById('label-kpi-1').innerText = "EQUIPOS ONLINE";
-                document.getElementById('label-kpi-2').innerText = "EQUIPOS OFFLINE";
-                document.getElementById('label-kpi-3').innerText = "DISPONIBILIDAD";
-                document.getElementById('label-kpi-4').innerText = "TOTAL EQUIPOS";
-
-                document.getElementById('filtros-hcp').classList.add('hidden');
-                document.getElementById('filtros-dss').classList.remove('hidden');
+                document.getElementById('filtros-hcp').classList.add('hidden'); document.getElementById('filtros-dss').classList.remove('hidden');
                 document.getElementById('kpis-hcp-camaras').classList.add('hidden');
-                
                 filtrarEstadoDSS(filtroDSS);
             }
         }
@@ -459,8 +315,7 @@
         function filtrarEstadoHCP(estado) {
             filtroHCP = estado;
             ['todos', 'online', 'offline', 'recursos', 'grabaciones'].forEach(id => {
-                const b = document.getElementById('btn-hcp-' + id);
-                b.className = id === estado ? "flex-1 px-4 py-2 rounded bg-slate-800 text-white transition dark:bg-slate-600" : "flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition";
+                document.getElementById('btn-hcp-' + id).className = id === estado ? "flex-1 px-4 py-2 rounded bg-slate-800 text-white transition dark:bg-slate-600" : "flex-1 px-4 py-2 rounded text-slate-600 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition";
             });
             renderizarTablaYGrafico();
         }
@@ -474,273 +329,199 @@
             renderizarTablaYGrafico();
         }
 
+        // --- RENDER PRINCIPAL ---
         function renderizarTablaYGrafico() {
-            const tbody = document.getElementById('tabla-datos');
-            const divMovil = document.getElementById('vista-movil');
+            const tbody = document.getElementById('tabla-datos'); const divMovil = document.getElementById('vista-movil');
             const term = document.getElementById('buscador').value.toLowerCase().trim();
-            
-            let htmlTable = '';
-            let htmlMovil = '';
+            let htmlTable = '', htmlMovil = '';
 
             if (tabActual === 'HCP') {
+                // KPIs EQUIPOS
                 const dispositivos = dataHCPDevice.length ? dataHCPDevice : dataHCP;
-                const total = dispositivos.length;
-                const onlineCount = dispositivos.filter(d => String(d["Current Status"] || "").toLowerCase().includes('online')).length;
-                const offlineCount = total - onlineCount;
-                const pct = total > 0 ? ((onlineCount / total) * 100).toFixed(1) : 0;
+                const totalEq = dispositivos.length;
+                const eqOnline = dispositivos.filter(d => String(d["Current Status"] || "").toLowerCase().includes('online')).length;
+                const eqOffline = totalEq - eqOnline;
+                document.getElementById('kpi-1-val').innerText = eqOnline;
+                document.getElementById('kpi-offline-val').innerText = eqOffline;
+                document.getElementById('kpi-3-val').innerText = (totalEq > 0 ? ((eqOnline / totalEq) * 100).toFixed(1) : 0) + '%';
+                document.getElementById('kpi-total-val').innerText = totalEq;
 
-                document.getElementById('kpi-1-val').innerText = onlineCount;
-                document.getElementById('kpi-offline-val').innerText = offlineCount;
-                document.getElementById('kpi-3-val').innerText = pct + '%';
-                document.getElementById('kpi-total-val').innerText = total;
-                actualizarKpisCamarasHCP();
+                // KPIs CAMARAS
+                const totalCam = dataHCPResource.length;
+                const camOnline = dataHCPResource.filter(d => String(d["Current Status"] || '').toLowerCase().includes('online')).length;
+                const camOffline = totalCam - camOnline;
+                document.getElementById('kpi-cam-online-val').innerText = camOnline;
+                document.getElementById('kpi-cam-offline-val').innerText = camOffline;
+                document.getElementById('kpi-cam-total-val').innerText = totalCam;
+                document.getElementById('kpi-cam-disponibilidad-val').innerText = (totalCam > 0 ? ((camOnline / totalCam) * 100).toFixed(1) : 0) + '%';
 
+                // TABLAS HCP
                 if (filtroHCP === 'recursos') {
-                    document.getElementById('cabecera-tabla').innerHTML = `
-                        <th class="p-4">Recurso / Cámara</th>
-                        <th class="p-4">Cliente / Área</th>
-                        <th class="p-4">Estado</th>
-                        <th class="p-4">Tiempo Total Fuera de Línea</th>
-                    `;
-
-                    let fData = dataHCPResource.filter(d => {
-                        const texto = `${d["Name"] || ''} ${d["Area"] || ''} ${d["Current Status"] || ''}`.toLowerCase();
-                        return term === '' || texto.includes(term);
-                    }).sort((a, b) => {
-                        const aOnline = String(a["Current Status"] || '').toLowerCase().includes('online');
-                        const bOnline = String(b["Current Status"] || '').toLowerCase().includes('online');
-                        return aOnline - bOnline;
-                    });
+                    document.getElementById('cabecera-tabla').innerHTML = `<th class="p-4">Recurso / Cámara</th><th class="p-4">Cliente / Área</th><th class="p-4">Estado</th><th class="p-4">Tiempo Total Fuera de Línea</th>`;
+                    let fData = dataHCPResource.filter(d => (term === '' || `${d["Name"]||''} ${d["Area"]||''} ${d["Current Status"]||''}`.toLowerCase().includes(term)))
+                        .sort((a, b) => String(b["Current Status"] || '').toLowerCase().includes('online') ? 1 : -1);
 
                     fData.forEach(d => {
                         const isO = String(d["Current Status"] || "").toLowerCase().includes('online');
-                        const bc = isO ? 'status-online' : 'status-offline';
-                        const sh = isO ? 'ONLINE' : 'OFFLINE';
+                        const bc = isO ? 'status-online' : 'status-offline'; const sh = isO ? 'ONLINE' : 'OFFLINE';
                         htmlTable += `<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/20 transition text-slate-700 dark:text-slate-200 border-b border-gray-200 dark:border-slate-800">
-                            <td class="p-4 font-bold text-slate-900 dark:text-white">${d["Name"] || '--'}</td>
-                            <td class="p-4 text-xs text-slate-500 dark:text-slate-400">${d["Area"] || '--'}</td>
+                            <td class="p-4 font-bold text-slate-900 dark:text-white">${d["Name"] || '--'}</td><td class="p-4 text-xs text-slate-500 dark:text-slate-400">${d["Area"] || '--'}</td>
                             <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bc}">${sh}</span></td>
-                            <td class="p-4 font-mono text-xs font-bold text-slate-900 dark:text-white">${d["Total Offline Duration"] || '--'}</td>
-                        </tr>`;
+                            <td class="p-4 font-mono text-xs font-bold text-slate-900 dark:text-white">${d["Total Offline Duration"] || '--'}</td></tr>`;
                         htmlMovil += `<div class="p-4 space-y-2 text-sm text-slate-700 dark:text-slate-300">
                             <div class="flex justify-between items-start gap-2"><span class="font-bold text-slate-900 dark:text-white text-base">${d["Name"] || '--'}</span><span class="px-2 py-0.5 rounded text-[10px] font-black tracking-wide ${bc}">${sh}</span></div>
-                            <div class="text-xs text-slate-500 dark:text-slate-400">Cliente / Área: ${d["Area"] || '--'}</div>
-                            <div class="text-xs font-semibold">Duración Offline: <span class="font-mono">${d["Total Offline Duration"] || '--'}</span></div>
-                        </div>`;
+                            <div class="text-xs text-slate-500 dark:text-slate-400">Cliente / Área: ${d["Area"] || '--'}</div><div class="text-xs font-semibold">Duración Offline: <span class="font-mono">${d["Total Offline Duration"] || '--'}</span></div></div>`;
                     });
-
                 } else if (filtroHCP === 'grabaciones') {
-                    // SECCIÓN CORREGIDA: Usa directamente los textos del JSON procesado por n8n
-                    document.getElementById('cabecera-tabla').innerHTML = `
-                        <th class="p-4">Recurso / Cámara</th>
-                        <th class="p-4">Cliente / Área</th>
-                        <th class="p-4">ESTADO DISCO</th>
-                        <th class="p-4">ESTADO DE GRABACIÓN</th>
-                    `;
-
-                    let fData = dataHCPRecording.filter(d => {
-                        const texto = `${d["Name"] || ''} ${d["Area"] || ''} ${d["Storage Type"] || ''} ${d["Recording Status"] || ''}`.toLowerCase();
-                        return term === '' || texto.includes(term);
-                    }).sort((a, b) => {
-                        return String(a["Recording Status"] || '').localeCompare(String(b["Recording Status"] || ''));
-                    });
+                    document.getElementById('cabecera-tabla').innerHTML = `<th class="p-4">Recurso / Cámara</th><th class="p-4">Cliente / Área</th><th class="p-4">ESTADO DISCO</th><th class="p-4">ESTADO DE GRABACIÓN</th>`;
+                    let fData = dataHCPRecording.filter(d => (term === '' || `${d["Name"]||''} ${d["Area"]||''} ${d["Storage Type"]||''} ${d["Recording Status"]||''}`.toLowerCase().includes(term)))
+                        .sort((a, b) => String(a["Recording Status"] || '').localeCompare(String(b["Recording Status"] || '')));
 
                     fData.forEach(d => {
-                        // Rescatamos las variables limpias desde n8n
                         const estadoDiscoTexto = d["Storage Type"] || '--';
                         const estadoGrabacionTexto = d["Recording Status"] || '--';
-                        
-                        // Determinamos el color usando palabras clave
                         const claseDisco = estadoDiscoTexto === 'Normal' ? 'status-online' : 'status-offline';
                         const claseGrabacion = estadoGrabacionTexto.includes('Operativo') ? 'status-online' : 'status-offline';
 
                         htmlTable += `<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/20 transition text-slate-700 dark:text-slate-200 border-b border-gray-200 dark:border-slate-800">
-                            <td class="p-4 font-bold text-slate-900 dark:text-white">${d["Name"] || '--'}</td>
-                            <td class="p-4 text-xs text-slate-500 dark:text-slate-400">${d["Area"] || '--'}</td>
+                            <td class="p-4 font-bold text-slate-900 dark:text-white">${d["Name"] || '--'}</td><td class="p-4 text-xs text-slate-500 dark:text-slate-400">${d["Area"] || '--'}</td>
                             <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${claseDisco}">${estadoDiscoTexto}</span></td>
-                            <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${claseGrabacion}">${estadoGrabacionTexto}</span></td>
-                        </tr>`;
+                            <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${claseGrabacion}">${estadoGrabacionTexto}</span></td></tr>`;
                         htmlMovil += `<div class="p-4 space-y-2 text-sm text-slate-700 dark:text-slate-300">
-                            <div class="font-bold text-slate-900 dark:text-white text-base">${d["Name"] || '--'}</div>
-                            <div class="text-xs text-slate-500 dark:text-slate-400">Cliente / Área: ${d["Area"] || '--'}</div>
+                            <div class="font-bold text-slate-900 dark:text-white text-base">${d["Name"] || '--'}</div><div class="text-xs text-slate-500 dark:text-slate-400">Cliente / Área: ${d["Area"] || '--'}</div>
                             <div class="text-xs flex flex-col sm:flex-row gap-2 justify-between border-t border-gray-100 dark:border-slate-800 pt-1">
                                 <span>ESTADO DISCO: <span class="px-1.5 py-0.5 rounded font-black ${claseDisco}">${estadoDiscoTexto}</span></span>
                                 <span>ESTADO DE GRABACIÓN: <span class="px-1.5 py-0.5 rounded font-black ${claseGrabacion}">${estadoGrabacionTexto}</span></span>
-                            </div>
-                        </div>`;
+                            </div></div>`;
                     });
-
                 } else {
-                    document.getElementById('cabecera-tabla').innerHTML = `
-                        <th class="p-4">Cliente</th>
-                        <th class="p-4">Estado</th>
-                        <th class="p-4">Última Desconexión</th>
-                        <th class="p-4">Tiempo Total Fuera de Línea</th>
-                    `;
-
+                    document.getElementById('cabecera-tabla').innerHTML = `<th class="p-4">Cliente</th><th class="p-4">Estado</th><th class="p-4">Última Desconexión</th><th class="p-4">Tiempo Total Fuera de Línea</th>`;
                     let fData = dispositivos.filter(d => {
-                        const st = String(d["Current Status"] || '').toLowerCase();
-                        const isO = st.includes('online') || st.includes('línea');
-                        const name = String(d["Name"] || '').toLowerCase();
-                        if (filtroHCP === 'online' && !isO) return false;
-                        if (filtroHCP === 'offline' && isO) return false;
-                        if (term !== '' && !name.includes(term)) return false;
-                        return true;
+                        const isO = String(d["Current Status"] || '').toLowerCase().includes('online');
+                        if (filtroHCP === 'online' && !isO) return false; if (filtroHCP === 'offline' && isO) return false;
+                        if (term !== '' && !String(d["Name"]||'').toLowerCase().includes(term)) return false; return true;
                     }).sort((a, b) => {
-                        const oA = String(a["Current Status"] || '').toLowerCase().includes('online');
-                        const oB = String(b["Current Status"] || '').toLowerCase().includes('online');
+                        const oA = String(a["Current Status"] || '').toLowerCase().includes('online'); const oB = String(b["Current Status"] || '').toLowerCase().includes('online');
                         if (!oA && !oB) return duracionASegundos(b["Total Offline Duration"]) - duracionASegundos(a["Total Offline Duration"]);
-                        return oA - oB;
+                        return oA ? -1 : 1;
                     });
 
                     fData.forEach(d => {
                         const isO = String(d["Current Status"] || '').toLowerCase().includes('online');
-                        const bc = isO ? 'status-online' : 'status-offline';
-                        const sh = isO ? 'ONLINE' : 'OFFLINE';
+                        const bc = isO ? 'status-online' : 'status-offline'; const sh = isO ? 'ONLINE' : 'OFFLINE';
                         htmlTable += `<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/20 transition text-slate-700 dark:text-slate-200 border-b border-gray-200 dark:border-slate-800">
-                            <td class="p-4 font-bold text-slate-900 dark:text-white">${d["Name"] || '--'}</td>
-                            <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bc}">${sh}</span></td>
-                            <td class="p-4 font-mono text-xs text-slate-500 dark:text-slate-400">${d["Latest Offline Time"] || '--'}</td>
-                            <td class="p-4 font-mono text-xs font-bold text-slate-900 dark:text-white">${d["Total Offline Duration"] || '--'}</td>
-                        </tr>`;
+                            <td class="p-4 font-bold text-slate-900 dark:text-white">${d["Name"] || '--'}</td><td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bc}">${sh}</span></td>
+                            <td class="p-4 font-mono text-xs text-slate-500 dark:text-slate-400">${d["Latest Offline Time"] || '--'}</td><td class="p-4 font-mono text-xs font-bold text-slate-900 dark:text-white">${d["Total Offline Duration"] || '--'}</td></tr>`;
                         htmlMovil += `<div class="p-4 space-y-2 text-sm text-slate-700 dark:text-slate-300">
                             <div class="flex justify-between items-start gap-2"><span class="font-bold text-slate-900 dark:text-white text-base">${d["Name"] || '--'}</span><span class="px-2 py-0.5 rounded text-[10px] font-black tracking-wide ${bc}">${sh}</span></div>
-                            <div class="text-xs text-slate-500 dark:text-slate-400">Offline desde: ${d["Latest Offline Time"] || '--'}</div>
-                            <div class="text-xs flex justify-between items-center pt-1 border-t border-gray-100 dark:border-slate-800"><span class="font-semibold text-slate-600 dark:text-slate-300">Duración Offline:</span><span class="font-mono font-bold text-slate-900 dark:text-white">${d["Total Offline Duration"] || '--'}</span></div>
-                        </div>`;
+                            <div class="text-xs text-slate-500 dark:text-slate-400">Offline desde: ${d["Latest Offline Time"] || '--'}</div><div class="text-xs flex justify-between items-center pt-1 border-t border-gray-100 dark:border-slate-800"><span class="font-semibold text-slate-600 dark:text-slate-300">Duración Offline:</span><span class="font-mono font-bold text-slate-900 dark:text-white">${d["Total Offline Duration"] || '--'}</span></div></div>`;
                     });
                 }
 
-                const grabacionesEnFalla = dataHCPRecording.filter(d => String(d["Recording Status"]).toLowerCase().includes('falla')).length;
-                renderizarGraficoHCP(onlineCount, offlineCount, grabacionesEnFalla);
+                // CÁLCULO SUMA FALLAS DE GRABACIÓN
+                const grabacionesEnFalla = dataHCPRecording.filter(d => {
+                    const status = String(d["Recording Status"] || '').toLowerCase();
+                    return status.includes('falla') || status.includes('sin datos');
+                }).length;
+
+                renderGrafico(eqOnline, eqOffline, camOnline, camOffline, grabacionesEnFalla, 'HCP');
 
             } else {
+                // TABLA DSS DAHUA
                 let total = resumenDSS.dispositivos?.total ?? dataDSS.length;
                 let onlineDCount = resumenDSS.dispositivos?.online ?? dataDSS.filter(d => String(d["conexion"] || "").toLowerCase() === "online").length;
                 let offlineDCount = resumenDSS.dispositivos?.offline ?? Math.max(total - onlineDCount, 0);
-                let abnormalDiskCount = resumenDSS.discos?.abnormal ?? dataDSS.filter(d => checkProblemaDisco(d["estado_disco"])).length;
-                let abnormalChanCount = resumenDSS.canales?.abnormal ?? dataDSS.filter(d => checkProblemaCanal(d["estado_canal"])).length;
-
-                const disponibilidadDSS = total > 0 ? ((onlineDCount / total) * 100).toFixed(1) : 0;
-
-                document.getElementById('kpi-1-val').innerText = onlineDCount;
-                document.getElementById('kpi-offline-val').innerText = offlineDCount;
-                document.getElementById('kpi-3-val').innerText = disponibilidadDSS + '%';
+                document.getElementById('kpi-1-val').innerText = onlineDCount; document.getElementById('kpi-offline-val').innerText = offlineDCount;
+                document.getElementById('kpi-3-val').innerText = (total > 0 ? ((onlineDCount / total) * 100).toFixed(1) : 0) + '%';
                 document.getElementById('kpi-total-val').innerText = total;
 
                 let fData = dataDSS.filter(d => {
                     let isO = String(d['conexion'] || '').toLowerCase() === 'online';
-                    let badDisk = checkProblemaDisco(d["estado_disco"]);
-                    let badChan = checkProblemaCanal(d["estado_canal"]);
-
-                    if (filtroDSS === 'online' && !isO) return false;
-                    if (filtroDSS === 'offline' && isO) return false;
-                    if (filtroDSS === 'discos' && !badDisk) return false;
-                    if (filtroDSS === 'canales' && !badChan) return false;
-                    
-                    if (term !== '' && !(d['nombre'] || '').toLowerCase().includes(term)) return false;
-                    return true;
+                    let badDisk = checkProblemaDisco(d["estado_disco"]); let badChan = checkProblemaCanal(d["estado_canal"]);
+                    if (filtroDSS === 'online' && !isO) return false; if (filtroDSS === 'offline' && isO) return false;
+                    if (filtroDSS === 'discos' && !badDisk) return false; if (filtroDSS === 'canales' && !badChan) return false;
+                    if (term !== '' && !(d['nombre'] || '').toLowerCase().includes(term)) return false; return true;
                 }).sort((a, b) => {
-                    const aOnline = String(a['conexion'] || '').toLowerCase() === 'online';
-                    const bOnline = String(b['conexion'] || '').toLowerCase() === 'online';
-                    const aProblem = !aOnline || checkProblemaDisco(a["estado_disco"]) || checkProblemaCanal(a["estado_canal"]);
-                    const bProblem = !bOnline || checkProblemaDisco(b["estado_disco"]) || checkProblemaCanal(b["estado_canal"]);
-
-                    if (aProblem !== bProblem) return aProblem ? -1 : 1;
-                    if (aOnline !== bOnline) return aOnline ? 1 : -1;
-
-                    return String(a['nombre'] || '').localeCompare(String(b['nombre'] || ''), 'es');
+                    const aP = !(String(a['conexion']||'').toLowerCase()==='online') || checkProblemaDisco(a["estado_disco"]) || checkProblemaCanal(a["estado_canal"]);
+                    const bP = !(String(b['conexion']||'').toLowerCase()==='online') || checkProblemaDisco(b["estado_disco"]) || checkProblemaCanal(b["estado_canal"]);
+                    if (aP !== bP) return aP ? -1 : 1;
+                    return String(a['nombre']||'').localeCompare(String(b['nombre']||''), 'es');
                 });
 
                 fData.forEach(d => {
                     const isO = String(d["conexion"] || "").toLowerCase() === "online";
-                    const badDisk = checkProblemaDisco(d["estado_disco"]);
-                    const badChan = checkProblemaCanal(d["estado_canal"]);
-
                     const bcDev = isO ? 'status-online' : 'status-offline';
-                    const bcDisk = badDisk ? 'status-offline' : 'status-online';
-                    const bcChan = badChan ? 'bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400' : 'status-online';
-
-                    const conexionTexto = formatearEstadoDSS(d["conexion"] || '--');
-                    const estadoCanalTexto = formatearEstadoDSS(d["estado_canal"] || 'OK');
-                    const estadoDiscoTexto = formatearEstadoDSS(d["estado_disco"] || 'OK');
+                    const bcDisk = checkProblemaDisco(d["estado_disco"]) ? 'status-offline' : 'status-online';
+                    const bcChan = checkProblemaCanal(d["estado_canal"]) ? 'bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400' : 'status-online';
+                    const cTxt = formatearEstadoDSS(d["conexion"] || '--'); const caTxt = formatearEstadoDSS(d["estado_canal"] || 'OK'); const diTxt = formatearEstadoDSS(d["estado_disco"] || 'OK');
 
                     htmlTable += `<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/20 transition text-slate-700 dark:text-slate-200 border-b border-gray-200 dark:border-slate-800">
                         <td class="p-4 font-bold text-slate-900 dark:text-white">${d["nombre"] || '--'}</td>
-                        <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bcDev}">${conexionTexto}</span></td>
-                        <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bcChan}">${estadoCanalTexto}</span></td>
-                        <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bcDisk}">${estadoDiscoTexto}</span></td>
-                    </tr>`;
-
+                        <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bcDev}">${cTxt}</span></td>
+                        <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bcChan}">${caTxt}</span></td>
+                        <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-black tracking-wide ${bcDisk}">${diTxt}</span></td></tr>`;
                     htmlMovil += `<div class="p-4 space-y-2 text-sm text-slate-700 dark:text-slate-300">
-                        <div class="flex justify-between items-start gap-2">
-                            <span class="font-bold text-slate-900 dark:text-white text-base">${d["nombre"] || '--'}</span>
-                            <span class="px-2 py-0.5 rounded text-[10px] font-black tracking-wide ${bcDev}">${conexionTexto}</span>
-                        </div>
+                        <div class="flex justify-between items-start gap-2"><span class="font-bold text-slate-900 dark:text-white text-base">${d["nombre"] || '--'}</span><span class="px-2 py-0.5 rounded text-[10px] font-black tracking-wide ${bcDev}">${cTxt}</span></div>
                         <div class="text-xs flex flex-col sm:flex-row gap-2 justify-between items-start sm:items-center pt-1 border-t border-gray-100 dark:border-slate-800">
-                            <span class="font-semibold text-slate-600 dark:text-slate-300">Estado de Cámaras en Dispositivo: <span class="px-1.5 py-0.5 rounded font-black ${bcChan}">${estadoCanalTexto}</span></span>
-                            <span class="font-semibold text-slate-600 dark:text-slate-300">Disco: <span class="px-1.5 py-0.5 rounded font-black ${bcDisk}">${estadoDiscoTexto}</span></span>
-                        </div>
-                    </div>`;
+                            <span class="font-semibold text-slate-600 dark:text-slate-300">Estado de Cámaras en Dispositivo: <span class="px-1.5 py-0.5 rounded font-black ${bcChan}">${caTxt}</span></span>
+                            <span class="font-semibold text-slate-600 dark:text-slate-300">Disco: <span class="px-1.5 py-0.5 rounded font-black ${bcDisk}">${diTxt}</span></span>
+                        </div></div>`;
                 });
 
-                renderizarGraficoDSS(offlineDCount, abnormalDiskCount, abnormalChanCount);
+                let abnormalDiskCount = resumenDSS.discos?.abnormal ?? dataDSS.filter(d => checkProblemaDisco(d["estado_disco"])).length;
+                let abnormalChanCount = resumenDSS.canales?.abnormal ?? dataDSS.filter(d => checkProblemaCanal(d["estado_canal"])).length;
+                renderGrafico(0, offlineDCount, 0, abnormalDiskCount, abnormalChanCount, 'DSS');
             }
 
             if(htmlTable === '') {
                 htmlTable = `<tr><td colspan="5" class="p-6 text-center text-gray-400 dark:text-slate-500">No hay registros que coincidan o toda la red está estable.</td></tr>`;
                 htmlMovil = `<p class="p-6 text-center text-gray-400 dark:text-slate-500">No hay registros.</p>`;
             }
-
-            tbody.innerHTML = htmlTable;
-            divMovil.innerHTML = htmlMovil;
+            tbody.innerHTML = htmlTable; divMovil.innerHTML = htmlMovil;
         }
 
-        function renderizarGraficoHCP(online, offline, grabacionesEnFalla = 0) {
+        // --- GRAFICO UNIVERSAL ---
+        function renderGrafico(val1_ok, val1_bad, val2_ok, val2_bad, val3_bad, tipo) {
             const ctx = document.getElementById('graficoComparativo').getContext('2d');
             if (chartInstancia) chartInstancia.destroy();
             const dark = document.documentElement.classList.contains('dark');
-            chartInstancia = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['HCP HIKVISION'],
+            
+            let cfg = {};
+            if (tipo === 'HCP') {
+                cfg = {
+                    labels: ['EQUIPOS', 'CÁMARAS', 'GRABACIONES'],
                     datasets: [
-                        { label: 'Online', data: [online], backgroundColor: '#10b981', barPercentage: 0.55 },
-                        { label: 'Offline', data: [offline], backgroundColor: '#ef4444', barPercentage: 0.55 },
-                        { label: 'Estado de Grabación En Falla', data: [grabacionesEnFalla], backgroundColor: '#eab308', barPercentage: 0.55 }
+                        { label: 'Online / Operativo', data: [val1_ok, val2_ok, 0], backgroundColor: '#10b981', barPercentage: 0.6 },
+                        { label: 'Offline / En Falla', data: [val1_bad, val2_bad, val3_bad], backgroundColor: '#ef4444', barPercentage: 0.6 }
                     ]
-                },
-                options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: dark ? '#ffffff' : '#1e293b' } } }, scales: { x: { grid: { color: dark ? '#222222' : '#e2e8f0' }, ticks: { color: dark ? '#94a3b8' : '#64748b' } }, y: { display: false } } }
-            });
-        }
-
-        function renderizarGraficoDSS(offline, discosBad, chanBad) {
-            const ctx = document.getElementById('graficoComparativo').getContext('2d');
-            if (chartInstancia) chartInstancia.destroy();
-            const dark = document.documentElement.classList.contains('dark');
-            chartInstancia = new Chart(ctx, {
-                type: 'bar',
-                data: {
+                };
+            } else {
+                cfg = {
                     labels: ['Problemas DAHUA'],
                     datasets: [
-                        { label: 'Equipos Offline', data: [offline], backgroundColor: '#ef4444', barPercentage: 0.8 },
-                        { label: 'Problemas de Disco', data: [discosBad], backgroundColor: '#f97316', barPercentage: 0.8 },
-                        { label: 'Estado de Cámaras en Dispositivo', data: [chanBad], backgroundColor: '#eab308', barPercentage: 0.8 }
+                        { label: 'Equipos Offline', data: [val1_bad], backgroundColor: '#ef4444', barPercentage: 0.8 },
+                        { label: 'Problemas de Disco', data: [val2_bad], backgroundColor: '#f97316', barPercentage: 0.8 },
+                        { label: 'Estado de Cámaras en Dispositivo', data: [val3_bad], backgroundColor: '#eab308', barPercentage: 0.8 }
                     ]
-                },
-                options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: dark ? '#ffffff' : '#1e293b' } } }, scales: { x: { grid: { color: dark ? '#222222' : '#e2e8f0' }, ticks: { color: dark ? '#94a3b8' : '#64748b' } }, y: { display: false } } }
+                };
+            }
+
+            chartInstancia = new Chart(ctx, {
+                type: 'bar', data: cfg,
+                options: { 
+                    indexAxis: 'y', responsive: true, maintainAspectRatio: false, 
+                    plugins: { legend: { position: 'bottom', labels: { color: dark ? '#ffffff' : '#1e293b' } } }, 
+                    scales: { 
+                        x: { grid: { color: dark ? '#222222' : '#e2e8f0' }, ticks: { color: dark ? '#94a3b8' : '#64748b' } }, 
+                        y: { grid: { display: false }, ticks: { color: dark ? '#94a3b8' : '#64748b', font: { weight: 'bold' } } } 
+                    } 
+                }
             });
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            actualizarReloj();
-            cargarTodo();
-
-            const buscador = document.getElementById('buscador');
-            if (buscador) {
-                buscador.addEventListener('input', renderizarTablaYGrafico);
-            }
-
+            actualizarReloj(); cargarTodo();
+            const buscador = document.getElementById('buscador'); if (buscador) buscador.addEventListener('input', renderizarTablaYGrafico);
             setInterval(cargarTodo, 60000);
         });
     </script>
