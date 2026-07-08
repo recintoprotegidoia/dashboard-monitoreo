@@ -1,5 +1,5 @@
 {
-  "ultima_actualizacion": "08-07-2026, 07:30:14 a. m.",
+  "ultima_actualizacion": "08-07-2026, 08:04:00 a. m.",
   "registros": [],
   "device_online_offline_log": [],
   "resource_online_offline_log": [
@@ -25,10 +25,10 @@
       "Total Offline Duration": "00:00:00"
     },
     {
-      "Name": "ACCESO-CMO-RP",
+      "Name": "ACCESO_CMO",
       "Area": "CMO_PROVI_RP",
       "Current Status": "Online",
-      "Latest Offline Time": "--",
+      "Latest Offline Time": "2026-07-01 19:07:59",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -8810,11 +8810,11 @@
       "Total Offline Duration": "00:00:00"
     },
     {
-      "Name": "C48-1-1 AU-DVR",
+      "Name": "C48-1-1",
       "Area": "C48 MOHICANO URRUTIA",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-07-06 11:48:05",
-      "Total Offline Duration": "00:00:03"
+      "Current Status": "Offline",
+      "Latest Offline Time": "2026-07-06 03:01:35",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C481-1-1 AU-NVR",
@@ -8901,34 +8901,6 @@
       "Total Offline Duration": "00:00:00"
     },
     {
-      "Name": "C481-1-20",
-      "Area": "C481 HARAS LONCO - CAMPO (GC3100460)",
-      "Current Status": "Online",
-      "Latest Offline Time": "--",
-      "Total Offline Duration": "00:00:00"
-    },
-    {
-      "Name": "C481-1-21",
-      "Area": "C481 HARAS LONCO - CAMPO (GC3100460)",
-      "Current Status": "Online",
-      "Latest Offline Time": "--",
-      "Total Offline Duration": "00:00:00"
-    },
-    {
-      "Name": "C481-1-22",
-      "Area": "C481 HARAS LONCO - CAMPO (GC3100460)",
-      "Current Status": "Online",
-      "Latest Offline Time": "--",
-      "Total Offline Duration": "00:00:00"
-    },
-    {
-      "Name": "C481-1-23",
-      "Area": "C481 HARAS LONCO - CAMPO (GC3100460)",
-      "Current Status": "Online",
-      "Latest Offline Time": "--",
-      "Total Offline Duration": "00:00:00"
-    },
-    {
       "Name": "C481-1-3 AU-NVR",
       "Area": "C481 HARAS LONCO - CAMPO (GC3100460)",
       "Current Status": "Online",
@@ -8978,25 +8950,25 @@
       "Total Offline Duration": "00:00:00"
     },
     {
-      "Name": "C48-1-2 AU-DVR",
+      "Name": "C48-1-2",
       "Area": "C48 MOHICANO URRUTIA",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-07-06 11:48:05",
-      "Total Offline Duration": "00:00:03"
+      "Current Status": "Offline",
+      "Latest Offline Time": "2026-07-06 03:01:35",
+      "Total Offline Duration": "00:00:00"
     },
     {
-      "Name": "C48-1-3 AU-DVR",
+      "Name": "C48-1-3",
       "Area": "C48 MOHICANO URRUTIA",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-07-06 11:48:05",
-      "Total Offline Duration": "00:00:03"
+      "Current Status": "Offline",
+      "Latest Offline Time": "2026-07-06 03:01:35",
+      "Total Offline Duration": "00:00:00"
     },
     {
-      "Name": "C48-1-4 AU-DVR",
+      "Name": "C48-1-4",
       "Area": "C48 MOHICANO URRUTIA",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-07-06 11:48:05",
-      "Total Offline Duration": "00:00:03"
+      "Current Status": "Offline",
+      "Latest Offline Time": "2026-07-06 03:01:35",
+      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "C488-1-1",
@@ -18792,20 +18764,6 @@
       "Total Offline Duration": "24:00:00"
     },
     {
-      "Name": "C762-1-1 AU-NVR",
-      "Area": "C762-1 ANNA JOYAS SPA",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-07-06 15:14:34",
-      "Total Offline Duration": "00:00:04"
-    },
-    {
-      "Name": "C762-1-2 AU-NVR",
-      "Area": "C762-1 ANNA JOYAS SPA",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-07-06 15:14:34",
-      "Total Offline Duration": "00:00:04"
-    },
-    {
       "Name": "C764-1-1 AU-NVR",
       "Area": "C764 POCURO TEM VISTA GOLF (GM9750766)",
       "Current Status": "Online",
@@ -19308,34 +19266,6 @@
       "Current Status": "Online",
       "Latest Offline Time": "2026-07-03 16:25:08",
       "Total Offline Duration": "00:00:00"
-    },
-    {
-      "Name": "C794-1-1 AU-NVR",
-      "Area": "C794-1 POCURO IS LA FLORIDA",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-07-06 11:21:19",
-      "Total Offline Duration": "00:03:06"
-    },
-    {
-      "Name": "C794-1-2 AU-NVR",
-      "Area": "C794-1 POCURO IS LA FLORIDA",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-07-06 20:13:29",
-      "Total Offline Duration": "00:02:45"
-    },
-    {
-      "Name": "C794-1-3 AU-NVR",
-      "Area": "C794-1 POCURO IS LA FLORIDA",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-07-06 10:17:04",
-      "Total Offline Duration": "00:00:05"
-    },
-    {
-      "Name": "C794-1-4 AU-NVR",
-      "Area": "C794-1 POCURO IS LA FLORIDA",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-07-07 04:04:25",
-      "Total Offline Duration": "00:05:02"
     },
     {
       "Name": "C87-2-1",
@@ -20984,6 +20914,13 @@
     },
     {
       "Name": "Camera 01",
+      "Area": "CMO_PROVI_RP",
+      "Current Status": "Offline",
+      "Latest Offline Time": "2026-07-01 19:10:13",
+      "Total Offline Duration": "24:00:00"
+    },
+    {
+      "Name": "Camera 01",
       "Area": "C147-1 KUPFER BODEGA LA NEGRA",
       "Current Status": "Online",
       "Latest Offline Time": "2026-07-01 20:53:54",
@@ -21018,6 +20955,13 @@
       "Total Offline Duration": "00:00:00"
     },
     {
+      "Name": "Camera 02",
+      "Area": "CMO_PROVI_RP",
+      "Current Status": "Offline",
+      "Latest Offline Time": "2026-07-01 13:16:52",
+      "Total Offline Duration": "24:00:00"
+    },
+    {
       "Name": "Camera 03",
       "Area": "CA 0095 SPORTLIFE BORIES - PUNTA ARENAS (FD7918435)",
       "Current Status": "Online",
@@ -21046,6 +20990,13 @@
       "Total Offline Duration": "00:00:00"
     },
     {
+      "Name": "Camera 03",
+      "Area": "CMO_PROVI_RP",
+      "Current Status": "Offline",
+      "Latest Offline Time": "2026-07-01 13:16:52",
+      "Total Offline Duration": "24:00:00"
+    },
+    {
       "Name": "Camera 04",
       "Area": "CA 0095 SPORTLIFE BORIES - PUNTA ARENAS (FD7918435)",
       "Current Status": "Online",
@@ -21072,6 +21023,13 @@
       "Current Status": "Online",
       "Latest Offline Time": "2026-07-03 16:13:45",
       "Total Offline Duration": "00:00:00"
+    },
+    {
+      "Name": "Camera 04",
+      "Area": "CMO_PROVI_RP",
+      "Current Status": "Offline",
+      "Latest Offline Time": "2026-07-01 13:16:52",
+      "Total Offline Duration": "24:00:00"
     },
     {
       "Name": "Camera 05",
@@ -21361,10 +21319,10 @@
       "Total Offline Duration": "00:00:00"
     },
     {
-      "Name": "CASINO-CMO-RP",
+      "Name": "CASINO_CMO_RP",
       "Area": "CMO_PROVI_RP",
       "Current Status": "Online",
-      "Latest Offline Time": "--",
+      "Latest Offline Time": "2026-07-01 19:07:59",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -21550,6 +21508,13 @@
       "Total Offline Duration": "00:00:00"
     },
     {
+      "Name": "IPCamera 01",
+      "Area": "CMO_PROVI_RP",
+      "Current Status": "Offline",
+      "Latest Offline Time": "2026-07-01 13:16:52",
+      "Total Offline Duration": "24:00:00"
+    },
+    {
       "Name": "IPCamera 04",
       "Area": "C520 GRUPO INO SPA (FS3714428)",
       "Current Status": "Offline",
@@ -21576,83 +21541,6 @@
       "Current Status": "Offline",
       "Latest Offline Time": "2026-07-02 14:11:51",
       "Total Offline Duration": "24:00:00"
-    },
-    {
-      "Name": "L1 - CAM 1",
-      "Area": "CMO_PROVI_RP",
-      "Current Status": "Online",
-      "Latest Offline Time": "--",
-      "Total Offline Duration": "00:00:00"
-    },
-    {
-      "Name": "L1 - CAM 2",
-      "Area": "CMO_PROVI_RP",
-      "Current Status": "Online",
-      "Latest Offline Time": "--",
-      "Total Offline Duration": "00:00:00"
-    },
-    {
-      "Name": "L2 - CAM 1",
-      "Area": "CMO_PROVI_RP",
-      "Current Status": "Online",
-      "Latest Offline Time": "--",
-      "Total Offline Duration": "00:00:00"
-    },
-    {
-      "Name": "L2 - CAM 2",
-      "Area": "CMO_PROVI_RP",
-      "Current Status": "Online",
-      "Latest Offline Time": "--",
-      "Total Offline Duration": "00:00:00"
-    },
-    {
-      "Name": "L2 - CAM 3",
-      "Area": "CMO_PROVI_RP",
-      "Current Status": "Online",
-      "Latest Offline Time": "--",
-      "Total Offline Duration": "00:00:00"
-    },
-    {
-      "Name": "L2 - CAM 4",
-      "Area": "CMO_PROVI_RP",
-      "Current Status": "Online",
-      "Latest Offline Time": "--",
-      "Total Offline Duration": "00:00:00"
-    },
-    {
-      "Name": "L2 - CAM 5",
-      "Area": "CMO_PROVI_RP",
-      "Current Status": "Online",
-      "Latest Offline Time": "--",
-      "Total Offline Duration": "00:00:00"
-    },
-    {
-      "Name": "L2 - CAM 6",
-      "Area": "CMO_PROVI_RP",
-      "Current Status": "Online",
-      "Latest Offline Time": "--",
-      "Total Offline Duration": "00:00:00"
-    },
-    {
-      "Name": "L3 - CAM 1",
-      "Area": "CMO_PROVI_RP",
-      "Current Status": "Online",
-      "Latest Offline Time": "--",
-      "Total Offline Duration": "00:00:00"
-    },
-    {
-      "Name": "L3 - CAM 2",
-      "Area": "CMO_PROVI_RP",
-      "Current Status": "Online",
-      "Latest Offline Time": "--",
-      "Total Offline Duration": "00:00:00"
-    },
-    {
-      "Name": "L3 - CAM 3",
-      "Area": "CMO_PROVI_RP",
-      "Current Status": "Online",
-      "Latest Offline Time": "--",
-      "Total Offline Duration": "00:00:00"
     },
     {
       "Name": "mancuernas",
@@ -21904,13 +21792,6 @@
       "Area": "CA 0079 SPORTLIFE CONCON - 3400 REÑACA (FU4699459)",
       "Current Status": "Online",
       "Latest Offline Time": "2026-06-16 19:43:29",
-      "Total Offline Duration": "00:00:00"
-    },
-    {
-      "Name": "OFICINA-GRAL",
-      "Area": "CMO_PROVI_RP",
-      "Current Status": "Online",
-      "Latest Offline Time": "--",
       "Total Offline Duration": "00:00:00"
     },
     {
@@ -22474,6 +22355,13 @@
       "Total Offline Duration": "00:00:00"
     },
     {
+      "Name": "SALA 1 - CAM 2",
+      "Area": "CMO_PROVI_RP",
+      "Current Status": "Online",
+      "Latest Offline Time": "2026-07-01 19:07:59",
+      "Total Offline Duration": "00:00:00"
+    },
+    {
       "Name": "sala 10",
       "Area": "CA 0085 D2 SPORTLIFE PEÑALOLEN - AV CONSISTORIAL 2100",
       "Current Status": "Online",
@@ -22551,6 +22439,13 @@
       "Total Offline Duration": "00:00:00"
     },
     {
+      "Name": "SALA 2 - CAM 2",
+      "Area": "CMO_PROVI_RP",
+      "Current Status": "Online",
+      "Latest Offline Time": "2026-07-01 19:07:59",
+      "Total Offline Duration": "00:00:00"
+    },
+    {
       "Name": "sala 20",
       "Area": "CA 0085 D2 SPORTLIFE PEÑALOLEN - AV CONSISTORIAL 2100",
       "Current Status": "Online",
@@ -22563,6 +22458,55 @@
       "Current Status": "Online",
       "Latest Offline Time": "2026-06-16 19:45:20",
       "Total Offline Duration": "00:00:00"
+    },
+    {
+      "Name": "SALA 3 - CAM 2",
+      "Area": "CMO_PROVI_RP",
+      "Current Status": "Offline",
+      "Latest Offline Time": "2026-07-01 19:10:13",
+      "Total Offline Duration": "24:00:00"
+    },
+    {
+      "Name": "SALA 4 - CAM 1",
+      "Area": "CMO_PROVI_RP",
+      "Current Status": "Online",
+      "Latest Offline Time": "2026-07-02 10:25:27",
+      "Total Offline Duration": "00:00:00"
+    },
+    {
+      "Name": "SALA 4 - CAM 2",
+      "Area": "CMO_PROVI_RP",
+      "Current Status": "Online",
+      "Latest Offline Time": "2026-07-01 19:07:59",
+      "Total Offline Duration": "00:00:00"
+    },
+    {
+      "Name": "SALA 5 - CAM 1",
+      "Area": "CMO_PROVI_RP",
+      "Current Status": "Online",
+      "Latest Offline Time": "2026-07-01 19:07:59",
+      "Total Offline Duration": "00:00:00"
+    },
+    {
+      "Name": "SALA 5 - CAM 2",
+      "Area": "CMO_PROVI_RP",
+      "Current Status": "Online",
+      "Latest Offline Time": "2026-07-03 16:52:58",
+      "Total Offline Duration": "00:00:00"
+    },
+    {
+      "Name": "SALA 6 - CAM 1",
+      "Area": "CMO_PROVI_RP",
+      "Current Status": "Offline",
+      "Latest Offline Time": "2026-07-01 09:54:25",
+      "Total Offline Duration": "24:00:00"
+    },
+    {
+      "Name": "SALA 6 - CAM 2",
+      "Area": "CMO_PROVI_RP",
+      "Current Status": "Offline",
+      "Latest Offline Time": "2026-07-01 18:09:54",
+      "Total Offline Duration": "24:00:00"
     },
     {
       "Name": "sala baile",
@@ -23942,146 +23886,6 @@
       "Current Status": "Online",
       "Latest Offline Time": "2026-06-16 18:43:25",
       "Total Offline Duration": "00:00:00"
-    },
-    {
-      "Name": "ACCESO_CMO",
-      "Area": "CMO_PROVI_RP",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-07-01 19:07:59",
-      "Total Offline Duration": "00:00:00"
-    },
-    {
-      "Name": "C48-1-1",
-      "Area": "C48 MOHICANO URRUTIA",
-      "Current Status": "Offline",
-      "Latest Offline Time": "2026-07-06 03:01:35",
-      "Total Offline Duration": "00:00:00"
-    },
-    {
-      "Name": "C48-1-2",
-      "Area": "C48 MOHICANO URRUTIA",
-      "Current Status": "Offline",
-      "Latest Offline Time": "2026-07-06 03:01:35",
-      "Total Offline Duration": "00:00:00"
-    },
-    {
-      "Name": "C48-1-3",
-      "Area": "C48 MOHICANO URRUTIA",
-      "Current Status": "Offline",
-      "Latest Offline Time": "2026-07-06 03:01:35",
-      "Total Offline Duration": "00:00:00"
-    },
-    {
-      "Name": "C48-1-4",
-      "Area": "C48 MOHICANO URRUTIA",
-      "Current Status": "Offline",
-      "Latest Offline Time": "2026-07-06 03:01:35",
-      "Total Offline Duration": "00:00:00"
-    },
-    {
-      "Name": "Camera 01",
-      "Area": "CMO_PROVI_RP",
-      "Current Status": "Offline",
-      "Latest Offline Time": "2026-07-01 19:10:13",
-      "Total Offline Duration": "24:00:00"
-    },
-    {
-      "Name": "Camera 02",
-      "Area": "CMO_PROVI_RP",
-      "Current Status": "Offline",
-      "Latest Offline Time": "2026-07-01 13:16:52",
-      "Total Offline Duration": "24:00:00"
-    },
-    {
-      "Name": "Camera 03",
-      "Area": "CMO_PROVI_RP",
-      "Current Status": "Offline",
-      "Latest Offline Time": "2026-07-01 13:16:52",
-      "Total Offline Duration": "24:00:00"
-    },
-    {
-      "Name": "Camera 04",
-      "Area": "CMO_PROVI_RP",
-      "Current Status": "Offline",
-      "Latest Offline Time": "2026-07-01 13:16:52",
-      "Total Offline Duration": "24:00:00"
-    },
-    {
-      "Name": "CASINO_CMO_RP",
-      "Area": "CMO_PROVI_RP",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-07-01 19:07:59",
-      "Total Offline Duration": "00:00:00"
-    },
-    {
-      "Name": "IPCamera 01",
-      "Area": "CMO_PROVI_RP",
-      "Current Status": "Offline",
-      "Latest Offline Time": "2026-07-01 13:16:52",
-      "Total Offline Duration": "24:00:00"
-    },
-    {
-      "Name": "SALA 1 - CAM 2",
-      "Area": "CMO_PROVI_RP",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-07-01 19:07:59",
-      "Total Offline Duration": "00:00:00"
-    },
-    {
-      "Name": "SALA 2 - CAM 2",
-      "Area": "CMO_PROVI_RP",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-07-01 19:07:59",
-      "Total Offline Duration": "00:00:00"
-    },
-    {
-      "Name": "SALA 3 - CAM 2",
-      "Area": "CMO_PROVI_RP",
-      "Current Status": "Offline",
-      "Latest Offline Time": "2026-07-01 19:10:13",
-      "Total Offline Duration": "24:00:00"
-    },
-    {
-      "Name": "SALA 4 - CAM 1",
-      "Area": "CMO_PROVI_RP",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-07-02 10:25:27",
-      "Total Offline Duration": "00:00:00"
-    },
-    {
-      "Name": "SALA 4 - CAM 2",
-      "Area": "CMO_PROVI_RP",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-07-01 19:07:59",
-      "Total Offline Duration": "00:00:00"
-    },
-    {
-      "Name": "SALA 5 - CAM 1",
-      "Area": "CMO_PROVI_RP",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-07-01 19:07:59",
-      "Total Offline Duration": "00:00:00"
-    },
-    {
-      "Name": "SALA 5 - CAM 2",
-      "Area": "CMO_PROVI_RP",
-      "Current Status": "Online",
-      "Latest Offline Time": "2026-07-03 16:52:58",
-      "Total Offline Duration": "00:00:00"
-    },
-    {
-      "Name": "SALA 6 - CAM 1",
-      "Area": "CMO_PROVI_RP",
-      "Current Status": "Offline",
-      "Latest Offline Time": "2026-07-01 09:54:25",
-      "Total Offline Duration": "24:00:00"
-    },
-    {
-      "Name": "SALA 6 - CAM 2",
-      "Area": "CMO_PROVI_RP",
-      "Current Status": "Offline",
-      "Latest Offline Time": "2026-07-01 18:09:54",
-      "Total Offline Duration": "24:00:00"
     }
   ],
   "resource_recording_log": []
