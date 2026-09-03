@@ -1,7 +1,7 @@
 {
   "modulo": "ESTADO DISPOSITIVOS DSS - DAHUA",
   "fuente": "Reporte ZIP DSS - DAHUA",
-  "ultima_actualizacion": "02-09-2026, 8:00:51 a. m.",
+  "ultima_actualizacion": "03-09-2026, 7:00:14 a. m.",
   "resumen": {
     "dispositivos": {
       "total": 263,
@@ -14,14 +14,14 @@
     },
     "canales": {
       "total": 3615,
-      "online": 3044,
-      "offline": 571,
-      "normal": 2822,
-      "abnormal": 793,
+      "online": 3045,
+      "offline": 570,
+      "normal": 2825,
+      "abnormal": 790,
       "video": 1645,
       "alarma_entrada": 1679,
       "alarma_salida": 291,
-      "con_problemas": 793
+      "con_problemas": 790
     },
     "discos": {
       "total": 217,
@@ -32,7 +32,7 @@
     },
     "general": {
       "total_registros": 4095,
-      "total_problemas": 947,
+      "total_problemas": 944,
       "disponibilidad_dispositivos": 83.7,
       "disponibilidad_canales": 84.2
     }
@@ -17159,13 +17159,13 @@
       "organizacion": "GS",
       "tipo_canal": "Video Channel",
       "conexion": "Online",
-      "estado_canal": "Abnormal",
+      "estado_canal": "Normal",
       "dias_almacenamiento_consecutivos": "-",
       "dias_almacenamiento_configurados": "-",
       "integridad_video": "-",
       "metodo_almacenamiento": "-",
-      "ultimo_cambio": "2020-09-02 07:54:58",
-      "problema": true
+      "ultimo_cambio": "2020-09-02 07:54:40",
+      "problema": false
     },
     {
       "numero": 792,
@@ -21846,14 +21846,14 @@
       "ip": "",
       "organizacion": "EBCO ENERGÍA",
       "tipo_canal": "Video Channel",
-      "conexion": "Offline",
-      "estado_canal": "Abnormal",
+      "conexion": "Online",
+      "estado_canal": "Normal",
       "dias_almacenamiento_consecutivos": "-",
       "dias_almacenamiento_configurados": "-",
       "integridad_video": "-",
       "metodo_almacenamiento": "-",
-      "ultimo_cambio": "2020-09-02 07:54:57",
-      "problema": true
+      "ultimo_cambio": "2020-09-02 07:53:59",
+      "problema": false
     },
     {
       "numero": 1085,
@@ -45543,13 +45543,13 @@
       "organizacion": "CONCRETA",
       "tipo_canal": "Video Channel",
       "conexion": "Online",
-      "estado_canal": "Abnormal",
+      "estado_canal": "Normal",
       "dias_almacenamiento_consecutivos": "-",
       "dias_almacenamiento_configurados": "-",
       "integridad_video": "-",
       "metodo_almacenamiento": "-",
-      "ultimo_cambio": "2026-09-02 07:58:50",
-      "problema": true
+      "ultimo_cambio": "2026-09-02 07:54:45",
+      "problema": false
     },
     {
       "numero": 2566,
@@ -56620,7 +56620,7 @@
       "dias_almacenamiento_configurados": "-",
       "integridad_video": "-",
       "metodo_almacenamiento": "-",
-      "ultimo_cambio": "2020-09-02 07:54:52",
+      "ultimo_cambio": "2020-09-02 07:54:13",
       "problema": true
     },
     {
@@ -71513,22 +71513,6 @@
         "problema": true
       },
       {
-        "numero": 791,
-        "canal": "C326-1-1",
-        "dispositivo": "C326-1 GS - INMOBILIARIA LA FLORIDA",
-        "ip": "",
-        "organizacion": "GS",
-        "tipo_canal": "Video Channel",
-        "conexion": "Online",
-        "estado_canal": "Abnormal",
-        "dias_almacenamiento_consecutivos": "-",
-        "dias_almacenamiento_configurados": "-",
-        "integridad_video": "-",
-        "metodo_almacenamiento": "-",
-        "ultimo_cambio": "2020-09-02 07:54:58",
-        "problema": true
-      },
-      {
         "numero": 792,
         "canal": "C326-1-2",
         "dispositivo": "C326-1 GS - INMOBILIARIA LA FLORIDA",
@@ -72054,22 +72038,6 @@
         "integridad_video": "-",
         "metodo_almacenamiento": "-",
         "ultimo_cambio": "2020-09-02 07:26:30",
-        "problema": true
-      },
-      {
-        "numero": 1084,
-        "canal": "C596-1-12",
-        "dispositivo": "C596-1 EBCO ENERGIA - PFV MALLOA",
-        "ip": "",
-        "organizacion": "EBCO ENERGÍA",
-        "tipo_canal": "Video Channel",
-        "conexion": "Offline",
-        "estado_canal": "Abnormal",
-        "dias_almacenamiento_consecutivos": "-",
-        "dias_almacenamiento_configurados": "-",
-        "integridad_video": "-",
-        "metodo_almacenamiento": "-",
-        "ultimo_cambio": "2020-09-02 07:54:57",
         "problema": true
       },
       {
@@ -77113,22 +77081,6 @@
         "problema": true
       },
       {
-        "numero": 2565,
-        "canal": "C674- 1-41 PTZ",
-        "dispositivo": "C674-1 CONCRETA - OBRA HACIENDA LOS OLIVOS",
-        "ip": "",
-        "organizacion": "CONCRETA",
-        "tipo_canal": "Video Channel",
-        "conexion": "Online",
-        "estado_canal": "Abnormal",
-        "dias_almacenamiento_consecutivos": "-",
-        "dias_almacenamiento_configurados": "-",
-        "integridad_video": "-",
-        "metodo_almacenamiento": "-",
-        "ultimo_cambio": "2026-09-02 07:58:50",
-        "problema": true
-      },
-      {
         "numero": 2566,
         "canal": "C674- 1-42",
         "dispositivo": "C674-1 CONCRETA - OBRA HACIENDA LOS OLIVOS",
@@ -79029,7 +78981,7 @@
         "dias_almacenamiento_configurados": "-",
         "integridad_video": "-",
         "metodo_almacenamiento": "-",
-        "ultimo_cambio": "2020-09-02 07:54:52",
+        "ultimo_cambio": "2020-09-02 07:54:13",
         "problema": true
       },
       {
